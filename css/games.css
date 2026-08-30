@@ -1,0 +1,418 @@
+/* ==========================================================================
+   Games Arena Styles: Qāla Tetris & Harakah Blitz
+   ========================================================================== */
+
+.games-subtabs-nav {
+  display: flex;
+  gap: 8px;
+  background-color: var(--bg-card);
+  padding: 6px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-subtle);
+}
+
+.game-subtab-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: none;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-family: var(--font-arabic-ui);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.game-subtab-btn.active {
+  background: var(--accent-emerald-gradient);
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.game-panel-section {
+  display: none;
+}
+
+.game-panel-section.active {
+  display: block;
+}
+
+/* ==========================================================================
+   1. Qāla Tetris Arcade Styling
+   ========================================================================== */
+.tetris-arcade-frame {
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 16px;
+  max-width: 440px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-lg);
+}
+
+.tetris-scoreboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 14px;
+  text-align: center;
+  border: 1px solid var(--border-subtle);
+}
+
+.score-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.score-lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.score-val {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-gold);
+  font-family: monospace;
+}
+
+.tetris-canvas-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid #334155;
+  background-color: #0f172a;
+}
+
+#tetris-canvas {
+  display: block;
+  max-width: 100%;
+}
+
+.tetris-controls-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+/* Touch Directional Controls */
+.tetris-dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 54px);
+  gap: 8px;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.dpad-btn {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  border-radius: 12px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s, background-color 0.1s;
+  user-select: none;
+}
+
+.dpad-btn:active {
+  transform: scale(0.92);
+  background-color: var(--text-gold);
+  color: #0f172a;
+}
+
+.dpad-rotate {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.dpad-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.dpad-down {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.dpad-right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.tetris-rules-help {
+  margin-top: 18px;
+  background-color: var(--bg-secondary);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.tetris-rules-help strong {
+  color: var(--text-gold);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ==========================================================================
+   2. Harakah Blitz Styling
+   ========================================================================== */
+.blitz-arena-card {
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 20px 16px;
+  max-width: 440px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.blitz-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+  padding: 8px;
+  margin-bottom: 18px;
+  border: 1px solid var(--border-subtle);
+}
+
+.blitz-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.blitz-stat-lbl {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.blitz-stat-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-gold);
+  font-family: monospace;
+}
+
+.blitz-card-arena {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.blitz-prompt-box {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 24px 16px;
+  margin-bottom: 20px;
+}
+
+.blitz-prompt-title {
+  font-family: var(--font-arabic-quran);
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.blitz-blank-slot {
+  display: inline-block;
+  min-width: 36px;
+  height: 38px;
+  background-color: var(--accent-gold);
+  color: #0f172a;
+  border-radius: 8px;
+  padding: 2px 8px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+.blitz-vowel-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.blitz-vowel-btn {
+  background-color: var(--bg-secondary);
+  border: 2px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 16px 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-primary);
+  font-family: var(--font-arabic-ui);
+  transition: transform 0.1s, border-color 0.1s;
+}
+
+.blitz-vowel-btn:active {
+  transform: scale(0.95);
+}
+
+.blitz-vowel-btn[data-vowel="fatha"]:hover {
+  border-color: var(--text-emerald);
+}
+
+.blitz-vowel-btn[data-vowel="dammah"]:hover {
+  border-color: var(--text-gold);
+}
+
+.blitz-vowel-btn[data-vowel="kasrah"]:hover {
+  border-color: #ef4444;
+}
+
+.blitz-vowel-btn[data-vowel="sukun"]:hover {
+  border-color: #3b82f6;
+}
+
+.v-symbol {
+  font-family: var(--font-arabic-quran);
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.v-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.blitz-feedback-flash {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.flash-correct {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: var(--text-emerald);
+}
+
+.flash-incorrect {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.blitz-overlay-card {
+  padding: 16px 8px;
+}
+
+.blitz-intro-icon {
+  font-size: 3rem;
+  margin-bottom: 8px;
+}
+
+.blitz-intro-title {
+  font-size: 1.3rem;
+  color: var(--text-gold);
+  margin-bottom: 6px;
+}
+
+.blitz-intro-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.blitz-gameover-box {
+  padding: 12px 0;
+}
+
+.gameover-trophy {
+  font-size: 3.5rem;
+  margin-bottom: 6px;
+}
+
+.gameover-title {
+  font-size: 1.35rem;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.gameover-score-pill {
+  display: inline-block;
+  background: var(--accent-gold-gradient);
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 1.15rem;
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.gameover-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.blitz-review-list {
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: right;
+}
+
+.blitz-review-list h4 {
+  font-size: 0.85rem;
+  color: var(--text-gold);
+  margin-bottom: 8px;
+}
+
+.review-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 0.82rem;
+  border-bottom: 1px dashed var(--border-subtle);
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.rev-word {
+  font-family: var(--font-arabic-quran);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.rev-reason {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+}

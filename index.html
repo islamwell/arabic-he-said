@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>موسوعة قَالَ | Master the Word Qāla in Quranic & Classical Arabic</title>
+  <meta name="description" content="تطبيق تعليمي تفاعلي شامل لتعلم جميع تصاريف وقواعد وإعراب الفعل «قَالَ» مع أسرار الحركات، شواهد القرآن الكريم، ولطائف نعمان علي خان البيانية وألعاب تفاعلية.">
+  <meta name="theme-color" content="#090d16">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Scheherazade+New:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/games.css">
+</head>
+<body>
+
+  <!-- Top App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="header-brand">
+        <div class="brand-icon">ق</div>
+        <div class="brand-info">
+          <h1>موسوعة «قَالَ» التفاعلية</h1>
+          <span>All Forms, I'rab & Quranic Balaghah</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="sound-toggle-btn" title="Toggle Sound / كتم الصوت">🔊</button>
+        <button class="icon-btn" id="theme-toggle-btn" title="Toggle Theme / تغيير النمط">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Viewport -->
+  <main class="app-main">
+
+    <!-- ==========================================
+         TAB 1: SARF & MORPHOLOGY MASTERCLASS
+         ========================================== -->
+    <section class="tab-view-panel active" id="tab-sarf">
+      <div class="section-hero">
+        <span class="hero-badge">علم الصرف والأوزان (Morphology)</span>
+        <h2 class="section-title">شجرة تصاريف الفعل «قَالَ»</h2>
+        <p class="section-subtitle">تعلم جميع تصاريف الجذر (ق-و-ل) عبر الضمائر الأربعة عشر في الماضي والمضارع والأمر والمبني للمجهول.</p>
+      </div>
+
+      <!-- Tense Selector Tabs -->
+      <div class="tense-tabs-scroll" id="tense-tabs-container"></div>
+
+      <!-- Pronoun Selector Chips -->
+      <div class="pronoun-chips-wrapper">
+        <div class="pronoun-chips-scroll" id="pronoun-chips-container"></div>
+      </div>
+
+      <!-- Active Conjugation Hero Card -->
+      <div id="active-conjugation-card"></div>
+
+      <!-- Ajwaf Weak-Letter Visualizer -->
+      <div class="ajwaf-section-card">
+        <div class="ajwaf-header">
+          <div class="ajwaf-title-group">
+            <h3>🔬 سر الفعل الأجوف والتخلص من الساكنين</h3>
+            <span>The Science of Hollow Verbs & Why the Waw Disappears</span>
+          </div>
+          <div class="stepper-nav">
+            <button class="stepper-btn" id="ajwaf-prev-btn">السابق</button>
+            <span class="step-indicator-text" id="ajwaf-step-indicator">خطوة 1 من 5</span>
+            <button class="stepper-btn" id="ajwaf-next-btn">التالي</button>
+          </div>
+        </div>
+        <div id="ajwaf-step-container"></div>
+      </div>
+
+      <!-- Derived Forms (Form I to X) -->
+      <div class="section-hero" style="margin-top: 36px;">
+        <span class="hero-badge">الأوزان القياسية المزيدة (Forms II - X)</span>
+        <h3 class="section-title">المشتقات والأفعال المزيدة من الجذر</h3>
+        <p class="section-subtitle">كيف تتغير دلالة القول عند الانتقال إلى أوزان التكلف والإقالة والافتراء.</p>
+      </div>
+      <div class="derived-forms-grid" id="derived-forms-table-body"></div>
+
+      <!-- Nominals & Participles -->
+      <div class="section-hero" style="margin-top: 32px;">
+        <span class="hero-badge">المصادر وأسماء الفاعل والمفعول</span>
+        <h3 class="section-title">الأسماء والمصطلحات المشتقة</h3>
+      </div>
+      <div class="nominals-grid" id="nominals-container"></div>
+    </section>
+
+    <!-- ==========================================
+         TAB 2: VOWEL GYM (أسرار الحركات والإعراب)
+         ========================================== -->
+    <section class="tab-view-panel" id="tab-vowel-gym">
+      <div class="section-hero">
+        <span class="hero-badge">أسرار النحو والإعراب (Nahw & I'rab Gym)</span>
+        <h2 class="section-title">صالة أسرار الحركات الإعرابية</h2>
+        <p class="section-subtitle">لماذا جاءت فتحة أم ضمة أم كسرة أم سكون؟ افهم العلل النحوية العميقة بدقة.</p>
+      </div>
+
+      <!-- 4 Vowel Selector Tabs -->
+      <div class="vowel-tabs-grid" id="vowel-rule-tabs"></div>
+
+      <!-- Vowel Rules Detailed Explanations -->
+      <div id="vowel-rule-details"></div>
+
+      <!-- Interactive Drill Gym Arena -->
+      <div class="drill-arena-section">
+        <div class="drill-arena-header">
+          <div class="drill-title-group">
+            <h3>⚡ تمارين تعليل الحركات (I'rab Mastery Drill)</h3>
+          </div>
+          <div class="drill-stats">
+            <span>النقاط: <strong id="drill-score-count">0</strong></span>
+            <span>المتتالية: <strong id="drill-streak-count">0 🔥</strong></span>
+          </div>
+        </div>
+
+        <div id="drill-card-container"></div>
+        <div class="drill-feedback-box hidden" id="drill-feedback-box"></div>
+
+        <div class="drill-action-footer">
+          <button class="primary-btn hidden" id="drill-next-btn">السؤال التالي ⭠</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TAB 3: QURAN EXPLORER & BALAGHAH GEMS
+         ========================================== -->
+    <section class="tab-view-panel" id="tab-quran">
+      <div class="section-hero">
+        <span class="hero-badge">الشواهد القرآنية واللطائف البيانية (Bayyinah Gems)</span>
+        <h2 class="section-title">مستكشف آيات القول في القرآن الكريم</h2>
+        <p class="section-subtitle">تحليل نحوي وبلاغي مستلهم من دروس الأستاذ نعمان علي خان وبلاغة القرآن المعجزة.</p>
+      </div>
+
+      <!-- Search Input -->
+      <div class="quran-search-bar">
+        <input type="text" class="search-input" id="quran-search-input" placeholder="🔍 ابحث في نص الآية، السورة، أو الشاهد...">
+      </div>
+
+      <!-- Category Filter Chips -->
+      <div class="category-chips-scroll" id="quran-category-chips"></div>
+
+      <!-- Verses List Container -->
+      <div class="quran-verse-list" id="quran-verse-list"></div>
+    </section>
+
+    <!-- ==========================================
+         TAB 4: SENTENCE BUILDER (بناء الجمل)
+         ========================================== -->
+    <section class="tab-view-panel" id="tab-builder">
+      <div class="section-hero">
+        <span class="hero-badge">التطبيق العملي (Sentence Synthesizer)</span>
+        <h2 class="section-title">مختبر تركيب الجمل الإعرابي</h2>
+        <p class="section-subtitle">تدرج من الجمل البسيطة (فعل وفاعل) إلى التراكيب القرآنية المعقدة (أدوات النفي، الشرط، ومقول القول).</p>
+      </div>
+
+      <!-- Tier Selection Tabs -->
+      <div class="sb-tier-tabs-scroll" id="sb-tier-tabs"></div>
+
+      <!-- Active Mission Card -->
+      <div class="sb-mission-card">
+        <div class="sb-mission-header" id="sb-mission-header"></div>
+        <div class="sb-target-prompt" id="sb-target-prompt"></div>
+
+        <!-- Sentence Slot Target Area -->
+        <div class="sb-slots-container" id="sb-slots-container"></div>
+
+        <!-- Word Bank / Tokens -->
+        <div class="sb-token-bank" id="sb-token-bank"></div>
+
+        <!-- Feedback & Validation Box -->
+        <div class="drill-feedback-box hidden" id="sb-feedback-box" style="margin-bottom: 16px;"></div>
+
+        <!-- Actions -->
+        <div class="sb-actions-row">
+          <button class="secondary-btn" id="sb-reset-btn">🔄 مسح وإعادة</button>
+          <button class="primary-btn" id="sb-check-btn">✔️ تحقق من الإعراب</button>
+          <button class="primary-btn hidden" id="sb-next-btn" style="background: var(--accent-gold-gradient); color: #0f172a;">التحدي التالي ⭠</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TAB 5: GAMES ARENA (ألعاب التحدي)
+         ========================================== -->
+    <section class="tab-view-panel" id="tab-games">
+      <div class="section-hero">
+        <span class="hero-badge">الألعاب اللغوية التفاعلية (Grammar Games Arena)</span>
+        <h2 class="section-title">صالة الألعاب اللغوية</h2>
+        <p class="section-subtitle">رسخ قواعد وتصاريف وحركات «قال» من خلال الألعاب الحركية والتحديات السريعة.</p>
+      </div>
+
+      <!-- Subtab Switcher: Tetris vs Blitz -->
+      <div class="games-subtabs-nav">
+        <button class="game-subtab-btn active" data-game="tetris">🎮 تيتريس الكلمات (Qāla Tetris)</button>
+        <button class="game-subtab-btn" data-game="blitz">⚡ برق الحركات (Harakah Blitz)</button>
+      </div>
+
+      <!-- 1. Qala Tetris Panel -->
+      <div class="game-panel-section active" id="game-tetris">
+        <div class="tetris-arcade-frame">
+          <div class="tetris-scoreboard">
+            <div class="score-box">
+              <span class="score-lbl">النقاط</span>
+              <span class="score-val" id="tetris-score-val">0</span>
+            </div>
+            <div class="score-box">
+              <span class="score-lbl">الصفوف</span>
+              <span class="score-val" id="tetris-lines-val">0</span>
+            </div>
+            <div class="score-box">
+              <span class="score-lbl">المستوى</span>
+              <span class="score-val" id="tetris-level-val">1</span>
+            </div>
+          </div>
+
+          <div class="tetris-canvas-wrapper">
+            <canvas id="tetris-canvas"></canvas>
+          </div>
+
+          <div class="tetris-controls-row">
+            <button class="primary-btn" id="tetris-start-btn">ابدأ اللعبة (Start)</button>
+            <button class="secondary-btn" id="tetris-pause-btn">إيقاف مؤقت</button>
+          </div>
+
+          <!-- Touch D-Pad for Mobile -->
+          <div class="tetris-dpad">
+            <button class="dpad-btn dpad-rotate" id="tetris-btn-rotate" title="Rotate / تدوير">🔄</button>
+            <button class="dpad-btn dpad-left" id="tetris-btn-left" title="Move Left / يسار">◀</button>
+            <button class="dpad-btn dpad-down" id="tetris-btn-down" title="Drop Down / إسقاط">▼</button>
+            <button class="dpad-btn dpad-right" id="tetris-btn-right" title="Move Right / يمين">▶</button>
+          </div>
+
+          <div class="tetris-rules-help">
+            <strong>قواعد اللعبة:</strong>
+            <p>قم بمطابقة الضمائر مع أفعالها المناسبة (مثل هُوَ مع قَالَ، أو هُمْ مع قَالُوا) أو إكمال صفوف أفقية كاملة لمسح الكلمات وجمع النقاط!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Harakah Blitz Panel -->
+      <div class="game-panel-section" id="game-blitz">
+        <div class="blitz-arena-card">
+          <div class="blitz-stats-bar">
+            <div class="blitz-stat-item">
+              <span class="blitz-stat-lbl">الوقت</span>
+              <span class="blitz-stat-val" id="blitz-timer-val">45s</span>
+            </div>
+            <div class="blitz-stat-item">
+              <span class="blitz-stat-lbl">النقاط</span>
+              <span class="blitz-stat-val" id="blitz-score-val">0</span>
+            </div>
+            <div class="blitz-stat-item">
+              <span class="blitz-stat-lbl">المتتالية</span>
+              <span class="blitz-stat-val" id="blitz-streak-val">0 🔥</span>
+            </div>
+            <div class="blitz-stat-item">
+              <span class="blitz-stat-lbl">المضاعف</span>
+              <span class="blitz-stat-val" id="blitz-multiplier-val">x1</span>
+            </div>
+          </div>
+
+          <div class="blitz-card-arena">
+            <div class="blitz-overlay-card" id="blitz-overlay">
+              <div class="blitz-intro-icon">⚡</div>
+              <h3 class="blitz-intro-title">تحدي برق الحركات السريع</h3>
+              <p class="blitz-intro-desc">اختر الحركة الإعرابية الصحيحة (فتحة، ضمة، كسرة، سكون) قبل انتهاء الوقت وحقق أعلى مضاعف نقاط!</p>
+              <button class="primary-btn" id="blitz-start-btn">ابدأ التحدي (45 ثانية)</button>
+            </div>
+
+            <div class="hidden" id="blitz-active-card">
+              <div class="blitz-prompt-box">
+                <div class="blitz-prompt-title" id="blitz-prompt-text">
+                  حَتَّىٰ يَقُول<span class="blitz-blank-slot">؟</span> الرَّسُولُ
+                </div>
+              </div>
+
+              <!-- 4 Big Tactile Vowel Buttons -->
+              <div class="blitz-vowel-buttons-grid">
+                <button class="blitz-vowel-btn" data-vowel="fatha">
+                  <span class="v-symbol">ـَ</span>
+                  <span class="v-name">الفتحة</span>
+                </button>
+                <button class="blitz-vowel-btn" data-vowel="dammah">
+                  <span class="v-symbol">ـُ</span>
+                  <span class="v-name">الضمة</span>
+                </button>
+                <button class="blitz-vowel-btn" data-vowel="kasrah">
+                  <span class="v-symbol">ـِ</span>
+                  <span class="v-name">الكسرة</span>
+                </button>
+                <button class="blitz-vowel-btn" data-vowel="sukun">
+                  <span class="v-symbol">ـْ</span>
+                  <span class="v-name">السكون</span>
+                </button>
+              </div>
+
+              <div class="blitz-feedback-flash hidden" id="blitz-feedback-flash"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       MOBILE BOTTOM NAVIGATION BAR
+       ========================================== -->
+  <nav class="bottom-nav-bar" aria-label="شريط التنقل السفلي">
+    <button class="bottom-nav-item active" data-tab="sarf">
+      <span class="nav-icon">📖</span>
+      <span class="nav-label">الصرف</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="vowel-gym">
+      <span class="nav-icon">🎯</span>
+      <span class="nav-label">الحركات</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="quran">
+      <span class="nav-icon">🕌</span>
+      <span class="nav-label">القرآن</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="builder">
+      <span class="nav-icon">🏗️</span>
+      <span class="nav-label">الجمل</span>
+    </button>
+    <button class="bottom-nav-item" data-tab="games">
+      <span class="nav-icon">🎮</span>
+      <span class="nav-label">الألعاب</span>
+    </button>
+  </nav>
+
+  <!-- ==========================================
+       FOOTER (Versioned per Rule)
+       ========================================== -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div class="footer-title">موسوعة الفعل «قَالَ» في القرآن واللغة العربية</div>
+      <div class="footer-credits">مبنية على أصول النحو والصرف ولطائف التفسير البياني</div>
+      <div class="footer-version" id="footer-version-text">v1.0.0 (updated 2026-08-30 07:40)</div>
+    </div>
+  </footer>
+
+  <!-- Script Modules -->
+  <script src="js/audio.js"></script>
+  <script src="js/data/sarf-data.js"></script>
+  <script src="js/data/nahw-data.js"></script>
+  <script src="js/data/quran-data.js"></script>
+  <script src="js/data/sentence-data.js"></script>
+  <script src="js/conjugation-engine.js"></script>
+  <script src="js/vowel-gym.js"></script>
+  <script src="js/sentence-builder.js"></script>
+  <script src="js/quran-explorer.js"></script>
+  <script src="js/games/tetris-game.js"></script>
+  <script src="js/games/blitz-game.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
