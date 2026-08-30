@@ -3,8 +3,8 @@
  * Handles navigation, state management, theming, and footer versioning
  */
 
-const APP_VERSION = "v1.0.0";
-const LAST_UPDATED = "2026-08-30 07:40";
+const APP_VERSION = "v1.0.1";
+const LAST_UPDATED = "2026-08-30 14:59";
 
 class App {
   constructor() {
