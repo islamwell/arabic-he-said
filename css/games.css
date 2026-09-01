@@ -120,14 +120,46 @@
   margin-bottom: 14px;
 }
 
-/* Touch Directional Controls */
-.tetris-dpad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 54px);
-  gap: 8px;
-  max-width: 280px;
-  margin: 0 auto;
+#tab-games .section-hero {
+  margin-bottom: 12px;
+}
+
+@media (max-width: 640px) {
+  #tab-games .section-subtitle {
+    display: none;
+  }
+  .games-subtabs-nav {
+    margin-bottom: 12px;
+    padding: 4px;
+  }
+  .game-subtab-btn {
+    padding: 8px 6px;
+    font-size: 0.85rem;
+  }
+  .tetris-arcade-frame {
+    padding: 10px;
+    border-radius: 16px;
+  }
+  .tetris-scoreboard {
+    padding: 6px 8px;
+    margin-bottom: 10px;
+  }
+  .tetris-canvas-wrapper {
+    margin-bottom: 10px;
+  }
+  .tetris-controls-row {
+    margin-bottom: 10px;
+    gap: 8px;
+  }
+  .tetris-dpad {
+    grid-template-rows: repeat(2, 46px);
+    gap: 6px;
+    max-width: 250px;
+  }
+  .dpad-btn {
+    font-size: 1.1rem;
+    border-radius: 10px;
+  }
 }
 
 .dpad-btn {
