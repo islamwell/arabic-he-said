@@ -522,7 +522,8 @@
   font-size: 0.88rem;
   color: var(--text-secondary);
   margin-bottom: 12px;
-  line-height: 1.5;
+  line-height: 1.6;
+  white-space: pre-line;
 }
 
 .rule-examples-box {
@@ -743,6 +744,8 @@
 
 .full-irab-summary p {
   color: var(--text-primary);
+  line-height: 1.6;
+  white-space: pre-line;
 }
 
 .drill-action-footer {
@@ -923,9 +926,10 @@
 
 .breakdown-pill-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   font-size: 0.82rem;
+  line-height: 1.5;
 }
 
 .breakdown-word {
@@ -937,10 +941,12 @@
   color: var(--text-primary);
   min-width: 60px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .breakdown-role {
   color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 .nak-gem-box {
@@ -1164,4 +1170,6 @@
 .sentence-rule-explanation {
   font-size: 0.85rem;
   color: var(--text-secondary);
+  line-height: 1.6;
+  white-space: pre-line;
 }

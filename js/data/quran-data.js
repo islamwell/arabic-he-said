@@ -27,10 +27,10 @@ window.QURAN_DATA = {
       focusWord: "قَالَ",
       speaker: "عيسى عليه السلام (في المهد)",
       listener: "قوم مريم",
-      vowelFocus: "الفتحة على اللام (مبني على الفتح)",
+      vowelFocus: "الفتحة على اللام (مبني على الفتح) - Built on Fatḥah ('a')",
       breakdown: [
-        { word: "قَالَ", tag: "verb-past", role: "فعل ماضٍ مبني على الفتح، والفاعل ضمير مستتر (هو)" },
-        { word: "إِنِّي عَبْدُ اللَّهِ...", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به" }
+        { word: "قَالَ", tag: "verb-past", role: "فعل ماضٍ مبني على الفتح، والفاعل ضمير مستتر (هو) (Past active verb built on Fatḥah [fixed 'a'] - 'He said')" },
+        { word: "إِنِّي عَبْدُ اللَّهِ...", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به (Direct quote clause acting as direct object)" }
       ],
       nakGem: "Ustadh Nouman Ali Khan notes: Baby Isa (AS) begins his miraculous first speech with 'قَالَ' (He said) - not a hesitant sound, but a decisive, complete, authoritative proclamation from the cradle. The very first statement in his 'مقول القول' (direct speech) is establishing his servitude: 'إِنِّي عَبْدُ اللَّهِ' (I am Allah's slave) before mentioning that he is a prophet, directly refuting any future claims of divinity."
     },
@@ -45,13 +45,13 @@ window.QURAN_DATA = {
       focusWord: "قَالَ",
       speaker: "الله سبحانه وتعالى",
       listener: "الملائكة",
-      vowelFocus: "الفتحة على قالَ + الضمة على ربُّكَ (فاعل)",
+      vowelFocus: "الفتحة على قالَ + الضمة على ربُّكَ (فاعل) - Fatḥah on verb + Ḍammah on Subject",
       breakdown: [
-        { word: "وَإِذْ", tag: "particle", role: "ظرف لما مضى من الزمان" },
-        { word: "قَالَ", tag: "verb-past", role: "فعل ماضٍ مبني على الفتح" },
-        { word: "رَبُّكَ", tag: "subject", role: "فاعل مرفوع وعلامة رفعه الضمة الظاهرة، والكاف مضاف إليه" },
-        { word: "لِلْمَلَائِكَةِ", tag: "preposition", role: "جار ومجرور متعلق بـ (قال)" },
-        { word: "إِنِّي جَاعِلٌ...", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به" }
+        { word: "وَإِذْ", tag: "particle", role: "ظرف لما مضى من الزمان (Adverb of past time - 'And recall when')" },
+        { word: "قَالَ", tag: "verb-past", role: "فعل ماضٍ مبني على الفتح (Past active verb built on Fatḥah - 'He said')" },
+        { word: "رَبُّكَ", tag: "subject", role: "فاعل مرفوع وعلامة رفعه الضمة الظاهرة، والكاف مضاف إليه (Subject in nominative with Ḍammah, Kaff is possessive)" },
+        { word: "لِلْمَلَائِكَةِ", tag: "preposition", role: "جار ومجرور متعلق بـ (قال) (Prepositional phrase connected to 'said')" },
+        { word: "إِنِّي جَاعِلٌ...", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به (Direct quote clause acting as direct object)" }
       ],
       nakGem: "Notice the construction 'وَإِذْ قَالَ رَبُّكَ' (And recall when your Lord said). In Quranic Arabic, 'إذ' invites the listener into a vivid cinematic recollection as if standing there in the celestial assembly witnessing the grand dialogue."
     },
@@ -66,10 +66,10 @@ window.QURAN_DATA = {
       focusWord: "قُلْ",
       speaker: "الله تعالى آمراً النبي ﷺ",
       listener: "النبي ﷺ ومن ورائه الأمة والعالم",
-      vowelFocus: "السكون على اللام (فعل أمر مبني على السكون)",
+      vowelFocus: "السكون على اللام (فعل أمر مبني على السكون) - Built on Sukūn (Command 'Say!')",
       breakdown: [
-        { word: "قُلْ", tag: "verb-amr", role: "فعل أمر مبني على السكون، والفاعل مستتر تقديره أنت" },
-        { word: "هُوَ اللَّهُ أَحَدٌ", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به" }
+        { word: "قُلْ", tag: "verb-amr", role: "فعل أمر مبني على السكون، والفاعل مستتر تقديره أنت (Command verb built on Sukūn - 'Say!')" },
+        { word: "هُوَ اللَّهُ أَحَدٌ", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به (Direct quote clause acting as direct object)" }
       ],
       nakGem: "Why didn't Allah just reveal 'هُوَ اللَّهُ أَحَدٌ' directly without 'قُلْ'? Nouman Ali Khan explains: 'قُلْ' preserves the Messenger's role as a faithful transmitter who does not author the revelation. When the Prophet ﷺ was challenged about Allah's lineage by the Quraysh, Allah commanded him with 'قُلْ' (Proclaim with unwavering authority!)."
     },
@@ -84,10 +84,10 @@ window.QURAN_DATA = {
       focusWord: "قُلِ",
       speaker: "الأمر الإلهي للنبي ﷺ",
       listener: "المشركون والمؤمنون",
-      vowelFocus: "🚨 الكسرة على اللام (كسرة عارضة لمنع التقاء الساكنين)",
+      vowelFocus: "🚨 الكسرة على اللام (كسرة عارضة لمنع التقاء الساكنين) - Connecting Kasrah to avoid silent clash",
       breakdown: [
-        { word: "قُلِ", tag: "verb-amr", role: "فعل أمر مبني على السكون وحُرِّك بالكسر منعاً لالتقاء الساكنين" },
-        { word: "ادْعُوا...", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به" }
+        { word: "قُلِ", tag: "verb-amr", role: "فعل أمر مبني على السكون وحُرِّك بالكسر منعاً لالتقاء الساكنين (Command verb built on Sukūn, shifted to temporary Kasrah to prevent meeting two silent consonants)" },
+        { word: "ادْعُوا...", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به (Direct quote clause acting as direct object)" }
       ],
       nakGem: "Grammar & Tajweed Gem: The original command is 'قُلْ' with a Sukūn. But the next word 'ادْعُوا' begins with a Hamzatul Wasl and a silent Dal (دْ). You cannot pronounce two silent consonants back to back (قُلْ + دْ), so the Arabic tongue shifts the Lam to a Kasrah: 'قُلِ ادْعُوا'. Beautiful phonetic flow!"
     },
@@ -102,12 +102,12 @@ window.QURAN_DATA = {
       focusWord: "يَقُولَ",
       speaker: "الرسول والذين آمنوا",
       listener: "رجاء ودعاء لله",
-      vowelFocus: "🚨 الفتحة على اللام في المضارع (منصوب بعد حتى)",
+      vowelFocus: "🚨 الفتحة على اللام في المضارع (منصوب بعد حتى) - Subjunctive present with Fatḥah after 'ḥattā'",
       breakdown: [
-        { word: "حَتَّىٰ", tag: "particle", role: "حرف غاية ونصب" },
-        { word: "يَقُولَ", tag: "verb-pres", role: "فعل مضارع منصوب بأن المضمرة بعد حتى وعلامة نصبه الفتحة" },
-        { word: "الرَّسُولُ", tag: "subject", role: "فاعل مرفوع بالضمة الظاهرة" },
-        { word: "مَتَىٰ نَصْرُ اللَّهِ", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به" }
+        { word: "حَتَّىٰ", tag: "particle", role: "حرف غاية ونصب (Subjunctive particle of limit - 'until')" },
+        { word: "يَقُولَ", tag: "verb-pres", role: "فعل مضارع منصوب بأن المضمرة بعد حتى وعلامة نصبه الفتحة (Present subjunctive verb with Fatḥah)" },
+        { word: "الرَّسُولُ", tag: "subject", role: "فاعل مرفوع بالضمة الظاهرة (Subject in nominative state with Ḍammah)" },
+        { word: "مَتَىٰ نَصْرُ اللَّهِ", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به (Direct quote clause acting as direct object)" }
       ],
       nakGem: "The final vowel on 'يَقُولَ' is Fatḥah because 'حَتَّىٰ' here introduces the climax of tribulation. Even the most steadfast leaders reach the very limit of human endurance until they cry out for Divine victory."
     },
@@ -122,10 +122,10 @@ window.QURAN_DATA = {
       focusWord: "وَقِيلَ",
       speaker: "الله جل جلاله (حُذِفَ الفاعل للتعظيم والبداهة)",
       listener: "الأرض والسماء (الكون بأجمعه)",
-      vowelFocus: "الفتحة على قِيلَ (فعل ماضٍ مبني للمجهول)",
+      vowelFocus: "الفتحة على قِيلَ (فعل ماضٍ مبني للمجهول) - Past passive verb built on Fatḥah ('It was said')",
       breakdown: [
-        { word: "وَقِيلَ", tag: "verb-passive", role: "فعل ماضٍ مبني للمجهول مبني على الفتح" },
-        { word: "يَا أَرْضُ ابْلَعِي...", tag: "maqool", role: "جملة مقول القول في محل رفع نائب فاعل" }
+        { word: "وَقِيلَ", tag: "verb-passive", role: "فعل ماضٍ مبني للمجهول مبني على الفتح (Past passive verb built on Fatḥah - 'And it was said')" },
+        { word: "يَا أَرْضُ ابْلَعِي...", tag: "maqool", role: "جملة مقول القول في محل رفع نائب فاعل (Direct quote clause acting as deputy subject of passive verb)" }
       ],
       nakGem: "Balaghah Masterpiece (Al-Jurjani & NAK): Why is it 'وَقِيلَ' (And it was said) in the passive voice rather than 'And Allah said'? Because in this cosmic catastrophe of the Deluge, who else could command the heavens to stop raining and the earth to swallow its oceans?! The speaker is so overwhelmingly obvious and majestic that naming Him is unnecessary—the sheer command itself executes instantly."
     },
@@ -140,11 +140,11 @@ window.QURAN_DATA = {
       focusWord: "قُلْتُ",
       speaker: "عيسى عليه السلام في الحساب الأكبر",
       listener: "الله سبحانه وتعالى",
-      vowelFocus: "سكون اللام + ضمة التاء (تاء المتكلم فاعل)",
+      vowelFocus: "سكون اللام + ضمة التاء (تاء المتكلم فاعل) - Past built on Sukūn with 'I' pronoun",
       breakdown: [
-        { word: "مَا", tag: "particle", role: "حرف نفي" },
-        { word: "قُلْتُ", tag: "verb-past", role: "فعل ماضٍ مبني على السكون لاتصاله بالتاء، والتاء فاعل" },
-        { word: "أَنِ اعْبُدُوا اللَّهَ...", tag: "maqool", role: "مقول القول المستثنى" }
+        { word: "مَا", tag: "particle", role: "حرف نفي (Negative particle - 'not')" },
+        { word: "قُلْتُ", tag: "verb-past", role: "فعل ماضٍ مبني على السكون لاتصاله بالتاء، والتاء فاعل (Past verb built on Sukūn before 1st person subject pronoun 'I' built on Ḍammah)" },
+        { word: "أَنِ اعْبُدُوا اللَّهَ...", tag: "maqool", role: "مقول القول المستثنى في محل نصب (Direct quote clause acting as direct object)" }
       ],
       nakGem: "Contrast Isa's first word in infancy ('قَالَ' - 3rd person) with his final defense before Allah on Judgment Day ('مَا قُلْتُ' - 1st person with the humble 'تُ'). The symmetry of the Quran is breathtaking."
     },
@@ -159,10 +159,10 @@ window.QURAN_DATA = {
       focusWord: "تَقَوَّلَ / الْأَقَاوِيل",
       speaker: "الله تعالى في توثيق صدق الوحي",
       listener: "البشرية كلها",
-      vowelFocus: "الفعل المزيد تَقَوَّلَ (Form V) وجمع الكثرة الْأَقَاوِيل",
+      vowelFocus: "الفعل المزيد تَقَوَّلَ (Form V) وجمع الكثرة الْأَقَاوِيل - Form V past verb + Plural of Multitude noun",
       breakdown: [
-        { word: "تَقَوَّلَ", tag: "verb-derived", role: "فعل ماضٍ (وزن تَفَعَّلَ) مبني على الفتح، يفيد التكلف والافتراء" },
-        { word: "الْأَقَاوِيلِ", tag: "noun", role: "مضاف إليه مجرور بالكسرة، وهو جمع جمع للقول (أقوال -> أقاويل)" }
+        { word: "تَقَوَّلَ", tag: "verb-derived", role: "فعل ماضٍ (وزن تَفَعَّلَ) مبني على الفتح، يفيد التكلف والافتراء (Form V past verb built on Fatḥah, meaning concocting false speech)" },
+        { word: "الْأَقَاوِيلِ", tag: "noun", role: "مضاف إليه مجرور بالكسرة، وهو جمع جمع للقول (Genitive plural of multitude with Kasrah)" }
       ],
       nakGem: "Morphology Gem: 'تَقَوَّلَ' (Form V) means not just saying something, but fabricating it with effort and concoction. And 'الْأَقَاوِيل' is a plural of a plural (Plural of Multitude / صيغة منتهى الجموع), meaning even the slightest invented phrase would never go unchecked."
     },
@@ -177,11 +177,11 @@ window.QURAN_DATA = {
       focusWord: "فَقُولَا / قَوْلًا",
       speaker: "الله تعالى",
       listener: "موسى وهارون عليهما السلام",
-      vowelFocus: "فعل أمر مبني على حذف النون (ألف الاثنين) + مفعول مطلق منصوب بالفتح",
+      vowelFocus: "فعل أمر مبني على حذف النون (ألف الاثنين) + مفعول مطلق (Dual command built on dropped Nūn + cognate accusative)",
       breakdown: [
-        { word: "فَقُولَا", tag: "verb-amr", role: "فعل أمر مبني على حذف النون، وألف الاثنين ضمير متصل فاعل" },
-        { word: "قَوْلًا", tag: "noun", role: "مفعول مطلق منصوب بالفتحة الظاهرة" },
-        { word: "لَّيِّنًا", tag: "adjective", role: "نعت منصوب بالفتحة" }
+        { word: "فَقُولَا", tag: "verb-amr", role: "فعل أمر مبني على حذف النون، وألف الاثنين ضمير متصل فاعل (Dual command verb built on dropped Nūn - 'Speak, you two!')" },
+        { word: "قَوْلًا", tag: "noun", role: "مفعول مطلق منصوب بالفتحة الظاهرة (Cognate accusative verbal noun with Fatḥah - 'a speech')" },
+        { word: "لَّيِّنًا", tag: "adjective", role: "نعت منصوب بالفتحة (Descriptive adjective with Fatḥah - 'gentle')" }
       ],
       nakGem: "Nouman Ali Khan highlights: Allah sends Musa and Harun to the most tyrannical despot on earth, Pharaoh, yet commands them with 'فَقُولَا لَهُ قَوْلًا لَّيِّنًا' (Speak to him softly). If soft speech was demanded with Pharaoh, how should we speak with our families and fellow believers?"
     },
@@ -196,10 +196,10 @@ window.QURAN_DATA = {
       focusWord: "قَالُوا",
       speaker: "المشركون والمكذبون يوم البعث",
       listener: "حسرة وتساؤل في المحشر",
-      vowelFocus: "مبني على الضم لاتصاله بواو الجماعة",
+      vowelFocus: "مبني على الضم لاتصاله بواو الجماعة (Past verb built on Ḍammah before plural Waw - 'They said')",
       breakdown: [
-        { word: "قَالُوا", tag: "verb-past", role: "فعل ماضٍ مبني على الضم لاتصاله بواو الجماعة، والواو فاعل" },
-        { word: "يَا وَيْلَنَا...", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به" }
+        { word: "قَالُوا", tag: "verb-past", role: "فعل ماضٍ مبني على الضم لاتصاله بواو الجماعة، والواو فاعل (Past active verb built on Ḍammah with plural Waw as subject pronoun 'they')" },
+        { word: "يَا وَيْلَنَا...", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به (Direct quote clause acting as direct object)" }
       ],
       nakGem: "Rhetorical Tense Shift: The Day of Judgment is in the future, yet Allah frequently uses past tense 'قَالُوا' (They said) instead of 'يَقُولُونَ' (They will say). In Balaghah, this is called 'التعبير بالماضي عن المستقبل لتحقق وقوعه'—describing future events in the past tense because Allah's promise is so absolute that it is as certain as a completed past fact!"
     },
@@ -214,10 +214,10 @@ window.QURAN_DATA = {
       focusWord: "قَالَا",
       speaker: "آدم وحواء عليهما السلام",
       listener: "الله جل جلاله",
-      vowelFocus: "مبني على الفتح لاتصاله بألف الاثنين",
+      vowelFocus: "مبني على الفتح لاتصاله بألف الاثنين (Past verb built on Fatḥah with dual Alif - 'They both said')",
       breakdown: [
-        { word: "قَالَا", tag: "verb-past", role: "فعل ماضٍ مبني على الفتح، وألف الاثنين ضمير متصل فاعل" },
-        { word: "رَبَّنَا ظَلَمْنَا...", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به" }
+        { word: "قَالَا", tag: "verb-past", role: "فعل ماضٍ مبني على الفتح، وألف الاثنين ضمير متصل فاعل (Past active verb built on Fatḥah with dual Alif as subject pronoun 'they both')" },
+        { word: "رَبَّنَا ظَلَمْنَا...", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به (Direct quote clause acting as direct object)" }
       ],
       nakGem: "Notice the dual 'قَالَا' (They both said). Adam and Hawa shared the sincere repentance in absolute harmony, with zero blame shifting onto each other. Contrast this with Iblis who blamed Allah when he fell!"
     },
@@ -232,13 +232,13 @@ window.QURAN_DATA = {
       focusWord: "قَالَ / قَائِلٌ / قَالُوا",
       speaker: "أصحاب الكهف",
       listener: "بعضهم لبعض",
-      vowelFocus: "فعل ماضٍ (قَالَ) + اسم فاعل مرفوع (قَائِلٌ) + ماضٍ مبني على الضم (قَالُوا)",
+      vowelFocus: "فعل ماضٍ (قَالَ) + اسم فاعل مرفوع (قَائِلٌ) + ماضٍ مبني على الضم (قَالُوا) - Past verb + Active Participle + Plural past verb",
       breakdown: [
-        { word: "قَالَ", tag: "verb-past", role: "فعل ماضٍ مبني على الفتح" },
-        { word: "قَائِلٌ", tag: "noun", role: "اسم فاعل، فاعل مرفوع وعلامة رفعه الضمة الظاهرة" },
-        { word: "كَمْ لَبِثْتُمْ", tag: "maqool", role: "جملة مقول القول الأولى في محل نصب" },
-        { word: "قَالُوا", tag: "verb-past", role: "فعل ماضٍ مبني على الضم، والواو فاعل" },
-        { word: "لَبِثْنَا يَوْمًا...", tag: "maqool", role: "جملة مقول القول الثانية" }
+        { word: "قَالَ", tag: "verb-past", role: "فعل ماضٍ مبني على الفتح (Past active verb built on Fatḥah - 'He said')" },
+        { word: "قَائِلٌ", tag: "noun", role: "اسم فاعل، فاعل مرفوع وعلامة رفعه الضمة الظاهرة (Active participle acting as Subject with Ḍammah - 'a speaker')" },
+        { word: "كَمْ لَبِثْتُمْ", tag: "maqool", role: "جملة مقول القول الأولى في محل نصب (First quote clause as direct object)" },
+        { word: "قَالُوا", tag: "verb-past", role: "فعل ماضٍ مبني على الضم، والواو فاعل (Past verb built on Ḍammah with plural Waw - 'they said')" },
+        { word: "لَبِثْنَا يَوْمًا...", tag: "maqool", role: "جملة مقول القول الثانية في محل نصب (Second quote clause as direct object)" }
       ],
       nakGem: "A linguistic masterclass in one verse: The root ق-و-ل appears in three distinct morphological dresses: the singular past verb 'قَالَ', the active participle 'قَائِلٌ' (the speaker), and the plural past verb 'قَالُوا' (the respondents)."
     },
@@ -253,10 +253,10 @@ window.QURAN_DATA = {
       focusWord: "قَالُوا",
       speaker: "المنافقون",
       listener: "رسول الله ﷺ",
-      vowelFocus: "ماضٍ مبني على الضم",
+      vowelFocus: "ماضٍ مبني على الضم (Past verb built on Ḍammah before plural Waw)",
       breakdown: [
-        { word: "قَالُوا", tag: "verb-past", role: "فعل ماضٍ مبني على الضم لاتصاله بواو الجماعة" },
-        { word: "نَشْهَدُ إِنَّكَ لَرَسُولُ اللَّهِ", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به" }
+        { word: "قَالُوا", tag: "verb-past", role: "فعل ماضٍ مبني على الضم لاتصاله بواو الجماعة (Past active verb built on Ḍammah with plural Waw)" },
+        { word: "نَشْهَدُ إِنَّكَ لَرَسُولُ اللَّهِ", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به (Direct quote clause acting as direct object)" }
       ],
       nakGem: "Bayyinah Insight: The hypocrites say 'نَشْهَدُ' (We bear witness) using heavy emphatic tools (إنّ and the Lam of confirmation 'لَرَسُولُ'). Why? Because someone who is lying overcompensates with excessive oaths and rhetorical emphasis to sound convincing!"
     },
@@ -271,10 +271,10 @@ window.QURAN_DATA = {
       focusWord: "قُلِ",
       speaker: "الله تعالى آمراً نبيه ﷺ",
       listener: "المشركون الجاحدون",
-      vowelFocus: "🚨 الكسرة على اللام (قُلِ) لمنع التقاء الساكنين مع لفظ الجلالة",
+      vowelFocus: "🚨 الكسرة على اللام لمنع التقاء الساكنين مع لفظ الجلالة (Connecting Kasrah before the Name of Allah)",
       breakdown: [
-        { word: "قُلِ", tag: "verb-amr", role: "فعل أمر مبني على السكون وحُرّك بالكسر لمنع التقاء الساكنين" },
-        { word: "اللَّهُ", tag: "subject", role: "لفظ الجلالة مبتدأ أو خبر لمبتدأ محذوف (مقول القول)" }
+        { word: "قُلِ", tag: "verb-amr", role: "فعل أمر مبني على السكون وحُرّك بالكسر لمنع التقاء الساكنين (Command verb built on Sukūn, shifted to temporary Kasrah to prevent meeting two silent consonants)" },
+        { word: "اللَّهُ", tag: "subject", role: "لفظ الجلالة مبتدأ أو خبر لمبتدأ محذوف (The Divine Name as Subject / Direct quote statement)" }
       ],
       nakGem: "The ultimate one-word answer to endless philosophical skepticism: 'قُلِ اللَّهُ' (Say: Allah!). The Kasrah connects the urgent command smoothly into the majestic Name of Allah."
     },
@@ -289,11 +289,11 @@ window.QURAN_DATA = {
       focusWord: "تَقُولَنَّ",
       speaker: "الله تعالى مؤدباً النبي ﷺ والأمة",
       listener: "النبي ﷺ والمؤمنون",
-      vowelFocus: "مبني على الفتح لاتصاله بنون التوكيد الثقيلة في محل جزم",
+      vowelFocus: "مبني على الفتح لاتصاله بنون التوكيد الثقيلة في محل جزم (Present verb built on Fatḥah with emphatic Nūn in jussive state)",
       breakdown: [
-        { word: "وَلَا", tag: "particle", role: "لا الناهية الجازمة" },
-        { word: "تَقُولَنَّ", tag: "verb-pres", role: "فعل مضارع مبني على الفتح لاتصاله بنون التوكيد الثقيلة في محل جزم" },
-        { word: "إِنِّي فَاعِلٌ ذَٰلِكَ غَدًا", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به" }
+        { word: "وَلَا", tag: "particle", role: "لا الناهية الجازمة (Prohibitive jussive particle - 'do not')" },
+        { word: "تَقُولَنَّ", tag: "verb-pres", role: "فعل مضارع مبني على الفتح لاتصاله بنون التوكيد الثقيلة في محل جزم (Present verb built on Fatḥah due to emphatic Nūn in jussive state - 'never say!')" },
+        { word: "إِنِّي فَاعِلٌ ذَٰلِكَ غَدًا", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به (Direct quote clause acting as direct object)" }
       ],
       nakGem: "Notice: The present tense is reinforced by 'نون التوكيد الثقيلة' (ـَنَّ). Usually jussive takes a Sukun, but because of the heavy Noon of emphasis, it is built on Fatha (تَقُولَنَّ) in the place of Jazam!"
     },
@@ -308,10 +308,10 @@ window.QURAN_DATA = {
       focusWord: "قَوْلًا",
       speaker: "الله تعالى",
       listener: "النبي ﷺ",
-      vowelFocus: "المصدر الصريح منصوب بالفتحة (مفعول به)",
+      vowelFocus: "المصدر الصريح منصوب بالفتحة (Cognate verbal noun in accusative with Fatḥah - 'Qawlan')",
       breakdown: [
-        { word: "قَوْلًا", tag: "noun", role: "مفعول به منصوب بالفتحة الظاهرة (وهو مصدر قال)" },
-        { word: "ثَقِيلًا", tag: "adjective", role: "نعت منصوب بالفتحة الظاهرة" }
+        { word: "قَوْلًا", tag: "noun", role: "مفعول به منصوب بالفتحة الظاهرة (وهو مصدر قال) (Direct object verbal noun in accusative with Fatḥah - 'a word / statement')" },
+        { word: "ثَقِيلًا", tag: "adjective", role: "نعت منصوب بالفتحة الظاهرة (Descriptive adjective with Fatḥah - 'heavy / weighty')" }
       ],
       nakGem: "The Quran itself is called 'قَوْلًا ثَقِيلًا' (a heavy word). It is heavy in moral gravity, heavy in truth, heavy in balance on the Day of Judgment, and heavy in divine beauty."
     },
@@ -326,10 +326,10 @@ window.QURAN_DATA = {
       focusWord: "قُولُوا",
       speaker: "الله تعالى في ميثاق بني إسرائيل والتكليف العام",
       listener: "المؤمنون والمكلفون",
-      vowelFocus: "فعل أمر مبني على حذف النون (واو الجماعة)",
+      vowelFocus: "فعل أمر مبني على حذف النون (Plural command built on dropped Nūn - 'Speak, you all!')",
       breakdown: [
-        { word: "وَقُولُوا", tag: "verb-amr", role: "فعل أمر مبني على حذف النون، والواو ضمير متصل فاعل" },
-        { word: "حُسْنًا", tag: "noun", role: "صفة لمصدر محذوف (قولاً حسناً) أو مفعول به منصوب" }
+        { word: "وَقُولُوا", tag: "verb-amr", role: "فعل أمر مبني على حذف النون، والواو ضمير متصل فاعل (Plural command verb built on dropped Nūn with plural Waw - 'And speak, you all!')" },
+        { word: "حُسْنًا", tag: "noun", role: "صفة لمصدر محذوف (قولاً حسناً) أو مفعول به منصوب (Accusative noun / description of speech - 'goodness')" }
       ],
       nakGem: "Notice that Allah says 'لِلنَّاسِ' (to all people) - not just to your companions, family, or Muslims, but to all human beings without exception, speak goodness and beauty."
     },
@@ -344,9 +344,9 @@ window.QURAN_DATA = {
       focusWord: "قِيلًا",
       speaker: "الله تعالى",
       listener: "العقلاء والخلائق",
-      vowelFocus: "تمييز منصوب بالفتحة الظاهرة (من صيغ المصدر)",
+      vowelFocus: "تمييز منصوب بالفتحة الظاهرة (Specification noun with Fatḥah - 'Qīlan')",
       breakdown: [
-        { word: "قِيلًا", tag: "noun", role: "تمييز منصوب بالفتحة الظاهرة محول عن المبتدأ (أي: من أصدق قيلُه)" }
+        { word: "قِيلًا", tag: "noun", role: "تمييز منصوب بالفتحة الظاهرة محول عن المبتدأ (Specification noun in accusative with Fatḥah - 'in statement / utterance')" }
       ],
       nakGem: "'قِيلًا' is a rare, elegant Masdar variant of 'قَوْل'. It denotes the purest, most refined utterance. Allah's statement is the pinnacle of all truth."
     },
@@ -361,10 +361,10 @@ window.QURAN_DATA = {
       focusWord: "وَقَالُوا",
       speaker: "أهل النار في الآخرة",
       listener: "اعتراف بالذنب بين يدي العذاب",
-      vowelFocus: "ماضٍ مبني على الضم",
+      vowelFocus: "ماضٍ مبني على الضم (Past verb built on Ḍammah before plural Waw - 'They said')",
       breakdown: [
-        { word: "وَقَالُوا", tag: "verb-past", role: "فعل ماضٍ مبني على الضم لاتصاله بواو الجماعة" },
-        { word: "لَوْ كُنَّا نَسْمَعُ...", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به" }
+        { word: "وَقَالُوا", tag: "verb-past", role: "فعل ماضٍ مبني على الضم لاتصاله بواو الجماعة، والواو فاعل (Past active verb built on Ḍammah with plural Waw - 'And they will say')" },
+        { word: "لَوْ كُنَّا نَسْمَعُ...", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به (Direct quote clause acting as direct object)" }
       ],
       nakGem: "The deniers combine 'نَسْمَعُ' (listening with open hearts) and 'نَعْقِلُ' (using deep rational reflection). Islam appeals simultaneously to sincere emotion and sharp intellect."
     },
@@ -379,10 +379,10 @@ window.QURAN_DATA = {
       focusWord: "قُلْ",
       speaker: "الله سبحانه وتعالى",
       listener: "النبي ﷺ والمؤمنون للحماية والتحصين",
-      vowelFocus: "فعل أمر مبني على السكون على اللام",
+      vowelFocus: "فعل أمر مبني على السكون على اللام (Command verb built on Sukūn - 'Say!')",
       breakdown: [
-        { word: "قُلْ", tag: "verb-amr", role: "فعل أمر مبني على السكون، والفاعل مستتر (أنت)" },
-        { word: "أَعُوذُ بِرَبِّ الْفَلَقِ", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به" }
+        { word: "قُلْ", tag: "verb-amr", role: "فعل أمر مبني على السكون، والفاعل مستتر (أنت) (Command verb built on Sukūn - 'Say!')" },
+        { word: "أَعُوذُ بِرَبِّ الْفَلَقِ", tag: "maqool", role: "جملة مقول القول في محل نصب مفعول به (Direct quote clause acting as direct object)" }
       ],
       nakGem: "By uttering 'قُلْ أَعُوذُ', we actively engage the Divine shield. Seeking refuge is not merely a mental thought, but a pronounced declaration."
     }

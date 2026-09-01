@@ -19,73 +19,73 @@ class HarakahBlitzGame {
         prompt: "حَتَّىٰ يَقُول[_] الرَّسُولُ",
         word: "يَقُولَ",
         correctVowel: "fatha",
-        reason: "منصوب بالفتحة بعد «حتى»"
+        reason: "منصوب بالفتحة بعد «حتى» (Subjunctive with Fatḥah after 'ḥattā')"
       },
       {
         prompt: "قُل[_] ادْعُوا اللَّهَ",
         word: "قُلِ",
         correctVowel: "kasrah",
-        reason: "كسرة عارضة لمنع التقاء الساكنين"
+        reason: "كسرة عارضة لمنع التقاء الساكنين (Connecting Kasrah to prevent silent letter clash)"
       },
       {
         prompt: "مَا قُلْت[_] لَهُمْ إِلَّا مَا أَمَرْتَنِي",
         word: "قُلْتُ",
         correctVowel: "dammah",
-        reason: "ضمير المتكلم (أنا) مبني على الضم"
+        reason: "ضمير المتكلم (أنا) مبني على الضم (1st-person subject pronoun 'I' built on Ḍammah)"
       },
       {
         prompt: "وَلَا تَقُل[_] لَّهُمَا أُفٍّ",
         word: "تَقُلْ",
         correctVowel: "sukun",
-        reason: "مضارع مجزوم بالسكون بلا الناهية"
+        reason: "مضارع مجزوم بالسكون بلا الناهية (Jussive with Sukūn after prohibitive 'lā')"
       },
       {
         prompt: "يَقُول[_] الْإِنسَانُ يَوْمَئِذٍ أَيْنَ الْمَفَرُّ",
         word: "يَقُولُ",
         correctVowel: "dammah",
-        reason: "مضارع مرفوع بالضمة لتجرده"
+        reason: "مضارع مرفوع بالضمة لتجرده (Indicative present with Ḍammah)"
       },
       {
         prompt: "قَالَ قَائِل[_] مِّنْهُمْ",
         word: "قَائِلٌ",
         correctVowel: "dammah",
-        reason: "فاعل مرفوع بالضمة"
+        reason: "فاعل مرفوع بالضمة (Subject / Doer with Ḍammah)"
       },
       {
         prompt: "قَال[_] اللَّهُ هَٰذَا يَوْمُ يَنفَعُ الصَّادِقِينَ",
         word: "قَالَ",
         correctVowel: "fatha",
-        reason: "ماضٍ مبني على الفتح"
+        reason: "ماضٍ مبني على الفتح (Past active verb built on Fatḥah [fixed 'a'])"
       },
       {
         prompt: "قُل[_] هُوَ اللَّهُ أَحَدٌ",
         word: "قُلْ",
         correctVowel: "sukun",
-        reason: "فعل أمر مبني على السكون"
+        reason: "فعل أمر مبني على السكون (Command verb built on Sukūn - 'Say!')"
       },
       {
         prompt: "قُل[_] اللَّهُمَّ مَالِكَ الْمُلْكِ",
         word: "قُلِ",
         correctVowel: "kasrah",
-        reason: "كسرة عارضة لمنع التقاء الساكنين مع لفظ الجلالة"
+        reason: "كسرة عارضة لمنع التقاء الساكنين مع لفظ الجلالة (Connecting Kasrah before Name of Allah)"
       },
       {
         prompt: "لَنْ نَّقُول[_] إِلَّا الْحَقَّ",
         word: "نَقُولَ",
         correctVowel: "fatha",
-        reason: "مضارع منصوب بالفتحة بعد «لن»"
+        reason: "مضارع منصوب بالفتحة بعد «لن» (Subjunctive with Fatḥah after 'lan')"
       },
       {
         prompt: "قُلْن[_] يَا نَارُ كُونِي بَرْدًا",
         word: "قُلْنَا",
         correctVowel: "sukun",
-        reason: "الماضي مبني على السكون على اللام مع (نا)"
+        reason: "الماضي مبني على السكون على اللام مع (نا) (Past verb built on Sukūn with 'nā' - 'we said')"
       },
       {
         prompt: "وَقِيل[_] يَا أَرْضُ ابْلَعِي مَاءَكِ",
         word: "قِيلَ",
         correctVowel: "fatha",
-        reason: "ماضٍ مبني للمجهول مبني على الفتح"
+        reason: "ماضٍ مبني للمجهول مبني على الفتح (Past passive verb built on Fatḥah - 'It was said')"
       }
     ];
   }

@@ -3,8 +3,8 @@
  * Handles navigation, state management, theming, language switching (i18n), and footer versioning
  */
 
-const APP_VERSION = "v1.0.3";
-const LAST_UPDATED = "2026-09-01 23:46";
+const APP_VERSION = "v1.0.4";
+const LAST_UPDATED = "2026-09-01 23:50";
 
 class App {
   constructor() {
