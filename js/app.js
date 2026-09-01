@@ -1,22 +1,25 @@
 /**
  * Main Application Orchestrator
- * Handles navigation, state management, theming, language switching (i18n), and footer versioning
+ * Handles navigation, state management, theming, font size scaling, language switching (i18n), and footer versioning
  */
 
 const APP_VERSION = "v1.0.4";
-const LAST_UPDATED = "2026-09-01 23:50";
+const LAST_UPDATED = "2026-09-02 00:45";
 
 class App {
   constructor() {
     this.currentTab = 'sarf';
     this.theme = localStorage.getItem('qala_theme') || 'dark';
     this.currentLang = localStorage.getItem('qala_lang') || 'ar';
+    this.fontScale = localStorage.getItem('qala_font_scale') || 'normal'; // 'normal' | 'large' | 'xlarge'
   }
 
   init() {
     this.applyTheme();
+    this.applyFontScale();
     this.setupNavigation();
     this.setupThemeToggle();
+    this.setupFontScaleToggle();
     this.setupSoundToggle();
     this.setupLanguageToggle();
     this.setupFooterVersion();
@@ -50,7 +53,7 @@ class App {
     if (!tabId || tabId === this.currentTab) return;
     this.currentTab = tabId;
 
-    window.soundEngine.playClick();
+    if (window.soundEngine) window.soundEngine.playClick();
 
     // Update bottom nav items
     document.querySelectorAll('.bottom-nav-item, .desktop-nav-link').forEach(btn => {
@@ -65,9 +68,14 @@ class App {
     // Scroll to top of panel smoothly
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Resize canvas if switching to games
+    // Resize and draw canvas if switching to games
     if (tabId === 'games' && window.qalaTetrisGame) {
-      setTimeout(() => window.qalaTetrisGame.adjustCanvasSize(), 100);
+      setTimeout(() => {
+        window.qalaTetrisGame.adjustCanvasSize();
+        if (!window.qalaTetrisGame.isRunning) {
+          window.qalaTetrisGame.drawInitialScreen();
+        }
+      }, 100);
     }
   }
 
@@ -76,7 +84,7 @@ class App {
     tabs.forEach(t => {
       t.addEventListener('click', (e) => {
         const gameId = e.currentTarget.dataset.game;
-        window.soundEngine.playClick();
+        if (window.soundEngine) window.soundEngine.playClick();
 
         tabs.forEach(b => b.classList.remove('active'));
         e.currentTarget.classList.add('active');
@@ -86,7 +94,12 @@ class App {
         });
 
         if (gameId === 'tetris' && window.qalaTetrisGame) {
-          setTimeout(() => window.qalaTetrisGame.adjustCanvasSize(), 100);
+          setTimeout(() => {
+            window.qalaTetrisGame.adjustCanvasSize();
+            if (!window.qalaTetrisGame.isRunning) {
+              window.qalaTetrisGame.drawInitialScreen();
+            }
+          }, 100);
         }
       });
     });
@@ -107,7 +120,40 @@ class App {
         this.theme = this.theme === 'dark' ? 'light' : 'dark';
         localStorage.setItem('qala_theme', this.theme);
         this.applyTheme();
-        window.soundEngine.playClick();
+        if (window.soundEngine) window.soundEngine.playClick();
+      });
+    }
+  }
+
+  applyFontScale() {
+    document.documentElement.setAttribute('data-font-scale', this.fontScale);
+    const fontBtn = document.getElementById('font-size-toggle-btn');
+    if (fontBtn) {
+      const label = this.fontScale === 'xlarge' ? '🔠 A++' : (this.fontScale === 'large' ? '🔠 A+' : '🔠 A');
+      fontBtn.innerHTML = label;
+    }
+  }
+
+  setupFontScaleToggle() {
+    const fontBtn = document.getElementById('font-size-toggle-btn');
+    if (fontBtn) {
+      fontBtn.addEventListener('click', () => {
+        if (this.fontScale === 'normal') {
+          this.fontScale = 'large';
+        } else if (this.fontScale === 'large') {
+          this.fontScale = 'xlarge';
+        } else {
+          this.fontScale = 'normal';
+        }
+        localStorage.setItem('qala_font_scale', this.fontScale);
+        this.applyFontScale();
+        if (window.soundEngine) window.soundEngine.playClick();
+
+        const lang = this.currentLang || 'ar';
+        const msg = lang === 'en'
+          ? `Font Size: ${this.fontScale.toUpperCase()}`
+          : `حجم الخط: ${this.fontScale === 'xlarge' ? 'كبير جداً' : (this.fontScale === 'large' ? 'كبير' : 'عادي')}`;
+        this.showCacheToast(msg);
       });
     }
   }
@@ -129,7 +175,7 @@ class App {
         this.currentLang = this.currentLang === 'ar' ? 'en' : 'ar';
         localStorage.setItem('qala_lang', this.currentLang);
         this.applyLanguage(this.currentLang);
-        window.soundEngine.playClick();
+        if (window.soundEngine) window.soundEngine.playClick();
       });
     }
   }
@@ -303,7 +349,7 @@ class App {
 
     setTimeout(() => {
       toast.remove();
-    }, 3000);
+    }, 2800);
   }
 
   setupFooterVersion() {

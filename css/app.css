@@ -97,6 +97,30 @@ html {
   scroll-behavior: smooth;
 }
 
+html[data-font-scale="large"] {
+  font-size: 18px;
+}
+
+html[data-font-scale="xlarge"] {
+  font-size: 20px;
+}
+
+html[data-font-scale="large"] .verse-arabic-text,
+html[data-font-scale="large"] .card-arabic-word,
+html[data-font-scale="large"] .vowel-title-word,
+html[data-font-scale="large"] .step-target-word,
+html[data-font-scale="large"] .sb-token-chip {
+  font-size: 118% !important;
+}
+
+html[data-font-scale="xlarge"] .verse-arabic-text,
+html[data-font-scale="xlarge"] .card-arabic-word,
+html[data-font-scale="xlarge"] .vowel-title-word,
+html[data-font-scale="xlarge"] .step-target-word,
+html[data-font-scale="xlarge"] .sb-token-chip {
+  font-size: 135% !important;
+}
+
 body {
   font-family: var(--font-arabic-ui);
   background-color: var(--bg-primary);
@@ -207,6 +231,16 @@ button, input, select, textarea {
   font-weight: 700;
   font-family: var(--font-arabic-ui);
   gap: 4px;
+}
+
+.font-size-btn {
+  width: auto;
+  padding: 0 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: var(--font-arabic-ui);
+  gap: 3px;
+  color: var(--text-gold);
 }
 
 [dir="ltr"] .header-brand {

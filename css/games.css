@@ -90,6 +90,22 @@
   overflow: hidden;
   border: 2px solid #334155;
   background-color: #0f172a;
+  position: relative;
+}
+
+.tetris-in-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 16px;
 }
 
 #tetris-canvas {

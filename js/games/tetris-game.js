@@ -1,16 +1,16 @@
 /**
  * Qāla Tetris Game (لعبة تيتريس الكلمات وقواعد قال)
  * HTML5 Canvas Tetris-style falling blocks matched with Arabic Grammar Conjugations!
- * Enhanced with larger squares and high-contrast typography for effortless reading.
+ * Robust physics, large squares, touch swipe controls, and non-blocking in-game overlay.
  */
 
 class QalaTetrisGame {
   constructor() {
     this.canvas = null;
     this.ctx = null;
-    this.gridWidth = 6;  // 6 columns for large, readable squares
-    this.gridHeight = 9; // 9 rows for comfortable mobile vertical view
-    this.blockSize = 56; // Dynamic large block size
+    this.gridWidth = 6;   // 6 columns for extra-large, ultra-readable squares
+    this.gridHeight = 9;  // 9 rows for comfortable mobile vertical view
+    this.blockSize = 56;  // Dynamic large block size
     this.grid = [];
     
     this.currentPiece = null;
@@ -48,15 +48,25 @@ class QalaTetrisGame {
     this.adjustCanvasSize();
     this.resetGrid();
     this.setupControls();
+    this.setupTouchSwipe();
+    this.drawInitialScreen();
+
+    window.addEventListener('resize', () => {
+      this.adjustCanvasSize();
+      if (!this.isRunning) this.drawInitialScreen();
+    });
   }
 
   adjustCanvasSize() {
     if (!this.canvas) return;
-    const parentWidth = this.canvas.parentElement.clientWidth || 340;
-    // Calculate large block size (e.g. 52px to 62px)
+    // Calculate reliable parent width even when initialized in hidden tab
+    let parentWidth = 340;
+    if (this.canvas.parentElement && this.canvas.parentElement.clientWidth > 80) {
+      parentWidth = this.canvas.parentElement.clientWidth;
+    }
     const availableWidth = Math.min(parentWidth - 16, 390);
     const idealBlock = Math.floor(availableWidth / this.gridWidth);
-    this.blockSize = Math.max(idealBlock, 48);
+    this.blockSize = Math.max(idealBlock, 52);
     this.canvas.width = this.gridWidth * this.blockSize;
     this.canvas.height = this.gridHeight * this.blockSize;
   }
@@ -91,7 +101,7 @@ class QalaTetrisGame {
       }
     });
 
-    // Touch Buttons
+    // Touch / Click Control Buttons
     const btnLeft = document.getElementById('tetris-btn-left');
     const btnRight = document.getElementById('tetris-btn-right');
     const btnDown = document.getElementById('tetris-btn-down');
@@ -99,44 +109,130 @@ class QalaTetrisGame {
     const startBtn = document.getElementById('tetris-start-btn');
     const pauseBtn = document.getElementById('tetris-pause-btn');
 
-    if (btnLeft) btnLeft.addEventListener('click', () => { this.moveLeft(); window.soundEngine.playClick(); });
-    if (btnRight) btnRight.addEventListener('click', () => { this.moveRight(); window.soundEngine.playClick(); });
-    if (btnDown) btnDown.addEventListener('click', () => { this.dropPiece(); window.soundEngine.playClick(); });
-    if (btnRotate) btnRotate.addEventListener('click', () => { this.cyclePieceWord(); window.soundEngine.playClick(); });
+    if (btnLeft) btnLeft.onclick = () => { this.moveLeft(); if (window.soundEngine) window.soundEngine.playClick(); };
+    if (btnRight) btnRight.onclick = () => { this.moveRight(); if (window.soundEngine) window.soundEngine.playClick(); };
+    if (btnDown) btnDown.onclick = () => { this.dropPiece(); if (window.soundEngine) window.soundEngine.playClick(); };
+    if (btnRotate) btnRotate.onclick = () => { this.cyclePieceWord(); if (window.soundEngine) window.soundEngine.playClick(); };
 
     if (startBtn) {
-      startBtn.addEventListener('click', () => {
-        const lang = window.app ? window.app.currentLang : 'ar';
-        const t = window.I18N[lang];
-        if (!this.isRunning) {
-          this.startGame();
-          startBtn.textContent = t.restartTetris;
-        } else {
-          this.startGame();
-        }
-      });
+      startBtn.onclick = () => {
+        this.startGame();
+      };
     }
 
     if (pauseBtn) {
-      pauseBtn.addEventListener('click', () => {
-        const lang = window.app ? window.app.currentLang : 'ar';
-        const t = window.I18N[lang];
+      pauseBtn.onclick = () => {
         this.togglePause();
-        pauseBtn.textContent = this.isPaused ? t.resumeTetris : t.pauseTetris;
-      });
+      };
     }
   }
 
+  setupTouchSwipe() {
+    if (!this.canvas) return;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchStartTime = 0;
+
+    this.canvas.addEventListener('touchstart', (e) => {
+      if (!this.isRunning || this.isPaused) return;
+      const touch = e.changedTouches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+      touchStartTime = performance.now();
+      e.preventDefault();
+    }, { passive: false });
+
+    this.canvas.addEventListener('touchmove', (e) => {
+      if (!this.isRunning || this.isPaused) return;
+      e.preventDefault();
+    }, { passive: false });
+
+    this.canvas.addEventListener('touchend', (e) => {
+      if (!this.isRunning || this.isPaused) return;
+      const touch = e.changedTouches[0];
+      const dx = touch.clientX - touchStartX;
+      const dy = touch.clientY - touchStartY;
+      const dt = performance.now() - touchStartTime;
+
+      if (Math.abs(dx) < 15 && Math.abs(dy) < 15 && dt < 300) {
+        // Tap -> Rotate / Cycle
+        this.cyclePieceWord();
+        if (window.soundEngine) window.soundEngine.playClick();
+      } else if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 20) {
+        // Horizontal Swipe
+        if (dx > 0) {
+          this.moveRight();
+        } else {
+          this.moveLeft();
+        }
+        if (window.soundEngine) window.soundEngine.playClick();
+      } else if (dy > 25) {
+        // Downward Swipe -> Drop
+        this.dropPiece();
+        if (window.soundEngine) window.soundEngine.playClick();
+      }
+      e.preventDefault();
+    }, { passive: false });
+  }
+
+  drawInitialScreen() {
+    if (!this.ctx) return;
+    const ctx = this.ctx;
+    ctx.fillStyle = '#0a0f1d';
+    ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Draw grid lines
+    const bw = this.blockSize;
+    ctx.strokeStyle = '#1e293b';
+    ctx.lineWidth = 1;
+    for (let r = 0; r <= this.gridHeight; r++) {
+      ctx.beginPath();
+      ctx.moveTo(0, r * bw);
+      ctx.lineTo(this.canvas.width, r * bw);
+      ctx.stroke();
+    }
+    for (let c = 0; c <= this.gridWidth; c++) {
+      ctx.beginPath();
+      ctx.moveTo(c * bw, 0);
+      ctx.lineTo(c * bw, this.canvas.height);
+      ctx.stroke();
+    }
+
+    // Centered Welcome Prompt
+    ctx.fillStyle = '#f59e0b';
+    ctx.font = "bold 22px 'Amiri', 'Tajawal', sans-serif";
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText("🎮 تيتريس الكلمات", this.canvas.width / 2, this.canvas.height / 2 - 20);
+
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = "14px 'Tajawal', sans-serif";
+    ctx.fillText("اضغط «ابدأ اللعبة» للبدء", this.canvas.width / 2, this.canvas.height / 2 + 15);
+  }
+
   startGame() {
+    // Hide overlay if open
+    const overlay = document.getElementById('tetris-overlay');
+    if (overlay) overlay.classList.add('hidden');
+
     this.adjustCanvasSize();
     this.resetGrid();
     this.score = 0;
     this.linesCleared = 0;
     this.level = 1;
-    this.dropInterval = 900;
+    this.dropInterval = 950;
     this.isRunning = true;
     this.isPaused = false;
     this.updateStats();
+
+    const startBtn = document.getElementById('tetris-start-btn');
+    const pauseBtn = document.getElementById('tetris-pause-btn');
+    const lang = window.app ? window.app.currentLang : 'ar';
+    const t = window.I18N ? window.I18N[lang] : { restartTetris: 'إعادة البدء', pauseTetris: 'إيقاف مؤقت' };
+
+    if (startBtn) startBtn.textContent = t.restartTetris || 'إعادة البدء (Restart)';
+    if (pauseBtn) pauseBtn.textContent = t.pauseTetris || 'إيقاف مؤقت (Pause)';
+
     this.spawnPiece();
     this.lastDropTime = performance.now();
 
@@ -149,6 +245,14 @@ class QalaTetrisGame {
   togglePause() {
     if (!this.isRunning) return;
     this.isPaused = !this.isPaused;
+    const pauseBtn = document.getElementById('tetris-pause-btn');
+    const lang = window.app ? window.app.currentLang : 'ar';
+    const t = window.I18N ? window.I18N[lang] : { resumeTetris: 'استئناف', pauseTetris: 'إيقاف مؤقت' };
+
+    if (pauseBtn) {
+      pauseBtn.textContent = this.isPaused ? (t.resumeTetris || 'استئناف') : (t.pauseTetris || 'إيقاف مؤقت');
+    }
+
     if (!this.isPaused) {
       this.lastDropTime = performance.now();
       this.gameLoop(performance.now());
@@ -156,14 +260,16 @@ class QalaTetrisGame {
   }
 
   spawnPiece() {
-    const randomType = this.blockTypes[Math.floor(Math.random() * this.blockTypes.length)];
+    const pool = this.blockTypes;
+    const b0Type = pool[Math.floor(Math.random() * pool.length)];
+    const b1Type = pool[Math.floor(Math.random() * pool.length)];
+
     this.currentPiece = {
-      x: Math.floor(this.gridWidth / 2) - 1,
+      x: 2, // Centered in 6-column grid
       y: 0,
-      width: 2, // 2-block domino
       blocks: [
-        { ...randomType, relX: 0, relY: 0 },
-        { ...this.blockTypes[Math.floor(Math.random() * this.blockTypes.length)], relX: 1, relY: 0 }
+        { ...b0Type, relX: 0, relY: 0 },
+        { ...b1Type, relX: 1, relY: 0 }
       ]
     };
 
@@ -181,7 +287,7 @@ class QalaTetrisGame {
       if (gx < 0 || gx >= this.gridWidth || gy >= this.gridHeight) {
         return true;
       }
-      if (gy >= 0 && this.grid[gy][gx] !== null) {
+      if (gy >= 0 && this.grid[gy] && this.grid[gy][gx] !== null) {
         return true;
       }
     }
@@ -204,7 +310,6 @@ class QalaTetrisGame {
 
   cyclePieceWord() {
     if (!this.currentPiece) return;
-    // Rotate blocks orientation
     const b0 = this.currentPiece.blocks[0];
     const b1 = this.currentPiece.blocks[1];
 
@@ -213,7 +318,12 @@ class QalaTetrisGame {
       ? [{ ...b0, relX: 0, relY: 0 }, { ...b1, relX: 0, relY: 1 }]
       : [{ ...b0, relX: 0, relY: 0 }, { ...b1, relX: 1, relY: 0 }];
 
+    // Normal rotation check
     if (!this.checkCollision(this.currentPiece.x, this.currentPiece.y, newBlocks)) {
+      this.currentPiece.blocks = newBlocks;
+    } else if (this.currentPiece.x > 0 && !this.checkCollision(this.currentPiece.x - 1, this.currentPiece.y, newBlocks)) {
+      // Wall kick left
+      this.currentPiece.x--;
       this.currentPiece.blocks = newBlocks;
     }
   }
@@ -243,8 +353,6 @@ class QalaTetrisGame {
   }
 
   checkMatchesAndLines() {
-    let matchesFound = false;
-
     // 1. Check Grammar Pair Matches (Adjacency)
     for (let r = 0; r < this.gridHeight; r++) {
       for (let c = 0; c < this.gridWidth; c++) {
@@ -258,8 +366,7 @@ class QalaTetrisGame {
             this.grid[r][c] = null;
             this.grid[r][c + 1] = null;
             this.score += 50;
-            matchesFound = true;
-            window.soundEngine.playSuccess();
+            if (window.soundEngine) window.soundEngine.playSuccess();
           }
         }
 
@@ -270,8 +377,7 @@ class QalaTetrisGame {
             this.grid[r][c] = null;
             this.grid[r + 1][c] = null;
             this.score += 50;
-            matchesFound = true;
-            window.soundEngine.playSuccess();
+            if (window.soundEngine) window.soundEngine.playSuccess();
           }
         }
       }
@@ -286,8 +392,8 @@ class QalaTetrisGame {
         this.grid.unshift(newEmptyRow);
         this.linesCleared++;
         this.score += 100 * this.level;
-        window.soundEngine.playLineClear();
-        r++; // check same row again after shift
+        if (window.soundEngine) window.soundEngine.playLineClear();
+        r++; // Recheck same row index after array shift
       }
     }
 
@@ -297,7 +403,7 @@ class QalaTetrisGame {
     // Level up
     if (this.linesCleared >= this.level * 3) {
       this.level++;
-      this.dropInterval = Math.max(300, 900 - (this.level - 1) * 80);
+      this.dropInterval = Math.max(300, 950 - (this.level - 1) * 80);
     }
 
     this.updateStats();
@@ -320,16 +426,44 @@ class QalaTetrisGame {
 
   gameOver() {
     this.isRunning = false;
-    window.soundEngine.playError();
-    const lang = window.app ? window.app.currentLang : 'ar';
-    const msg = lang === 'en' 
-      ? `Game Over! Total Score: ${this.score}` 
-      : `انتهت اللعبة! مجموع نقاطك: ${this.score}`;
-    alert(msg);
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+    }
+    if (window.soundEngine) window.soundEngine.playError();
+
+    const overlay = document.getElementById('tetris-overlay');
     const startBtn = document.getElementById('tetris-start-btn');
+    const lang = window.app ? window.app.currentLang : 'ar';
+    const t = window.I18N ? window.I18N[lang] : {};
+
     if (startBtn) {
-      const t = window.I18N[lang];
-      startBtn.textContent = t.startTetris;
+      startBtn.textContent = t.startTetris || 'ابدأ اللعبة (Start)';
+    }
+
+    if (overlay) {
+      const title = lang === 'en' ? 'Game Over!' : 'انتهت اللعبة!';
+      const scoreText = lang === 'en' ? `Score: ${this.score}` : `مجموع النقاط: ${this.score}`;
+      const linesText = lang === 'en' ? `Lines Cleared: ${this.linesCleared}` : `الصفوف المكتملة: ${this.linesCleared}`;
+      const playAgain = lang === 'en' ? 'Play Again' : 'العب مرة أخرى';
+
+      overlay.innerHTML = `
+        <div class="blitz-gameover-box animate-pop">
+          <div class="gameover-trophy">🎮</div>
+          <h3 class="gameover-title">${title}</h3>
+          <div class="gameover-score-pill">${scoreText}</div>
+          <p class="gameover-sub">${linesText}</p>
+          <button class="primary-btn" id="tetris-overlay-restart" style="margin-top: 14px;">${playAgain}</button>
+        </div>
+      `;
+      overlay.classList.remove('hidden');
+
+      const rBtn = document.getElementById('tetris-overlay-restart');
+      if (rBtn) {
+        rBtn.onclick = () => {
+          overlay.classList.add('hidden');
+          this.startGame();
+        };
+      }
     }
   }
 
@@ -406,24 +540,24 @@ class QalaTetrisGame {
     const ctx = this.ctx;
     const bw = this.blockSize;
 
-    // Outer rounded rectangle
+    // Outer rounded block
     ctx.fillStyle = color;
     ctx.beginPath();
     ctx.roundRect(x + 2, y + 2, bw - 4, bw - 4, 8);
     ctx.fill();
 
-    // Bevel / Highlight border
-    ctx.strokeStyle = isFalling ? '#ffffff' : 'rgba(255, 255, 255, 0.3)';
+    // Subtle gloss highlight
+    ctx.strokeStyle = isFalling ? '#ffffff' : 'rgba(255, 255, 255, 0.35)';
     ctx.lineWidth = isFalling ? 2.5 : 1;
     ctx.stroke();
 
-    // Large, clear, high-contrast Arabic typography using Tanzil Quran Othman Madinah font
+    // Extra-large, high-contrast Arabic typography
     ctx.fillStyle = '#ffffff';
-    const fontSize = Math.floor(bw * 0.44); // ~25px font!
-    ctx.font = `bold ${fontSize}px 'KFGQPC HAFS Uthmanic Script', 'hafs', 'KFGQPC Uthman Taha Naskh', 'Scheherazade New', 'Amiri', serif`;
+    const fontSize = Math.floor(bw * 0.44); // ~25px - 28px font!
+    ctx.font = `bold ${fontSize}px 'Amiri', 'Tajawal', sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.shadowColor = 'rgba(0,0,0,0.5)';
+    ctx.shadowColor = 'rgba(0,0,0,0.6)';
     ctx.shadowBlur = 4;
     ctx.fillText(text, x + bw / 2, y + bw / 2 + 1);
     ctx.shadowBlur = 0;

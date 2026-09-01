@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="dark">
+<html lang="ar" dir="rtl" data-theme="dark" data-font-scale="normal">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -7,13 +7,10 @@
   <meta name="description" content="تطبيق تعليمي تفاعلي شامل لتعلم جميع تصاريف وقواعد وإعراب الفعل «قَالَ» مع أسرار الحركات، شواهد القرآن الكريم، ولطائف نعمان علي خان البيانية وألعاب تفاعلية.">
   <meta name="theme-color" content="#090d16">
 
-  <!-- Preload Tanzil Quran Othman Madinah Font -->
-  <link rel="preload" href="fonts/hafs.woff2" as="font" type="font/woff2" crossorigin>
-
-  <!-- Google Fonts Fallbacks -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Scheherazade+New:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="css/app.css">
@@ -33,6 +30,8 @@
         </div>
       </div>
       <div class="header-actions">
+        <!-- Font Size Scale Button -->
+        <button class="icon-btn font-size-btn" id="font-size-toggle-btn" title="Adjust Font Size / تكبير وتصغير الخط">🔠 A</button>
         <!-- Language Switcher Button -->
         <button class="icon-btn lang-btn" id="lang-toggle-btn" title="Switch Language / تغيير اللغة">🌐 English</button>
         <button class="icon-btn" id="sound-toggle-btn" title="Toggle Sound / كتم الصوت">🔊</button>
@@ -226,9 +225,10 @@
             </div>
           </div>
 
-          <!-- Large High-Contrast Canvas Wrapper -->
-          <div class="tetris-canvas-wrapper">
+          <!-- Large High-Contrast Canvas Wrapper with In-game Overlay Support -->
+          <div class="tetris-canvas-wrapper" style="position: relative;">
             <canvas id="tetris-canvas"></canvas>
+            <div class="tetris-in-overlay hidden" id="tetris-overlay"></div>
           </div>
 
           <div class="tetris-controls-row">
@@ -350,7 +350,7 @@
     <div class="footer-content">
       <div class="footer-title" id="footer-title">موسوعة الفعل «قَالَ» في القرآن واللغة العربية</div>
       <div class="footer-credits" id="footer-credits">مبنية على أصول النحو والصرف ولطائف التفسير البياني</div>
-      <div class="footer-version" id="footer-version-text">v1.0.4 (updated 2026-09-01 23:50)</div>
+      <div class="footer-version" id="footer-version-text">v1.0.4 (updated 2026-09-02 00:45)</div>
     </div>
   </footer>
 
