@@ -25,11 +25,13 @@
       <div class="header-brand">
         <div class="brand-icon">ق</div>
         <div class="brand-info">
-          <h1>موسوعة «قَالَ» التفاعلية</h1>
-          <span>All Forms, I'rab & Quranic Balaghah</span>
+          <h1 id="brand-title">موسوعة «قَالَ» التفاعلية</h1>
+          <span id="brand-subtitle">All Forms, I'rab & Quranic Balaghah</span>
         </div>
       </div>
       <div class="header-actions">
+        <!-- Language Switcher Button -->
+        <button class="icon-btn lang-btn" id="lang-toggle-btn" title="Switch Language / تغيير اللغة">🌐 English</button>
         <button class="icon-btn" id="sound-toggle-btn" title="Toggle Sound / كتم الصوت">🔊</button>
         <button class="icon-btn" id="theme-toggle-btn" title="Toggle Theme / تغيير النمط">☀️</button>
       </div>
@@ -44,9 +46,9 @@
          ========================================== -->
     <section class="tab-view-panel active" id="tab-sarf">
       <div class="section-hero">
-        <span class="hero-badge">علم الصرف والأوزان (Morphology)</span>
-        <h2 class="section-title">شجرة تصاريف الفعل «قَالَ»</h2>
-        <p class="section-subtitle">تعلم جميع تصاريف الجذر (ق-و-ل) عبر الضمائر الأربعة عشر في الماضي والمضارع والأمر والمبني للمجهول.</p>
+        <span class="hero-badge" id="sarf-hero-badge">علم الصرف والأوزان (Morphology)</span>
+        <h2 class="section-title" id="sarf-hero-title">شجرة تصاريف الفعل «قَالَ»</h2>
+        <p class="section-subtitle" id="sarf-hero-sub">تعلم جميع تصاريف الجذر (ق-و-ل) عبر الضمائر الأربعة عشر في الماضي والمضارع والأمر والمبني للمجهول.</p>
       </div>
 
       <!-- Tense Selector Tabs -->
@@ -64,8 +66,8 @@
       <div class="ajwaf-section-card">
         <div class="ajwaf-header">
           <div class="ajwaf-title-group">
-            <h3>🔬 سر الفعل الأجوف والتخلص من الساكنين</h3>
-            <span>The Science of Hollow Verbs & Why the Waw Disappears</span>
+            <h3 id="ajwaf-title-text">🔬 سر الفعل الأجوف والتخلص من الساكنين</h3>
+            <span id="ajwaf-sub-text">The Science of Hollow Verbs & Why the Waw Disappears</span>
           </div>
           <div class="stepper-nav">
             <button class="stepper-btn" id="ajwaf-prev-btn">السابق</button>
@@ -78,16 +80,16 @@
 
       <!-- Derived Forms (Form I to X) -->
       <div class="section-hero" style="margin-top: 36px;">
-        <span class="hero-badge">الأوزان القياسية المزيدة (Forms II - X)</span>
-        <h3 class="section-title">المشتقات والأفعال المزيدة من الجذر</h3>
-        <p class="section-subtitle">كيف تتغير دلالة القول عند الانتقال إلى أوزان التكلف والإقالة والافتراء.</p>
+        <span class="hero-badge" id="derived-hero-badge">الأوزان القياسية المزيدة (Forms II - X)</span>
+        <h3 class="section-title" id="derived-hero-title">المشتقات والأفعال المزيدة من الجذر</h3>
+        <p class="section-subtitle" id="derived-hero-sub">كيف تتغير دلالة القول عند الانتقال إلى أوزان التكلف والإقالة والافتراء.</p>
       </div>
       <div class="derived-forms-grid" id="derived-forms-table-body"></div>
 
       <!-- Nominals & Participles -->
       <div class="section-hero" style="margin-top: 32px;">
-        <span class="hero-badge">المصادر وأسماء الفاعل والمفعول</span>
-        <h3 class="section-title">الأسماء والمصطلحات المشتقة</h3>
+        <span class="hero-badge" id="nominals-hero-badge">المصادر وأسماء الفاعل والمفعول</span>
+        <h3 class="section-title" id="nominals-hero-title">الأسماء والمصطلحات المشتقة</h3>
       </div>
       <div class="nominals-grid" id="nominals-container"></div>
     </section>
@@ -97,9 +99,9 @@
          ========================================== -->
     <section class="tab-view-panel" id="tab-vowel-gym">
       <div class="section-hero">
-        <span class="hero-badge">أسرار النحو والإعراب (Nahw & I'rab Gym)</span>
-        <h2 class="section-title">صالة أسرار الحركات الإعرابية</h2>
-        <p class="section-subtitle">لماذا جاءت فتحة أم ضمة أم كسرة أم سكون؟ افهم العلل النحوية العميقة بدقة.</p>
+        <span class="hero-badge" id="vowels-hero-badge">أسرار النحو والإعراب (Nahw & I'rab Gym)</span>
+        <h2 class="section-title" id="vowels-hero-title">صالة أسرار الحركات الإعرابية</h2>
+        <p class="section-subtitle" id="vowels-hero-sub">لماذا جاءت فتحة أم ضمة أم كسرة أم سكون؟ افهم العلل النحوية العميقة بدقة.</p>
       </div>
 
       <!-- 4 Vowel Selector Tabs -->
@@ -112,11 +114,11 @@
       <div class="drill-arena-section">
         <div class="drill-arena-header">
           <div class="drill-title-group">
-            <h3>⚡ تمارين تعليل الحركات (I'rab Mastery Drill)</h3>
+            <h3 id="drill-hero-title">⚡ تمارين تعليل الحركات (I'rab Mastery Drill)</h3>
           </div>
           <div class="drill-stats">
-            <span>النقاط: <strong id="drill-score-count">0</strong></span>
-            <span>المتتالية: <strong id="drill-streak-count">0 🔥</strong></span>
+            <span id="drill-score-wrap"><span id="drill-score-label">النقاط:</span> <strong id="drill-score-count">0</strong></span>
+            <span id="drill-streak-wrap"><span id="drill-streak-label">المتتالية:</span> <strong id="drill-streak-count">0 🔥</strong></span>
           </div>
         </div>
 
@@ -134,9 +136,9 @@
          ========================================== -->
     <section class="tab-view-panel" id="tab-quran">
       <div class="section-hero">
-        <span class="hero-badge">الشواهد القرآنية واللطائف البيانية (Bayyinah Gems)</span>
-        <h2 class="section-title">مستكشف آيات القول في القرآن الكريم</h2>
-        <p class="section-subtitle">تحليل نحوي وبلاغي مستلهم من دروس الأستاذ نعمان علي خان وبلاغة القرآن المعجزة.</p>
+        <span class="hero-badge" id="quran-hero-badge">الشواهد القرآنية واللطائف البيانية (Bayyinah Gems)</span>
+        <h2 class="section-title" id="quran-hero-title">مستكشف آيات القول في القرآن الكريم</h2>
+        <p class="section-subtitle" id="quran-hero-sub">تحليل نحوي وبلاغي مستلهم من دروس الأستاذ نعمان علي خان وبلاغة القرآن المعجزة.</p>
       </div>
 
       <!-- Search Input -->
@@ -156,9 +158,9 @@
          ========================================== -->
     <section class="tab-view-panel" id="tab-builder">
       <div class="section-hero">
-        <span class="hero-badge">التطبيق العملي (Sentence Synthesizer)</span>
-        <h2 class="section-title">مختبر تركيب الجمل الإعرابي</h2>
-        <p class="section-subtitle">تدرج من الجمل البسيطة (فعل وفاعل) إلى التراكيب القرآنية المعقدة (أدوات النفي، الشرط، ومقول القول).</p>
+        <span class="hero-badge" id="builder-hero-badge">التطبيق العملي (Sentence Synthesizer)</span>
+        <h2 class="section-title" id="builder-hero-title">مختبر تركيب الجمل الإعرابي</h2>
+        <p class="section-subtitle" id="builder-hero-sub">تدرج من الجمل البسيطة (فعل وفاعل) إلى التراكيب القرآنية المعقدة (أدوات النفي، الشرط، ومقول القول).</p>
       </div>
 
       <!-- Tier Selection Tabs -->
@@ -192,9 +194,9 @@
          ========================================== -->
     <section class="tab-view-panel" id="tab-games">
       <div class="section-hero">
-        <span class="hero-badge">الألعاب اللغوية التفاعلية (Grammar Games Arena)</span>
-        <h2 class="section-title">صالة الألعاب اللغوية</h2>
-        <p class="section-subtitle">رسخ قواعد وتصاريف وحركات «قال» من خلال الألعاب الحركية والتحديات السريعة.</p>
+        <span class="hero-badge" id="games-hero-badge">الألعاب اللغوية التفاعلية (Grammar Games Arena)</span>
+        <h2 class="section-title" id="games-hero-title">صالة الألعاب اللغوية</h2>
+        <p class="section-subtitle" id="games-hero-sub">رسخ قواعد وتصاريف وحركات «قال» من خلال الألعاب الحركية والتحديات السريعة.</p>
       </div>
 
       <!-- Subtab Switcher: Tetris vs Blitz -->
@@ -208,19 +210,20 @@
         <div class="tetris-arcade-frame">
           <div class="tetris-scoreboard">
             <div class="score-box">
-              <span class="score-lbl">النقاط</span>
+              <span class="score-lbl" id="tetris-score-lbl">النقاط</span>
               <span class="score-val" id="tetris-score-val">0</span>
             </div>
             <div class="score-box">
-              <span class="score-lbl">الصفوف</span>
+              <span class="score-lbl" id="tetris-lines-lbl">الصفوف</span>
               <span class="score-val" id="tetris-lines-val">0</span>
             </div>
             <div class="score-box">
-              <span class="score-lbl">المستوى</span>
+              <span class="score-lbl" id="tetris-level-lbl">المستوى</span>
               <span class="score-val" id="tetris-level-val">1</span>
             </div>
           </div>
 
+          <!-- Large High-Contrast Canvas Wrapper -->
           <div class="tetris-canvas-wrapper">
             <canvas id="tetris-canvas"></canvas>
           </div>
@@ -239,8 +242,8 @@
           </div>
 
           <div class="tetris-rules-help">
-            <strong>قواعد اللعبة:</strong>
-            <p>قم بمطابقة الضمائر مع أفعالها المناسبة (مثل هُوَ مع قَالَ، أو هُمْ مع قَالُوا) أو إكمال صفوف أفقية كاملة لمسح الكلمات وجمع النقاط!</p>
+            <strong id="tetris-rules-title">قواعد اللعبة:</strong>
+            <p id="tetris-rules-text">قم بمطابقة الضمائر مع أفعالها المناسبة (مثل هُوَ مع قَالَ، أو هُمْ مع قَالُوا) أو إكمال صفوف أفقية كاملة لمسح الكلمات وجمع النقاط!</p>
           </div>
         </div>
       </div>
@@ -250,19 +253,19 @@
         <div class="blitz-arena-card">
           <div class="blitz-stats-bar">
             <div class="blitz-stat-item">
-              <span class="blitz-stat-lbl">الوقت</span>
+              <span class="blitz-stat-lbl" id="blitz-time-lbl">الوقت</span>
               <span class="blitz-stat-val" id="blitz-timer-val">45s</span>
             </div>
             <div class="blitz-stat-item">
-              <span class="blitz-stat-lbl">النقاط</span>
+              <span class="blitz-stat-lbl" id="blitz-score-lbl">النقاط</span>
               <span class="blitz-stat-val" id="blitz-score-val">0</span>
             </div>
             <div class="blitz-stat-item">
-              <span class="blitz-stat-lbl">المتتالية</span>
+              <span class="blitz-stat-lbl" id="blitz-streak-lbl">المتتالية</span>
               <span class="blitz-stat-val" id="blitz-streak-val">0 🔥</span>
             </div>
             <div class="blitz-stat-item">
-              <span class="blitz-stat-lbl">المضاعف</span>
+              <span class="blitz-stat-lbl" id="blitz-multi-lbl">المضاعف</span>
               <span class="blitz-stat-val" id="blitz-multiplier-val">x1</span>
             </div>
           </div>
@@ -270,8 +273,8 @@
           <div class="blitz-card-arena">
             <div class="blitz-overlay-card" id="blitz-overlay">
               <div class="blitz-intro-icon">⚡</div>
-              <h3 class="blitz-intro-title">تحدي برق الحركات السريع</h3>
-              <p class="blitz-intro-desc">اختر الحركة الإعرابية الصحيحة (فتحة، ضمة، كسرة، سكون) قبل انتهاء الوقت وحقق أعلى مضاعف نقاط!</p>
+              <h3 class="blitz-intro-title" id="blitz-intro-title">تحدي برق الحركات السريع</h3>
+              <p class="blitz-intro-desc" id="blitz-intro-desc">اختر الحركة الإعرابية الصحيحة (فتحة، ضمة، كسرة، سكون) قبل انتهاء الوقت وحقق أعلى مضاعف نقاط!</p>
               <button class="primary-btn" id="blitz-start-btn">ابدأ التحدي (45 ثانية)</button>
             </div>
 
@@ -314,7 +317,7 @@
   <!-- ==========================================
        MOBILE BOTTOM NAVIGATION BAR
        ========================================== -->
-  <nav class="bottom-nav-bar" aria-label="شريط التنقل السفلي">
+  <nav class="bottom-nav-bar" aria-label="Navigation Bar">
     <button class="bottom-nav-item active" data-tab="sarf">
       <span class="nav-icon">📖</span>
       <span class="nav-label">الصرف</span>
@@ -342,14 +345,15 @@
        ========================================== -->
   <footer class="app-footer">
     <div class="footer-content">
-      <div class="footer-title">موسوعة الفعل «قَالَ» في القرآن واللغة العربية</div>
-      <div class="footer-credits">مبنية على أصول النحو والصرف ولطائف التفسير البياني</div>
-      <div class="footer-version" id="footer-version-text">v1.0.1 (updated 2026-08-30 14:59)</div>
+      <div class="footer-title" id="footer-title">موسوعة الفعل «قَالَ» في القرآن واللغة العربية</div>
+      <div class="footer-credits" id="footer-credits">مبنية على أصول النحو والصرف ولطائف التفسير البياني</div>
+      <div class="footer-version" id="footer-version-text">v1.0.2 (updated 2026-09-01 23:18)</div>
     </div>
   </footer>
 
   <!-- Script Modules -->
   <script src="js/audio.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/data/sarf-data.js"></script>
   <script src="js/data/nahw-data.js"></script>
   <script src="js/data/quran-data.js"></script>

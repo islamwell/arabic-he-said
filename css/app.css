@@ -170,6 +170,38 @@ body {
   transform: translateY(-1px);
 }
 
+.lang-btn {
+  width: auto;
+  padding: 0 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: var(--font-arabic-ui);
+  gap: 4px;
+}
+
+[dir="ltr"] .header-brand {
+  flex-direction: row;
+}
+
+[dir="ltr"] .drill-option-btn,
+[dir="ltr"] .morphology-note-box,
+[dir="ltr"] .step-title,
+[dir="ltr"] .step-explanation,
+[dir="ltr"] .tetris-rules-help,
+[dir="ltr"] .blitz-review-list {
+  text-align: left;
+}
+
+[dir="ltr"] .step-num-bubble {
+  right: auto;
+  left: 14px;
+}
+
+[dir="ltr"] .morphology-note-box {
+  border-right: none;
+  border-left: 3px solid var(--accent-gold);
+}
+
 /* Main Content Container */
 .app-main {
   flex: 1;

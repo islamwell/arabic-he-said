@@ -1,19 +1,20 @@
 /**
  * Qāla Tetris Game (لعبة تيتريس الكلمات وقواعد قال)
  * HTML5 Canvas Tetris-style falling blocks matched with Arabic Grammar Conjugations!
+ * Enhanced with larger squares and high-contrast typography for effortless reading.
  */
 
 class QalaTetrisGame {
   constructor() {
     this.canvas = null;
     this.ctx = null;
-    this.gridWidth = 8;
-    this.gridHeight = 12;
-    this.blockSize = 34; // Dynamic based on screen
+    this.gridWidth = 6;  // 6 columns for large, readable squares
+    this.gridHeight = 9; // 9 rows for comfortable mobile vertical view
+    this.blockSize = 56; // Dynamic large block size
     this.grid = [];
     
     this.currentPiece = null;
-    this.dropInterval = 900; // ms
+    this.dropInterval = 950; // ms
     this.lastDropTime = 0;
     this.score = 0;
     this.linesCleared = 0;
@@ -51,9 +52,11 @@ class QalaTetrisGame {
 
   adjustCanvasSize() {
     if (!this.canvas) return;
-    const parentWidth = this.canvas.parentElement.clientWidth || 320;
-    const idealBlock = Math.floor(Math.min(parentWidth - 20, 360) / this.gridWidth);
-    this.blockSize = Math.max(idealBlock, 28);
+    const parentWidth = this.canvas.parentElement.clientWidth || 340;
+    // Calculate large block size (e.g. 52px to 62px)
+    const availableWidth = Math.min(parentWidth - 16, 390);
+    const idealBlock = Math.floor(availableWidth / this.gridWidth);
+    this.blockSize = Math.max(idealBlock, 48);
     this.canvas.width = this.gridWidth * this.blockSize;
     this.canvas.height = this.gridHeight * this.blockSize;
   }
@@ -103,9 +106,11 @@ class QalaTetrisGame {
 
     if (startBtn) {
       startBtn.addEventListener('click', () => {
+        const lang = window.app ? window.app.currentLang : 'ar';
+        const t = window.I18N[lang];
         if (!this.isRunning) {
           this.startGame();
-          startBtn.textContent = 'إعادة البدء (Restart)';
+          startBtn.textContent = t.restartTetris;
         } else {
           this.startGame();
         }
@@ -114,18 +119,21 @@ class QalaTetrisGame {
 
     if (pauseBtn) {
       pauseBtn.addEventListener('click', () => {
+        const lang = window.app ? window.app.currentLang : 'ar';
+        const t = window.I18N[lang];
         this.togglePause();
-        pauseBtn.textContent = this.isPaused ? 'استئناف (Resume)' : 'إيقاف مؤقت (Pause)';
+        pauseBtn.textContent = this.isPaused ? t.resumeTetris : t.pauseTetris;
       });
     }
   }
 
   startGame() {
+    this.adjustCanvasSize();
     this.resetGrid();
     this.score = 0;
     this.linesCleared = 0;
     this.level = 1;
-    this.dropInterval = 850;
+    this.dropInterval = 900;
     this.isRunning = true;
     this.isPaused = false;
     this.updateStats();
@@ -289,7 +297,7 @@ class QalaTetrisGame {
     // Level up
     if (this.linesCleared >= this.level * 3) {
       this.level++;
-      this.dropInterval = Math.max(250, 850 - (this.level - 1) * 80);
+      this.dropInterval = Math.max(300, 900 - (this.level - 1) * 80);
     }
 
     this.updateStats();
@@ -313,9 +321,16 @@ class QalaTetrisGame {
   gameOver() {
     this.isRunning = false;
     window.soundEngine.playError();
-    alert(`انتهت اللعبة! مجموع نقاطك: ${this.score}`);
+    const lang = window.app ? window.app.currentLang : 'ar';
+    const msg = lang === 'en' 
+      ? `Game Over! Total Score: ${this.score}` 
+      : `انتهت اللعبة! مجموع نقاطك: ${this.score}`;
+    alert(msg);
     const startBtn = document.getElementById('tetris-start-btn');
-    if (startBtn) startBtn.textContent = 'ابدأ اللعبة (Start)';
+    if (startBtn) {
+      const t = window.I18N[lang];
+      startBtn.textContent = t.startTetris;
+    }
   }
 
   updateStats() {
@@ -348,7 +363,7 @@ class QalaTetrisGame {
     const bw = this.blockSize;
 
     // Clear Canvas
-    ctx.fillStyle = '#0f172a';
+    ctx.fillStyle = '#0a0f1d';
     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     // Draw Grid Lines
@@ -391,24 +406,27 @@ class QalaTetrisGame {
     const ctx = this.ctx;
     const bw = this.blockSize;
 
-    // Block background
+    // Outer rounded rectangle
     ctx.fillStyle = color;
     ctx.beginPath();
-    ctx.roundRect(x + 2, y + 2, bw - 4, bw - 4, 6);
+    ctx.roundRect(x + 2, y + 2, bw - 4, bw - 4, 8);
     ctx.fill();
 
-    if (isFalling) {
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-    }
+    // Bevel / Highlight border
+    ctx.strokeStyle = isFalling ? '#ffffff' : 'rgba(255, 255, 255, 0.3)';
+    ctx.lineWidth = isFalling ? 2.5 : 1;
+    ctx.stroke();
 
-    // Arabic text
+    // Large, clear, high-contrast Arabic typography
     ctx.fillStyle = '#ffffff';
-    ctx.font = `bold ${Math.floor(bw * 0.42)}px 'Amiri', 'Tajawal', sans-serif`;
+    const fontSize = Math.floor(bw * 0.44); // ~25px font!
+    ctx.font = `bold ${fontSize}px 'Amiri', 'Tajawal', sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
+    ctx.shadowColor = 'rgba(0,0,0,0.5)';
+    ctx.shadowBlur = 4;
     ctx.fillText(text, x + bw / 2, y + bw / 2 + 1);
+    ctx.shadowBlur = 0;
   }
 }
 
