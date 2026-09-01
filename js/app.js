@@ -4,7 +4,7 @@
  */
 
 const APP_VERSION = "v1.0.3";
-const LAST_UPDATED = "2026-09-01 23:44";
+const LAST_UPDATED = "2026-09-01 23:46";
 
 class App {
   constructor() {
@@ -286,15 +286,81 @@ class App {
     if (footerTitle) footerTitle.textContent = t.footerTitle;
     if (footerCredits) footerCredits.textContent = t.footerCredits;
 
+    this.setupFooterVersion();
+
     // Trigger updates in components if needed
     if (window.conjugationEngine) window.conjugationEngine.renderActiveConjugation();
   }
 
+  showCacheToast(message) {
+    const existing = document.querySelector('.cache-toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.className = 'cache-toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.remove();
+    }, 3000);
+  }
+
   setupFooterVersion() {
     const versionEl = document.getElementById('footer-version-text');
-    if (versionEl) {
-      versionEl.textContent = `${APP_VERSION} (updated ${LAST_UPDATED})`;
-    }
+    if (!versionEl) return;
+
+    const lang = this.currentLang || 'ar';
+    const t = window.I18N && window.I18N[lang] ? window.I18N[lang] : window.I18N['ar'];
+    const hint = t.footerReloadHint || (lang === 'en' ? 'Tap to clear cache & reload' : 'اضغط لمسح الكاش وتحديث التطبيق');
+    
+    versionEl.innerHTML = `<span class="reload-icon">🔄</span> <strong>${APP_VERSION}</strong> (updated ${LAST_UPDATED}) • <span class="version-hint">${hint}</span>`;
+    versionEl.setAttribute('title', hint);
+
+    // Tap/Click handler to clear all cache & hard reload
+    versionEl.onclick = async (e) => {
+      e.preventDefault();
+      
+      if (window.soundEngine) {
+        window.soundEngine.playPop();
+        window.soundEngine.vibrate([40, 60, 40]);
+      }
+      
+      const toastMsg = t.toastClearingCache || (lang === 'en' ? '🧹 Clearing Cache & Reloading...' : '🧹 جاري مسح الذاكرة المؤقتة وتحديث الصفحة...');
+      this.showCacheToast(toastMsg);
+
+      // 1. Clear Cache Storage API
+      if ('caches' in window) {
+        try {
+          const cacheKeys = await caches.keys();
+          await Promise.all(cacheKeys.map(k => caches.delete(k)));
+        } catch (err) {
+          console.warn('Cache clear error:', err);
+        }
+      }
+
+      // 2. Unregister any active Service Workers
+      if ('serviceWorker' in navigator) {
+        try {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          for (let reg of registrations) {
+            await reg.unregister();
+          }
+        } catch (err) {}
+      }
+
+      // 3. Clear session storage
+      try {
+        sessionStorage.clear();
+      } catch (err) {}
+
+      // 4. Force hard reload bypassing cache with timestamp query
+      setTimeout(() => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('_nocache', Date.now().toString());
+        window.location.replace(url.toString());
+      }, 500);
+    };
   }
 }
 

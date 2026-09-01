@@ -84,7 +84,9 @@ window.I18N = {
 
     // Footer
     footerTitle: "موسوعة الفعل «قَالَ» في القرآن واللغة العربية",
-    footerCredits: "مبنية على أصول النحو والصرف ولطائف التفسير البياني"
+    footerCredits: "مبنية على أصول النحو والصرف ولطائف التفسير البياني",
+    footerReloadHint: "اضغط لمسح الكاش وتحديث التطبيق",
+    toastClearingCache: "🧹 جاري مسح الذاكرة المؤقتة وتحديث الصفحة..."
   },
 
   en: {
@@ -167,6 +169,8 @@ window.I18N = {
 
     // Footer
     footerTitle: "Encyclopedia of the Word «Qāla» in Quran & Arabic",
-    footerCredits: "Engineered on classical Nahw, Sarf, and Quranic Balaghah insights"
+    footerCredits: "Engineered on classical Nahw, Sarf, and Quranic Balaghah insights",
+    footerReloadHint: "Tap to clear cache & reload",
+    toastClearingCache: "🧹 Clearing Cache & Reloading..."
   }
 };

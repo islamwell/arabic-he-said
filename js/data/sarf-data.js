@@ -32,20 +32,20 @@ window.SARF_DATA = {
       title: "الماضي المعلوم (Past Active)",
       description: "Expresses completed actions. Notice how the middle Alif is kept when the ending has a vowel (متحرك), but dropped to a Dammah on the Qaf (قُـ) when the ending has a Sukun to avoid meeting two sukoons!",
       forms: {
-        huwa: { word: "قَالَ", phonetic: "Qāla", ending: "ـَ (فتحة)", endingType: "مبني على الفتح", notes: "Origin: قَوَلَ -> The Waw had a Fatha and preceded by Fatha, turning into Alif." },
-        huma_m: { word: "قَالَا", phonetic: "Qālā", ending: "ـَا (ألف الاثنين)", endingType: "مبني على الفتح", notes: "Alif of duality attached; built on Fatha." },
-        hum: { word: "قَالُوا", phonetic: "Qālū", ending: "ـُوا (واو الجماعة)", endingType: "مبني على الضم", notes: "Built on Dammah due to connection with Waw of plural." },
-        hiya: { word: "قَالَتْ", phonetic: "Qālat", ending: "ـَتْ (تاء التأنيث الساكنة)", endingType: "مبني على الفتح", notes: "Feminine marker 'تْ' is a non-agent particle, so it stays on Fatha." },
-        huma_f: { word: "قَالَتَا", phonetic: "Qālatā", ending: "ـَتَا", endingType: "مبني على الفتح", notes: "Feminine dual marker; built on Fatha." },
-        hunna: { word: "قُلْنَ", phonetic: "Qulna", ending: "ـْنَ (نون النسوة)", endingType: "مبني على السكون", notes: "🚨 The Alif drops! قَالْ + نَ -> Two sukoons met -> Alif dropped -> Qaf takes Dammah (قُلْنَ)." },
-        anta: { word: "قُلْتَ", phonetic: "Qulta", ending: "ـْتَ (تاء المخاطب)", endingType: "مبني على السكون", notes: "🚨 Lam is Sukun, weak Alif dropped, Qaf takes Dammah." },
-        antuma_m: { word: "قُلْتُمَا", phonetic: "Qultumā", ending: "ـْتُمَا", endingType: "مبني على السكون", notes: "Dual masculine pronoun with Sukun base." },
-        antum: { word: "قُلْتُمْ", phonetic: "Qultum", ending: "ـْتُمْ", endingType: "مبني على السكون", notes: "Plural masculine pronoun with Sukun base." },
-        anti: { word: "قُلْتِ", phonetic: "Qulti", ending: "ـْتِ (تاء المخاطبة)", endingType: "مبني على السكون", notes: "🚨 Notice the ending Kasrah on the Ta is for the feminine 'you', but the verb base is built on Sukun on the Lam." },
-        antuma_f: { word: "قُلْتُمَا", phonetic: "Qultumā", ending: "ـْتُمَا", endingType: "مبني على السكون", notes: "Dual feminine pronoun with Sukun base." },
-        antunna: { word: "قُلْتُنَّ", phonetic: "Qultunna", ending: "ـْتُنَّ", endingType: "مبني على السكون", notes: "Plural feminine pronoun with Sukun base." },
-        ana: { word: "قُلْتُ", phonetic: "Qultu", ending: "ـْتُ (تاء المتكلم)", endingType: "مبني على السكون", notes: "🚨 The speaker 'I': The Lam has Sukun, the Ta has Dammah (فَاعِل)." },
-        nahnu: { word: "قُلْنَا", phonetic: "Qulnā", ending: "ـْنَا (نا الفاعلين)", endingType: "مبني على السكون", notes: "The 'We' pronoun: Built on Sukun on the Lam." }
+        huwa: { word: "قَالَ", phonetic: "Qāla", ending: "ـَ (فتحة)", endingType: "مبني على الفتح (Past active built on Fatḥah - fixed 'a')", notes: "Origin: قَوَلَ -> The Waw had a Fatha and preceded by Fatha, turning into Alif." },
+        huma_m: { word: "قَالَا", phonetic: "Qālā", ending: "ـَا (ألف الاثنين)", endingType: "مبني على الفتح (Built on Fatḥah - dual 'ā')", notes: "Alif of duality attached; built on Fatha." },
+        hum: { word: "قَالُوا", phonetic: "Qālū", ending: "ـُوا (واو الجماعة)", endingType: "مبني على الضم (Built on Ḍammah - fixed 'u' before plural Waw)", notes: "Built on Dammah due to connection with Waw of plural." },
+        hiya: { word: "قَالَتْ", phonetic: "Qālat", ending: "ـَتْ (تاء التأنيث الساكنة)", endingType: "مبني على الفتح (Built on Fatḥah - feminine 'at')", notes: "Feminine marker 'تْ' is a non-agent particle, so it stays on Fatha." },
+        huma_f: { word: "قَالَتَا", phonetic: "Qālatā", ending: "ـَتَا", endingType: "مبني على الفتح (Built on Fatḥah - feminine dual 'atā')", notes: "Feminine dual marker; built on Fatha." },
+        hunna: { word: "قُلْنَ", phonetic: "Qulna", ending: "ـْنَ (نون النسوة)", endingType: "مبني على السكون (Built on Sukūn - no vowel before feminine 'na')", notes: "🚨 The Alif drops! قَالْ + نَ -> Two sukoons met -> Alif dropped -> Qaf takes Dammah (قُلْنَ)." },
+        anta: { word: "قُلْتَ", phonetic: "Qulta", ending: "ـْتَ (تاء المخاطب)", endingType: "مبني على السكون (Built on Sukūn - with masculine 'you')", notes: "🚨 Lam is Sukun, weak Alif dropped, Qaf takes Dammah." },
+        antuma_m: { word: "قُلْتُمَا", phonetic: "Qultumā", ending: "ـْتُمَا", endingType: "مبني على السكون (Built on Sukūn - dual 'you two')", notes: "Dual masculine pronoun with Sukun base." },
+        antum: { word: "قُلْتُمْ", phonetic: "Qultum", ending: "ـْتُمْ", endingType: "مبني على السكون (Built on Sukūn - plural 'you all')", notes: "Plural masculine pronoun with Sukun base." },
+        anti: { word: "قُلْتِ", phonetic: "Qulti", ending: "ـْتِ (تاء المخاطبة)", endingType: "مبني على السكون (Built on Sukūn - feminine 'you')", notes: "🚨 Notice the ending Kasrah on the Ta is for the feminine 'you', but the verb base is built on Sukun on the Lam." },
+        antuma_f: { word: "قُلْتُمَا", phonetic: "Qultumā", ending: "ـْتُمَا", endingType: "مبني على السكون (Built on Sukūn - feminine dual)", notes: "Dual feminine pronoun with Sukun base." },
+        antunna: { word: "قُلْتُنَّ", phonetic: "Qultunna", ending: "ـْتُنَّ", endingType: "مبني على السكون (Built on Sukūn - feminine plural)", notes: "Plural feminine pronoun with Sukun base." },
+        ana: { word: "قُلْتُ", phonetic: "Qultu", ending: "ـْتُ (تاء المتكلم)", endingType: "مبني على السكون (Built on Sukūn - with 'I' pronoun)", notes: "🚨 The speaker 'I': The Lam has Sukun, the Ta has Dammah (فَاعِل)." },
+        nahnu: { word: "قُلْنَا", phonetic: "Qulnā", ending: "ـْنَا (نا الفاعلين)", endingType: "مبني على السكون (Built on Sukūn - with 'We' pronoun)", notes: "The 'We' pronoun: Built on Sukun on the Lam." }
       }
     },
 
@@ -54,20 +54,20 @@ window.SARF_DATA = {
       title: "المضارع المرفوع (Present Indicative)",
       description: "Default present tense (Marfoo' with Dammah or Noon). Notice the long 'ū' (يَقُولُ) restored because the Lam is vocalized with Dammah.",
       forms: {
-        huwa: { word: "يَقُولُ", phonetic: "Yaqūlu", ending: "ـُ (ضمة ظاهرة)", endingType: "مرفوع بالضمة", notes: "Origin: يَقْوُلُ -> heavy Dammah on weak Waw shifted back to Qaf: يَقُولُ." },
-        huma_m: { word: "يَقُولَانِ", phonetic: "Yaqūlāni", ending: "ـَانِ (ثبوت النون)", endingType: "مرفوع بثبوت النون", notes: "From the Five Verbs (الأفعال الخمسة)." },
-        hum: { word: "يَقُولُونَ", phonetic: "Yaqūlūna", ending: "ـُونَ (ثبوت النون)", endingType: "مرفوع بثبوت النون", notes: "From the Five Verbs (الأفعال الخمسة)." },
-        hiya: { word: "تَقُولُ", phonetic: "Taqūlu", ending: "ـُ (ضمة ظاهرة)", endingType: "مرفوع بالضمة", notes: "Standard 3rd person feminine singular." },
-        huma_f: { word: "تَقُولَانِ", phonetic: "Taqūlāni", ending: "ـَانِ (ثبوت النون)", endingType: "مرفوع بثبوت النون", notes: "From the Five Verbs." },
-        hunna: { word: "يَقُلْنَ", phonetic: "Yaqulna", ending: "ـْنَ (نون النسوة)", endingType: "مبني على السكون", notes: "🚨 Waw dropped due to Sukun on Lam before Noon of women!" },
-        anta: { word: "تَقُولُ", phonetic: "Taqūlu", ending: "ـُ (ضمة ظاهرة)", endingType: "مرفوع بالضمة", notes: "2nd person masculine singular." },
-        antuma_m: { word: "تَقُولَانِ", phonetic: "Taqūlāni", ending: "ـَانِ (ثبوت النون)", endingType: "مرفوع بثبوت النون", notes: "From the Five Verbs." },
-        antum: { word: "تَقُولُونَ", phonetic: "Taqūlūna", ending: "ـُونَ (ثبوت النون)", endingType: "مرفوع بثبوت النون", notes: "From the Five Verbs." },
-        anti: { word: "تَقُولِينَ", phonetic: "Taqūlīna", ending: "ـِينَ (ثبوت النون)", endingType: "مرفوع بثبوت النون", notes: "From the Five Verbs." },
-        antuma_f: { word: "تَقُولَانِ", phonetic: "Taqūlāni", ending: "ـَانِ (ثبوت النون)", endingType: "مرفوع بثبوت النون", notes: "From the Five Verbs." },
-        antunna: { word: "تَقُلْنَ", phonetic: "Taqulna", ending: "ـْنَ (نون النسوة)", endingType: "مبني على السكون", notes: "🚨 Waw dropped due to Sukun on Lam!" },
-        ana: { word: "أَقُولُ", phonetic: "Aqūlu", ending: "ـُ (ضمة ظاهرة)", endingType: "مرفوع بالضمة", notes: "1st person singular." },
-        nahnu: { word: "نَقُولُ", phonetic: "Naqūlu", ending: "ـُ (ضمة ظاهرة)", endingType: "مرفوع بالضمة", notes: "1st person plural." }
+        huwa: { word: "يَقُولُ", phonetic: "Yaqūlu", ending: "ـُ (ضمة ظاهرة)", endingType: "مرفوع بالضمة (Present Indicative - 'u' ending)", notes: "Origin: يَقْوُلُ -> heavy Dammah on weak Waw shifted back to Qaf: يَقُولُ." },
+        huma_m: { word: "يَقُولَانِ", phonetic: "Yaqūlāni", ending: "ـَانِ (ثبوت النون)", endingType: "مرفوع بثبوت النون (Present Indicative - retained Nūn)", notes: "From the Five Verbs (الأفعال الخمسة)." },
+        hum: { word: "يَقُولُونَ", phonetic: "Yaqūlūna", ending: "ـُونَ (ثبوت النون)", endingType: "مرفوع بثبوت النون (Present Indicative - retained Nūn)", notes: "From the Five Verbs (الأفعال الخمسة)." },
+        hiya: { word: "تَقُولُ", phonetic: "Taqūlu", ending: "ـُ (ضمة ظاهرة)", endingType: "مرفوع بالضمة (Present Indicative - 'u' ending)", notes: "Standard 3rd person feminine singular." },
+        huma_f: { word: "تَقُولَانِ", phonetic: "Taqūlāni", ending: "ـَانِ (ثبوت النون)", endingType: "مرفوع بثبوت النون (Present Indicative - retained Nūn)", notes: "From the Five Verbs." },
+        hunna: { word: "يَقُلْنَ", phonetic: "Yaqulna", ending: "ـْنَ (نون النسوة)", endingType: "مبني على السكون (Built on Sukūn - feminine plural)", notes: "🚨 Waw dropped due to Sukun on Lam before Noon of women!" },
+        anta: { word: "تَقُولُ", phonetic: "Taqūlu", ending: "ـُ (ضمة ظاهرة)", endingType: "مرفوع بالضمة (Present Indicative - 'u' ending)", notes: "2nd person masculine singular." },
+        antuma_m: { word: "تَقُولَانِ", phonetic: "Taqūlāni", ending: "ـَانِ (ثبوت النون)", endingType: "مرفوع بثبوت النون (Present Indicative - retained Nūn)", notes: "From the Five Verbs." },
+        antum: { word: "تَقُولُونَ", phonetic: "Taqūlūna", ending: "ـُونَ (ثبوت النون)", endingType: "مرفوع بثبوت النون (Present Indicative - retained Nūn)", notes: "From the Five Verbs." },
+        anti: { word: "تَقُولِينَ", phonetic: "Taqūlīna", ending: "ـِينَ (ثبوت النون)", endingType: "مرفوع بثبوت النون (Present Indicative - retained Nūn)", notes: "From the Five Verbs." },
+        antuma_f: { word: "تَقُولَانِ", phonetic: "Taqūlāni", ending: "ـَانِ (ثبوت النون)", endingType: "مرفوع بثبوت النون (Present Indicative - retained Nūn)", notes: "From the Five Verbs." },
+        antunna: { word: "تَقُلْنَ", phonetic: "Taqulna", ending: "ـْنَ (نون النسوة)", endingType: "مبني على السكون (Built on Sukūn - feminine plural)", notes: "🚨 Waw dropped due to Sukun on Lam!" },
+        ana: { word: "أَقُولُ", phonetic: "Aqūlu", ending: "ـُ (ضمة ظاهرة)", endingType: "مرفوع بالضمة (Present Indicative - 'u' ending)", notes: "1st person singular." },
+        nahnu: { word: "نَقُولُ", phonetic: "Naqūlu", ending: "ـُ (ضمة ظاهرة)", endingType: "مرفوع بالضمة (Present Indicative - 'u' ending)", notes: "1st person plural." }
       }
     },
 
@@ -76,20 +76,20 @@ window.SARF_DATA = {
       title: "المضارع المنصوب (Present Subjunctive)",
       description: "When preceded by accusative particles (أَنْ، لَنْ، كَيْ، حَتَّىٰ، لِـ). The final vowel becomes Fatḥah (ـَ), or the Noon is deleted from the 5 Verbs!",
       forms: {
-        huwa: { word: "لَنْ يَقُولَ", phonetic: "Lan yaqūla", ending: "ـَ (فتحة ظاهرة)", endingType: "منصوب بالفتحة", notes: "The Lam takes a clear Fatha." },
-        huma_m: { word: "لَنْ يَقُولَا", phonetic: "Lan yaqūlā", ending: "حذف النون", endingType: "منصوب بحذف النون", notes: "Noon of Five Verbs dropped." },
-        hum: { word: "لَنْ يَقُولُوا", phonetic: "Lan yaqūlū", ending: "حذف النون", endingType: "منصوب بحذف النون", notes: "Noon dropped, Alif of protection added." },
-        hiya: { word: "لَنْ تَقُولَ", phonetic: "Lan taqūla", ending: "ـَ (فتحة ظاهرة)", endingType: "منصوب بالفتحة", notes: "Lam takes Fatha." },
-        huma_f: { word: "لَنْ تَقُولَا", phonetic: "Lan taqūlā", ending: "حذف النون", endingType: "منصوب بحذف النون", notes: "Noon dropped." },
-        hunna: { word: "لَنْ يَقُلْنَ", phonetic: "Lan yaqulna", ending: "ـْنَ (نون النسوة)", endingType: "مبني على السكون في محل نصب", notes: "Built on Sukun because of Nun al-Niswa." },
-        anta: { word: "لَنْ تَقُولَ", phonetic: "Lan taqūla", ending: "ـَ (فتحة ظاهرة)", endingType: "منصوب بالفتحة", notes: "Lam takes Fatha." },
-        antuma_m: { word: "لَنْ تَقُولَا", phonetic: "Lan taqūlā", ending: "حذف النون", endingType: "منصوب بحذف النون", notes: "Noon dropped." },
-        antum: { word: "لَنْ تَقُولُوا", phonetic: "Lan taqūlū", ending: "حذف النون", endingType: "منصوب بحذف النون", notes: "Noon dropped." },
-        anti: { word: "لَنْ تَقُولِي", phonetic: "Lan taqūlī", ending: "حذف النون", endingType: "منصوب بحذف النون", notes: "Noon dropped from تقولي." },
-        antuma_f: { word: "لَنْ تَقُولَا", phonetic: "Lan taqūlā", ending: "حذف النون", endingType: "منصوب بحذف النون", notes: "Noon dropped." },
-        antunna: { word: "لَنْ تَقُلْنَ", phonetic: "Lan taqulna", ending: "ـْنَ", endingType: "مبني على السكون في محل نصب", notes: "Built on Sukun." },
-        ana: { word: "لَنْ أَقُولَ", phonetic: "Lan aqūla", ending: "ـَ (فتحة ظاهرة)", endingType: "منصوب بالفتحة", notes: "Lam takes Fatha." },
-        nahnu: { word: "لَنْ نَقُولَ", phonetic: "Lan naqūla", ending: "ـَ (فتحة ظاهرة)", endingType: "منصوب بالفتحة", notes: "Lam takes Fatha." }
+        huwa: { word: "لَنْ يَقُولَ", phonetic: "Lan yaqūla", ending: "ـَ (فتحة ظاهرة)", endingType: "منصوب بالفتحة (Subjunctive - with Fatḥah 'a' ending)", notes: "The Lam takes a clear Fatha." },
+        huma_m: { word: "لَنْ يَقُولَا", phonetic: "Lan yaqūlā", ending: "حذف النون", endingType: "منصوب بحذف النون (Subjunctive - dropped Nūn)", notes: "Noon of Five Verbs dropped." },
+        hum: { word: "لَنْ يَقُولُوا", phonetic: "Lan yaqūlū", ending: "حذف النون", endingType: "منصوب بحذف النون (Subjunctive - dropped Nūn)", notes: "Noon dropped, Alif of protection added." },
+        hiya: { word: "لَنْ تَقُولَ", phonetic: "Lan taqūla", ending: "ـَ (فتحة ظاهرة)", endingType: "منصوب بالفتحة (Subjunctive - with Fatḥah 'a' ending)", notes: "Lam takes Fatha." },
+        huma_f: { word: "لَنْ تَقُولَا", phonetic: "Lan taqūlā", ending: "حذف النون", endingType: "منصوب بحذف النون (Subjunctive - dropped Nūn)", notes: "Noon dropped." },
+        hunna: { word: "لَنْ يَقُلْنَ", phonetic: "Lan yaqulna", ending: "ـْنَ (نون النسوة)", endingType: "مبني على السكون في محل نصب (Built on Sukūn in Subjunctive state)", notes: "Built on Sukun because of Nun al-Niswa." },
+        anta: { word: "لَنْ تَقُولَ", phonetic: "Lan taqūla", ending: "ـَ (فتحة ظاهرة)", endingType: "منصوب بالفتحة (Subjunctive - with Fatḥah 'a' ending)", notes: "Lam takes Fatha." },
+        antuma_m: { word: "لَنْ تَقُولَا", phonetic: "Lan taqūlā", ending: "حذف النون", endingType: "منصوب بحذف النون (Subjunctive - dropped Nūn)", notes: "Noon dropped." },
+        antum: { word: "لَنْ تَقُولُوا", phonetic: "Lan taqūlū", ending: "حذف النون", endingType: "منصوب بحذف النون (Subjunctive - dropped Nūn)", notes: "Noon dropped." },
+        anti: { word: "لَنْ تَقُولِي", phonetic: "Lan taqūlī", ending: "حذف النون", endingType: "منصوب بحذف النون (Subjunctive - dropped Nūn)", notes: "Noon dropped from تقولي." },
+        antuma_f: { word: "لَنْ تَقُولَا", phonetic: "Lan taqūlā", ending: "حذف النون", endingType: "منصوب بحذف النون (Subjunctive - dropped Nūn)", notes: "Noon dropped." },
+        antunna: { word: "لَنْ تَقُلْنَ", phonetic: "Lan taqulna", ending: "ـْنَ", endingType: "مبني على السكون في محل نصب (Built on Sukūn in Subjunctive state)", notes: "Built on Sukun." },
+        ana: { word: "لَنْ أَقُولَ", phonetic: "Lan aqūla", ending: "ـَ (فتحة ظاهرة)", endingType: "منصوب بالفتحة (Subjunctive - with Fatḥah 'a' ending)", notes: "Lam takes Fatha." },
+        nahnu: { word: "لَنْ نَقُولَ", phonetic: "Lan naqūla", ending: "ـَ (فتحة ظاهرة)", endingType: "منصوب بالفتحة (Subjunctive - with Fatḥah 'a' ending)", notes: "Lam takes Fatha." }
       }
     },
 
@@ -98,20 +98,20 @@ window.SARF_DATA = {
       title: "المضارع المجزوم (Present Jussive)",
       description: "When preceded by jussive particles (لَمْ، لَمَّا، لَامُ الأَمْرِ، لَا النَّاهِيَةِ). 🚨 KEY AJWAF RULE: The Lam receives a Sukun, so the middle long Waw is dropped to prevent two sukoons meeting (يَقُولْ -> يَقُلْ)!",
       forms: {
-        huwa: { word: "لَمْ يَقُلْ", phonetic: "Lam yaqul", ending: "ـْ (سكون)", endingType: "مجزوم بالسكون", notes: "🚨 Waw dropped! Origin: يَقُولْ -> Two silent letters met -> Waw deleted." },
-        huma_m: { word: "لَمْ يَقُولَا", phonetic: "Lam yaqūlā", ending: "حذف النون", endingType: "مجزوم بحذف النون", notes: "Lam has vowel 'a', so Waw remains!" },
-        hum: { word: "لَمْ يَقُولُوا", phonetic: "Lam yaqūlū", ending: "حذف النون", endingType: "مجزوم بحذف النون", notes: "Waw of stem remains, Noon dropped." },
-        hiya: { word: "لَمْ تَقُلْ", phonetic: "Lam taqul", ending: "ـْ (سكون)", endingType: "مجزوم بالسكون", notes: "🚨 Waw dropped due to Sukun on Lam." },
-        huma_f: { word: "لَمْ تَقُولَا", phonetic: "Lam taqūlā", ending: "حذف النون", endingType: "مجزوم بحذف النون", notes: "Noon dropped." },
-        hunna: { word: "لَمْ يَقُلْنَ", phonetic: "Lam yaqulna", ending: "ـْنَ", endingType: "مبني على السكون في محل جزم", notes: "Waw dropped." },
-        anta: { word: "لَمْ تَقُلْ", phonetic: "Lam taqul", ending: "ـْ (سكون)", endingType: "مجزوم بالسكون", notes: "🚨 Waw dropped: Lam has Sukun." },
-        antuma_m: { word: "لَمْ تَقُولَا", phonetic: "Lam taqūlā", ending: "حذف النون", endingType: "مجزوم بحذف النون", notes: "Noon dropped." },
-        antum: { word: "لَمْ تَقُولُوا", phonetic: "Lam taqūlū", ending: "حذف النون", endingType: "مجزوم بحذف النون", notes: "Noon dropped." },
-        anti: { word: "لَمْ تَقُولِي", phonetic: "Lam taqūlī", ending: "حذف النون", endingType: "مجزوم بحذف النون", notes: "Noon dropped." },
-        antuma_f: { word: "لَمْ تَقُولَا", phonetic: "Lam taqūlā", ending: "حذف النون", endingType: "مجزوم بحذف النون", notes: "Noon dropped." },
-        antunna: { word: "لَمْ تَقُلْنَ", phonetic: "Lam taqulna", ending: "ـْنَ", endingType: "مبني على السكون في محل جزم", notes: "Waw dropped." },
-        ana: { word: "لَمْ أَقُلْ", phonetic: "Lam aqul", ending: "ـْ (سكون)", endingType: "مجزوم بالسكون", notes: "🚨 Waw dropped: Lam has Sukun." },
-        nahnu: { word: "لَمْ نَقُلْ", phonetic: "Lam naqul", ending: "ـْ (سكون)", endingType: "مجزوم بالسكون", notes: "🚨 Waw dropped: Lam has Sukun." }
+        huwa: { word: "لَمْ يَقُلْ", phonetic: "Lam yaqul", ending: "ـْ (سكون)", endingType: "مجزوم بالسكون (Jussive - with Sukūn [no vowel])", notes: "🚨 Waw dropped! Origin: يَقُولْ -> Two silent letters met -> Waw deleted." },
+        huma_m: { word: "لَمْ يَقُولَا", phonetic: "Lam yaqūlā", ending: "حذف النون", endingType: "مجزوم بحذف النون (Jussive - dropped Nūn)", notes: "Lam has vowel 'a', so Waw remains!" },
+        hum: { word: "لَمْ يَقُولُوا", phonetic: "Lam yaqūlū", ending: "حذف النون", endingType: "مجزوم بحذف النون (Jussive - dropped Nūn)", notes: "Waw of stem remains, Noon dropped." },
+        hiya: { word: "لَمْ تَقُلْ", phonetic: "Lam taqul", ending: "ـْ (سكون)", endingType: "مجزوم بالسكون (Jussive - with Sukūn [no vowel])", notes: "🚨 Waw dropped due to Sukun on Lam." },
+        huma_f: { word: "لَمْ تَقُولَا", phonetic: "Lam taqūlā", ending: "حذف النون", endingType: "مجزوم بحذف النون (Jussive - dropped Nūn)", notes: "Noon dropped." },
+        hunna: { word: "لَمْ يَقُلْنَ", phonetic: "Lam yaqulna", ending: "ـْنَ", endingType: "مبني على السكون في محل جزم (Built on Sukūn in Jussive state)", notes: "Waw dropped." },
+        anta: { word: "لَمْ تَقُلْ", phonetic: "Lam taqul", ending: "ـْ (سكون)", endingType: "مجزوم بالسكون (Jussive - with Sukūn [no vowel])", notes: "🚨 Waw dropped: Lam has Sukun." },
+        antuma_m: { word: "لَمْ تَقُولَا", phonetic: "Lam taqūlā", ending: "حذف النون", endingType: "مجزوم بحذف النون (Jussive - dropped Nūn)", notes: "Noon dropped." },
+        antum: { word: "لَمْ تَقُولُوا", phonetic: "Lam taqūlū", ending: "حذف النون", endingType: "مجزوم بحذف النون (Jussive - dropped Nūn)", notes: "Noon dropped." },
+        anti: { word: "لَمْ تَقُولِي", phonetic: "Lam taqūlī", ending: "حذف النون", endingType: "مجزوم بحذف النون (Jussive - dropped Nūn)", notes: "Noon dropped." },
+        antuma_f: { word: "لَمْ تَقُولَا", phonetic: "Lam taqūlā", ending: "حذف النون", endingType: "مجزوم بحذف النون (Jussive - dropped Nūn)", notes: "Noon dropped." },
+        antunna: { word: "لَمْ تَقُلْنَ", phonetic: "Lam taqulna", ending: "ـْنَ", endingType: "مبني على السكون في محل جزم (Built on Sukūn in Jussive state)", notes: "Waw dropped." },
+        ana: { word: "لَمْ أَقُلْ", phonetic: "Lam aqul", ending: "ـْ (سكون)", endingType: "مجزوم بالسكون (Jussive - with Sukūn [no vowel])", notes: "🚨 Waw dropped: Lam has Sukun." },
+        nahnu: { word: "لَمْ نَقُلْ", phonetic: "Lam naqul", ending: "ـْ (سكون)", endingType: "مجزوم بالسكون (Jussive - with Sukūn [no vowel])", notes: "🚨 Waw dropped: Lam has Sukun." }
       }
     },
 
@@ -120,12 +120,12 @@ window.SARF_DATA = {
       title: "فعل الأمر (Imperative / Command)",
       description: "Commands (2nd person). Derived from the jussive by stripping the prefix (تَقُلْ -> قُلْ). Built on Sukun or deletion of Noon.",
       forms: {
-        anta: { word: "قُلْ", phonetic: "Qul", ending: "ـْ (سكون)", endingType: "مبني على السكون", notes: "🚨 The world-famous command: QUL! Built on Sukun, Waw dropped." },
-        antuma_m: { word: "قُولَا", phonetic: "Qūlā", ending: "حذف النون", endingType: "مبني على حذف النون", notes: "Dual command: 'Say, you two' (e.g., {فَقُولَا لَهُ قَوْلًا لَّيِّنًا})." },
-        antum: { word: "قُولُوا", phonetic: "Qūlū", ending: "حذف النون", endingType: "مبني على حذف النون", notes: "Plural masculine: 'Say, you all' (e.g., {وَقُولُوا لِلنَّاسِ حُسْنًا})." },
-        anti: { word: "قُولِي", phonetic: "Qūlī", ending: "حذف النون", endingType: "مبني على حذف النون", notes: "Feminine singular: 'Say (O woman)' (e.g., {فَكُلِي وَاشْرَبِي وَقَرِّي عَيْنًا... فَقُولِي})." },
-        antuma_f: { word: "قُولَا", phonetic: "Qūlā", ending: "حذف النون", endingType: "مبني على حذف النون", notes: "Dual feminine command." },
-        antunna: { word: "قُلْنَ", phonetic: "Qulna", ending: "ـْنَ (نون النسوة)", endingType: "مبني على السكون", notes: "Plural feminine command: 'Say (O women)' (e.g., {وَقُلْنَ قَوْلًا مَّعْرُوفًا})." }
+        anta: { word: "قُلْ", phonetic: "Qul", ending: "ـْ (سكون)", endingType: "مبني على السكون (Command built on Sukūn - 'Say!')", notes: "🚨 The world-famous command: QUL! Built on Sukun, Waw dropped." },
+        antuma_m: { word: "قُولَا", phonetic: "Qūlā", ending: "حذف النون", endingType: "مبني على حذف النون (Command built on dropped Nūn - 'Say, you two')", notes: "Dual command: 'Say, you two' (e.g., {فَقُولَا لَهُ قَوْلًا لَّيِّنًا})." },
+        antum: { word: "قُولُوا", phonetic: "Qūlū", ending: "حذف النون", endingType: "مبني على حذف النون (Command built on dropped Nūn - 'Say, you all')", notes: "Plural masculine: 'Say, you all' (e.g., {وَقُولُوا لِلنَّاسِ حُسْنًا})." },
+        anti: { word: "قُولِي", phonetic: "Qūlī", ending: "حذف النون", endingType: "مبني على حذف النون (Command built on dropped Nūn - 'Say, O woman')", notes: "Feminine singular: 'Say (O woman)' (e.g., {فَكُلِي وَاشْرَبِي وَقَرِّي عَيْنًا... فَقُولِي})." },
+        antuma_f: { word: "قُولَا", phonetic: "Qūlā", ending: "حذف النون", endingType: "مبني على حذف النون (Command built on dropped Nūn - 'Say, you two women')", notes: "Dual feminine command." },
+        antunna: { word: "قُلْنَ", phonetic: "Qulna", ending: "ـْنَ (نون النسوة)", endingType: "مبني على السكون (Command built on Sukūn - 'Say, O women')", notes: "Plural feminine command: 'Say (O women)' (e.g., {وَقُلْنَ قَوْلًا مَّعْرُوفًا})." }
       }
     },
 
@@ -134,13 +134,13 @@ window.SARF_DATA = {
       title: "المبني للمجهول (Passive Voice)",
       description: "Used when the speaker is omitted to direct attention entirely to the statement itself or the majesty of the speaker.",
       forms: {
-        huwa_past: { pronoun: "هُوَ (ماضٍ)", word: "قِيلَ", phonetic: "Qīla", ending: "ـَ (فتحة)", endingType: "مبني على الفتح", notes: "Origin: قُوِلَ -> Kasrah on Waw shifted, causing Waw to become Ya: قِيلَ." },
-        hum_past: { pronoun: "هُمْ (ماضٍ)", word: "قِيلُوا", phonetic: "Qīlū", ending: "ـُوا (ضم)", endingType: "مبني على الضم", notes: "Passive plural." },
-        hiya_past: { pronoun: "هِيَ (ماضٍ)", word: "قِيلَتْ", phonetic: "Qīlat", ending: "ـَتْ (فتح)", endingType: "مبني على الفتح", notes: "Passive feminine singular." },
-        hunna_past: { pronoun: "هُنَّ (ماضٍ)", word: "قِلْنَ", phonetic: "Qilna", ending: "ـْنَ (سكون)", endingType: "مبني على السكون", notes: "Ya dropped due to Sukun on Lam: Qilna." },
-        huwa_pres: { pronoun: "هُوَ (مضارع)", word: "يُقَالُ", phonetic: "Yuqālu", ending: "ـُ (ضمة)", endingType: "مرفوع بالضمة", notes: "Origin: يُقْوَلُ -> Waw with Fatha becomes Alif: يُقَالُ ('It is said')." },
-        hum_pres: { pronoun: "هُمْ (مضارع)", word: "يُقَالُونَ", phonetic: "Yuqālūna", ending: "ـُونَ (ثبوت النون)", endingType: "مرفوع بثبوت النون", notes: "Passive present plural." },
-        hiya_pres: { pronoun: "هِيَ (مضارع)", word: "تُقَالُ", phonetic: "Tuqālu", ending: "ـُ (ضمة)", endingType: "مرفوع بالضمة", notes: "Passive present feminine singular." }
+        huwa_past: { pronoun: "هُوَ (ماضٍ)", word: "قِيلَ", phonetic: "Qīla", ending: "ـَ (فتحة)", endingType: "مبني على الفتح (Past passive built on Fatḥah - 'It was said')", notes: "Origin: قُوِلَ -> Kasrah on Waw shifted, causing Waw to become Ya: قِيلَ." },
+        hum_past: { pronoun: "هُمْ (ماضٍ)", word: "قِيلُوا", phonetic: "Qīlū", ending: "ـُوا (ضم)", endingType: "مبني على الضم (Past passive built on Ḍammah - 'They were spoken to')", notes: "Passive plural." },
+        hiya_past: { pronoun: "هِيَ (ماضٍ)", word: "قِيلَتْ", phonetic: "Qīlat", ending: "ـَتْ (فتح)", endingType: "مبني على الفتح (Past passive feminine built on Fatḥah)", notes: "Passive feminine singular." },
+        hunna_past: { pronoun: "هُنَّ (ماضٍ)", word: "قِلْنَ", phonetic: "Qilna", ending: "ـْنَ (سكون)", endingType: "مبني على السكون (Past passive feminine plural built on Sukūn)", notes: "Ya dropped due to Sukun on Lam: Qilna." },
+        huwa_pres: { pronoun: "هُوَ (مضارع)", word: "يُقَالُ", phonetic: "Yuqālu", ending: "ـُ (ضمة)", endingType: "مرفوع بالضمة (Present passive in indicative state - 'It is said')", notes: "Origin: يُقْوَلُ -> Waw with Fatha becomes Alif: يُقَالُ ('It is said')." },
+        hum_pres: { pronoun: "هُمْ (مضارع)", word: "يُقَالُونَ", phonetic: "Yuqālūna", ending: "ـُونَ (ثبوت النون)", endingType: "مرفوع بثبوت النون (Present passive - with retained Nūn)", notes: "Passive present plural." },
+        hiya_pres: { pronoun: "هِيَ (مضارع)", word: "تُقَالُ", phonetic: "Tuqālu", ending: "ـُ (ضمة)", endingType: "مرفوع بالضمة (Present passive feminine - 'It is said')", notes: "Passive present feminine singular." }
       }
     }
   },
