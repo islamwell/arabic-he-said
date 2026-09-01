@@ -417,10 +417,10 @@ class QalaTetrisGame {
     ctx.lineWidth = isFalling ? 2.5 : 1;
     ctx.stroke();
 
-    // Large, clear, high-contrast Arabic typography
+    // Large, clear, high-contrast Arabic typography using Tanzil Quran Othman Madinah font
     ctx.fillStyle = '#ffffff';
     const fontSize = Math.floor(bw * 0.44); // ~25px font!
-    ctx.font = `bold ${fontSize}px 'Amiri', 'Tajawal', sans-serif`;
+    ctx.font = `bold ${fontSize}px 'KFGQPC HAFS Uthmanic Script', 'hafs', 'KFGQPC Uthman Taha Naskh', 'Scheherazade New', 'Amiri', serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.shadowColor = 'rgba(0,0,0,0.5)';

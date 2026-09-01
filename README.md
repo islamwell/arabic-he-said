@@ -48,7 +48,7 @@ A state-of-the-art, mobile-first Arabic learning web application dedicated to ma
 - **HTML5 & CSS3**: Modern semantic structure, responsive grid/flexbox, CSS custom properties, and dark/light Islamic color scheme.
 - **Vanilla JavaScript (ES6+)**: Modular architecture (`SarfEngine`, `VowelGym`, `QuranExplorer`, `SentenceBuilder`, `QalaTetrisGame`, `HarakahBlitzGame`).
 - **Web Audio & Speech API**: Synthesized game SFX and Arabic pronunciation.
-- **Google Fonts**: *Amiri*, *Scheherazade New*, *Tajawal*, and *Cairo*.
+- **Arabic Typography**: Authentic **Tanzil Quran Othman Madinah** (`KFGQPC HAFS Uthmanic Script` / `hafs`) with web fallbacks (*Scheherazade New*, *Amiri*).
 
 ---
 
