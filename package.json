@@ -6,6 +6,7 @@
     "deploy": "wrangler pages deploy . --project-name arabic-qala-learn --branch main"
   },
   "devDependencies": {
+    "puppeteer-core": "^25.9.0",
     "wrangler": "^3.114.0"
   }
 }

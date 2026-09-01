@@ -209,13 +209,15 @@
 }
 
 .morphology-note-box {
-  background-color: rgba(30, 41, 59, 0.6);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 14px 16px;
   text-align: right;
   display: flex;
   gap: 12px;
-  border-right: 3px solid var(--accent-gold);
+  border-right: 4px solid var(--accent-gold);
+  box-shadow: var(--shadow-sm);
 }
 
 .morphology-note-box .note-icon {
@@ -232,7 +234,7 @@
 .morphology-note-box p {
   font-size: 0.85rem;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 /* Ajwaf Interactive Stepper */
@@ -370,7 +372,8 @@
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--text-gold);
-  background-color: rgba(245, 158, 11, 0.1);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-gold);
   padding: 3px 8px;
   border-radius: 6px;
 }
@@ -389,6 +392,7 @@
 
 .form-quran-box {
   background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
   padding: 8px 10px;
   border-radius: 8px;
   font-family: var(--font-arabic-quran);
@@ -528,6 +532,7 @@
 
 .rule-examples-box {
   background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
   border-radius: 10px;
   padding: 12px;
 }
@@ -613,6 +618,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: var(--shadow-sm);
 }
 
 .sentence-arabic-text {
@@ -665,6 +671,7 @@
   text-align: right;
   font-family: var(--font-arabic-ui);
   font-size: 0.92rem;
+  box-shadow: var(--shadow-sm);
   transition: all 0.2s ease;
 }
 
@@ -674,16 +681,22 @@
 }
 
 .drill-option-btn.correct {
-  background-color: rgba(16, 185, 129, 0.2);
-  border-color: var(--text-emerald);
+  background-color: var(--bg-accent);
+  border-color: var(--border-emerald);
   color: var(--text-emerald);
   font-weight: 700;
 }
 
 .drill-option-btn.incorrect {
-  background-color: rgba(239, 68, 68, 0.2);
+  background-color: rgba(239, 68, 68, 0.12);
   border-color: #ef4444;
-  color: #ef4444;
+  color: #dc2626;
+}
+
+[data-theme="light"] .drill-option-btn.incorrect {
+  background-color: #fef2f2;
+  border-color: #dc2626;
+  color: #991b1b;
 }
 
 .option-indicator {
@@ -691,6 +704,7 @@
   height: 28px;
   border-radius: 50%;
   background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -706,13 +720,20 @@
 }
 
 .feedback-success {
-  background-color: rgba(16, 185, 129, 0.15);
+  background-color: var(--bg-accent);
   border: 1px solid var(--border-emerald);
+  color: var(--text-primary);
 }
 
 .feedback-error {
-  background-color: rgba(239, 68, 68, 0.15);
+  background-color: rgba(239, 68, 68, 0.12);
   border: 1px solid #ef4444;
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .feedback-error {
+  background-color: #fef2f2;
+  border: 1px solid #dc2626;
 }
 
 .feedback-badge {
@@ -725,14 +746,15 @@
 .feedback-explanation {
   font-size: 0.88rem;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.6;
   margin-bottom: 8px;
 }
 
 .full-irab-summary {
-  background-color: var(--bg-primary);
-  padding: 10px 12px;
-  border-radius: 8px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 12px 14px;
+  border-radius: 10px;
   font-size: 0.85rem;
 }
 
@@ -882,6 +904,7 @@
   flex-wrap: wrap;
   gap: 12px;
   background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
   padding: 8px 12px;
   border-radius: 8px;
   font-size: 0.82rem;
@@ -898,13 +921,15 @@
   font-size: 0.82rem;
   font-weight: 700;
   color: var(--text-gold);
-  background-color: rgba(245, 158, 11, 0.12);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-gold);
   padding: 4px 10px;
   border-radius: 6px;
 }
 
 .verse-breakdown-box {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
   border-radius: 10px;
   padding: 12px;
   margin-bottom: 14px;
@@ -935,13 +960,15 @@
 .breakdown-word {
   font-family: var(--font-arabic-quran);
   font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 4px;
+  padding: 3px 10px;
+  border-radius: 6px;
   background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   color: var(--text-primary);
   min-width: 60px;
   text-align: center;
   flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
 }
 
 .breakdown-role {
@@ -1055,6 +1082,7 @@
 
 .sb-target-prompt {
   background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 14px;
   margin-bottom: 18px;
@@ -1122,7 +1150,7 @@
 }
 
 .bank-token-btn {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
   border-radius: 10px;
@@ -1130,6 +1158,7 @@
   font-family: var(--font-arabic-quran);
   font-size: 1.3rem;
   cursor: pointer;
+  box-shadow: var(--shadow-sm);
   transition: all 0.2s ease;
 }
 
@@ -1146,7 +1175,7 @@
 }
 
 .secondary-btn {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
   padding: 10px 16px;
@@ -1155,6 +1184,13 @@
   font-size: 0.9rem;
   cursor: pointer;
   font-family: var(--font-arabic-ui);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.secondary-btn:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-gold);
 }
 
 .constructed-phrase-row {

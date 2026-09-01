@@ -554,7 +554,7 @@ class QalaTetrisGame {
     // Extra-large, high-contrast Arabic typography
     ctx.fillStyle = '#ffffff';
     const fontSize = Math.floor(bw * 0.44); // ~25px - 28px font!
-    ctx.font = `bold ${fontSize}px 'Amiri', 'Tajawal', sans-serif`;
+    ctx.font = `bold ${fontSize}px 'KFGQPC HAFS Uthmanic Script', 'hafs', 'Scheherazade New', 'Amiri', serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.shadowColor = 'rgba(0,0,0,0.6)';

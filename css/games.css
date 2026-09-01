@@ -333,13 +333,21 @@
 }
 
 .flash-correct {
-  background-color: rgba(16, 185, 129, 0.2);
+  background-color: var(--bg-accent);
+  border: 1px solid var(--border-emerald);
   color: var(--text-emerald);
 }
 
 .flash-incorrect {
-  background-color: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.12);
+  border: 1px solid #ef4444;
+  color: #dc2626;
+}
+
+[data-theme="light"] .flash-incorrect {
+  background-color: #fef2f2;
+  border-color: #dc2626;
+  color: #991b1b;
 }
 
 .blitz-overlay-card {
@@ -397,7 +405,8 @@
 }
 
 .blitz-review-list {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 12px;
   text-align: right;
@@ -429,6 +438,7 @@
 }
 
 .rev-reason {
-  color: var(--text-secondary);
+  color: var(--text-emerald);
   font-size: 0.78rem;
+  font-weight: 500;
 }
