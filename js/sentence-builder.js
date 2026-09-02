@@ -42,7 +42,7 @@ class SentenceBuilder {
     container.innerHTML = window.SENTENCE_DATA.tiers.map(t => `
       <button class="sb-tier-tab ${t.id === this.currentTier ? 'active' : ''}" data-tier="${t.id}">
         <span class="tier-num">Tier ${t.id}</span>
-        <span class="tier-label">${t.tierNameEn.split(':')[0]}</span>
+        <span class="tier-label">${t.tierNameEn.split(':')[1]?.trim() || t.tierNameEn}</span>
       </button>
     `).join('');
 

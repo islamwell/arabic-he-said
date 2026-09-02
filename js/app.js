@@ -3,8 +3,8 @@
  * Handles navigation, state management, theming, font size scaling, and footer versioning (English Interface)
  */
 
-const APP_VERSION = "v1.0.5";
-const LAST_UPDATED = "2026-09-02 05:53";
+const APP_VERSION = "v1.0.6";
+const LAST_UPDATED = "2026-09-02 18:15";
 
 class App {
   constructor() {
@@ -104,7 +104,11 @@ class App {
     document.documentElement.setAttribute('data-theme', this.theme);
     const themeBtn = document.getElementById('theme-toggle-btn');
     if (themeBtn) {
-      themeBtn.innerHTML = this.theme === 'dark' ? '☀️' : '🌙';
+      if (this.theme === 'dark') {
+        themeBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>`;
+      } else {
+        themeBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>`;
+      }
     }
   }
 
@@ -124,8 +128,13 @@ class App {
     document.documentElement.setAttribute('data-font-scale', this.fontScale);
     const fontBtn = document.getElementById('font-size-toggle-btn');
     if (fontBtn) {
-      const label = this.fontScale === 'xlarge' ? '🔠 A++' : (this.fontScale === 'large' ? '🔠 A+' : '🔠 A');
-      fontBtn.innerHTML = label;
+      const tag = fontBtn.querySelector('.font-scale-tag');
+      const label = this.fontScale === 'xlarge' ? 'A++' : (this.fontScale === 'large' ? 'A+' : 'A');
+      if (tag) {
+        tag.textContent = label;
+      } else {
+        fontBtn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V7l5 12 5-12v12"></path><path d="M19 19v-6h4v6"></path></svg><span class="font-scale-tag">${label}</span>`;
+      }
     }
   }
 
@@ -144,7 +153,7 @@ class App {
         this.applyFontScale();
         if (window.soundEngine) window.soundEngine.playClick();
 
-        const msg = `Font Size: ${this.fontScale === 'xlarge' ? 'Extra Large (135%)' : (this.fontScale === 'large' ? 'Large (118%)' : 'Normal (100%)')}`;
+        const msg = `Font Scale: ${this.fontScale === 'xlarge' ? 'Extra Large (135%)' : (this.fontScale === 'large' ? 'Large (118%)' : 'Standard (100%)')}`;
         this.showCacheToast(msg);
       });
     }
@@ -155,7 +164,11 @@ class App {
     if (soundBtn) {
       soundBtn.addEventListener('click', () => {
         window.soundEngine.muted = !window.soundEngine.muted;
-        soundBtn.innerHTML = window.soundEngine.muted ? '🔇' : '🔊';
+        if (window.soundEngine.muted) {
+          soundBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>`;
+        } else {
+          soundBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>`;
+        }
       });
     }
   }

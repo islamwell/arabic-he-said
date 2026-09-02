@@ -98,7 +98,7 @@ class QuranExplorer {
         </div>
 
         <div class="verse-vowel-highlight">
-          <span class="vowel-focus-tag">🎯 Final Vowel Insight: ${v.vowelFocus}</span>
+          <span class="vowel-focus-tag">🎯 Final Vowel Insight: <bdi>${v.vowelFocus}</bdi></span>
         </div>
 
         <!-- Word Breakdown -->

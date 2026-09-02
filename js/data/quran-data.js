@@ -6,13 +6,13 @@
 
 window.QURAN_DATA = {
   categories: [
-    { id: "all", name: "كل الآيات (All Verses)" },
-    { id: "past", name: "الماضي (Past Tense - قَالَ / قَالُوا / قُلْتُ)" },
-    { id: "present", name: "المضارع (Present - يَقُولُ / يَقُولُونَ)" },
-    { id: "amr", name: "الأمر (Imperative - قُلْ / قُولُوا)" },
-    { id: "vowel_gems", name: "أسرار الحركات (Final Vowel Gems: الفتحة والكسرة)" },
-    { id: "passive", name: "المبني للمجهول (Passive - قِيلَ / يُقَالُ)" },
-    { id: "derived", name: "المشتقات والمزيد (Derived Forms & Nouns)" }
+    { id: "all", name: "All Verses (الكل)" },
+    { id: "past", name: "Past Tense (الماضي)" },
+    { id: "present", name: "Present Tense (المضارع)" },
+    { id: "amr", name: "Commands & Amr (الأمر)" },
+    { id: "vowel_gems", name: "Final Vowel Gems (أسرار الحركات)" },
+    { id: "passive", name: "Passive Voice (المجهول)" },
+    { id: "derived", name: "Derived Forms (المشتقات)" }
   ],
 
   verses: [

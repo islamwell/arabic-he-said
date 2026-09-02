@@ -64,19 +64,36 @@ class VowelGym {
     const guide = window.NAHW_DATA.vowelGuides[this.currentRuleTab];
     if (!guide) return;
 
+    const guideNameMatch = guide.name.match(/^(.*?)\s*\((.*?)\)$/);
+    const guideTitleHtml = guideNameMatch
+      ? `${guideNameMatch[2]} • <span class="ar-inline" dir="rtl">${guideNameMatch[1]}</span>`
+      : guide.name;
+
     container.innerHTML = `
       <div class="vowel-guide-header ${guide.colorClass}">
         <div class="vowel-big-symbol">${guide.symbol}</div>
         <div class="vowel-guide-title-block">
-          <h3 class="vowel-guide-title">${guide.name}</h3>
+          <h3 class="vowel-guide-title">${guideTitleHtml}</h3>
           <p class="vowel-guide-sub">When and why does this vowel mark appear on root Q-W-L and its forms?</p>
         </div>
       </div>
 
       <div class="vowel-rules-list">
-        ${guide.rules.map(r => `
+        ${guide.rules.map(r => {
+          const titleMatch = r.title.match(/^(.*?)\s*\((.*?)\)$/);
+          let titleHtml;
+          if (titleMatch) {
+            const numMatch = titleMatch[1].match(/^(\d+\.)\s*(.*)$/);
+            const num = numMatch ? numMatch[1] : '';
+            const ar = numMatch ? numMatch[2] : titleMatch[1];
+            const en = titleMatch[2];
+            titleHtml = `<span class="rule-num-tag">${num}</span> <span class="rule-name-en">${en}</span> <span class="rule-sep">•</span> <span class="rule-name-ar" dir="rtl">${ar}</span>`;
+          } else {
+            titleHtml = `<span dir="auto">${r.title}</span>`;
+          }
+          return `
           <div class="rule-card">
-            <h4 class="rule-title">${r.title}</h4>
+            <h4 class="rule-title">${titleHtml}</h4>
             <p class="rule-detail">${r.detail}</p>
             <div class="rule-examples-box">
               <span class="examples-header">Applied Quranic Examples:</span>
@@ -86,12 +103,12 @@ class VowelGym {
                     <span class="ex-sentence">${ex.text}</span>
                     <button class="mini-speaker-btn" onclick="window.soundEngine.speakArabic('${ex.text.replace(/'/g, "\\'")}')" title="Listen">🔊</button>
                   </div>
-                  <div class="example-reason"><strong>Grammar Rule:</strong> ${ex.reason}</div>
+                  <div class="example-reason"><strong>Grammar Rule:</strong> <span dir="auto">${ex.reason}</span></div>
                 </div>
               `).join('')}
             </div>
           </div>
-        `).join('')}
+        `;}).join('')}
       </div>
     `;
   }

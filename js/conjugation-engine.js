@@ -138,11 +138,20 @@ class ConjugationEngine {
 
     const pronounObj = window.SARF_DATA.pronouns.find(p => p.id === this.currentPronoun) || { ar: 'الضمير', en: 'Pronoun' };
 
+    const endingRaw = formData.endingType || formData.ending || '';
+    const endingMatch = endingRaw.match(/^(.*?)\s*\((.*?)\)$/);
+    const endingHtml = endingMatch 
+      ? `<span class="ending-en" dir="ltr">${endingMatch[2]}</span> <span class="ending-sep">•</span> <span class="ending-ar" dir="rtl">${endingMatch[1]}</span>`
+      : `<span dir="auto">${endingRaw}</span>`;
+
+    const tenseMatch = tenseData.title.match(/^(.*?)\s*\((.*?)\)$/);
+    const tenseBadgeText = tenseMatch ? tenseMatch[2] : tenseData.title;
+
     card.innerHTML = `
       <div class="conjugation-hero">
         <div class="conjugation-header">
-          <div class="tense-badge">${tenseData.title}</div>
-          <div class="pronoun-badge"><strong>${pronounObj.en}</strong> (${pronounObj.ar})</div>
+          <div class="tense-badge">${tenseBadgeText}</div>
+          <div class="pronoun-badge"><strong>${pronounObj.en}</strong> <span class="badge-sep">•</span> <span class="badge-ar" dir="rtl">${pronounObj.ar}</span></div>
         </div>
 
         <div class="word-display-row">
@@ -159,7 +168,7 @@ class ConjugationEngine {
 
         <div class="irab-ending-tag">
           <span class="ending-label">Ending / I'rab State:</span>
-          <span class="ending-pill">${formData.endingType || formData.ending}</span>
+          <span class="ending-pill">${endingHtml}</span>
         </div>
 
         <div class="morphology-note-box">
