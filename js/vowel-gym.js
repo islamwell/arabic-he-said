@@ -1,5 +1,5 @@
 /**
- * Vowel Gym (صالة أسرار الحركات الإعرابية) Controller
+ * Vowel Gym (Syntax & I'rab Master Gym) Controller (English Interface)
  * Interactive drills and deep grammatical rationale for Fatḥah, Ḍammah, Kasrah, and Sukūn
  */
 
@@ -33,10 +33,10 @@ class VowelGym {
     if (!container) return;
 
     const vowels = [
-      { id: 'fatha', symbol: 'ـَ', name: 'الفتحة' },
-      { id: 'dammah', symbol: 'ـُ', name: 'الضمة' },
-      { id: 'kasrah', symbol: 'ـِ', name: 'الكسرة' },
-      { id: 'sukun', symbol: 'ـْ', name: 'السكون' }
+      { id: 'fatha', symbol: 'ـَ', name: 'Fatḥah (ـَ)' },
+      { id: 'dammah', symbol: 'ـُ', name: 'Ḍammah (ـُ)' },
+      { id: 'kasrah', symbol: 'ـِ', name: 'Kasrah (ـِ)' },
+      { id: 'sukun', symbol: 'ـْ', name: 'Sukūn (ـْ)' }
     ];
 
     container.innerHTML = vowels.map(v => `
@@ -49,7 +49,7 @@ class VowelGym {
     container.querySelectorAll('.vowel-tab-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         this.currentRuleTab = e.currentTarget.dataset.vowel;
-        window.soundEngine.playClick();
+        if (window.soundEngine) window.soundEngine.playClick();
         container.querySelectorAll('.vowel-tab-btn').forEach(b => b.classList.remove('active'));
         e.currentTarget.classList.add('active');
         this.renderActiveRuleContent();
@@ -69,7 +69,7 @@ class VowelGym {
         <div class="vowel-big-symbol">${guide.symbol}</div>
         <div class="vowel-guide-title-block">
           <h3 class="vowel-guide-title">${guide.name}</h3>
-          <p class="vowel-guide-sub">متى ولماذا تظهر هذه الحركة على كلمة «قال» ومشتقاتها؟</p>
+          <p class="vowel-guide-sub">When and why does this vowel mark appear on root Q-W-L and its forms?</p>
         </div>
       </div>
 
@@ -79,14 +79,14 @@ class VowelGym {
             <h4 class="rule-title">${r.title}</h4>
             <p class="rule-detail">${r.detail}</p>
             <div class="rule-examples-box">
-              <span class="examples-header">أمثلة تطبيقية:</span>
+              <span class="examples-header">Applied Quranic Examples:</span>
               ${r.examples.map(ex => `
                 <div class="example-item">
                   <div class="example-text">
                     <span class="ex-sentence">${ex.text}</span>
-                    <button class="mini-speaker-btn" onclick="window.soundEngine.speakArabic('${ex.text.replace(/'/g, "\\'")}')">🔊</button>
+                    <button class="mini-speaker-btn" onclick="window.soundEngine.speakArabic('${ex.text.replace(/'/g, "\\'")}')" title="Listen">🔊</button>
                   </div>
-                  <div class="example-reason"><strong>التعليل:</strong> ${ex.reason}</div>
+                  <div class="example-reason"><strong>Grammar Rule:</strong> ${ex.reason}</div>
                 </div>
               `).join('')}
             </div>
@@ -98,83 +98,72 @@ class VowelGym {
 
   initDrill() {
     this.renderCurrentQuestion();
-    this.updateStatsDisplay();
   }
 
   renderCurrentQuestion() {
+    const questions = window.NAHW_DATA && window.NAHW_DATA.drillQuestions ? window.NAHW_DATA.drillQuestions : [];
+    if (!questions || questions.length === 0) return;
+
+    const q = questions[this.currentQuestionIndex % questions.length];
     const container = document.getElementById('drill-card-container');
     const feedbackBox = document.getElementById('drill-feedback-box');
     const nextBtn = document.getElementById('drill-next-btn');
-
-    if (!container) return;
 
     this.hasAnswered = false;
     if (feedbackBox) feedbackBox.classList.add('hidden');
     if (nextBtn) nextBtn.classList.add('hidden');
 
-    const questions = window.NAHW_DATA.drillQuestions;
-    const q = questions[this.currentQuestionIndex % questions.length];
+    if (!container || !q) return;
 
-    // Highlight target word in sentence
+    const targetWord = q.wordFocus || 'قَالَ';
     const highlightedSentence = q.sentence.replace(
-      new RegExp(q.wordFocus, 'g'),
-      `<span class="target-word-highlight">${q.wordFocus}</span>`
+      targetWord,
+      `<strong class="target-word-highlight">${targetWord}</strong>`
     );
 
     container.innerHTML = `
-      <div class="drill-question-box animate-fade-in">
-        <div class="drill-sentence-display">
-          <div class="sentence-arabic-text">${highlightedSentence}</div>
-          <button class="audio-listen-btn mini-btn" id="drill-audio-btn" title="Listen / استمع">
-            🔊
+      <div class="drill-sentence-display">
+        <div class="sentence-arabic-text">${highlightedSentence}</div>
+        <button class="mini-speaker-btn" onclick="window.soundEngine.speakArabic('${q.sentence.replace(/'/g, "\\'")}')" title="Listen">🔊</button>
+      </div>
+
+      <div class="drill-prompt">
+        <div class="prompt-arabic">${q.question}</div>
+        <div class="prompt-english">${q.questionEn}</div>
+      </div>
+
+      <div class="drill-options-grid">
+        ${q.options.map((opt, idx) => `
+          <button class="drill-option-btn" data-index="${idx}">
+            <span class="option-indicator">${['A', 'B', 'C', 'D'][idx]}</span>
+            <span class="option-text">${opt.label}</span>
           </button>
-        </div>
-
-        <div class="drill-prompt">
-          <h4 class="prompt-arabic">${q.question}</h4>
-          <p class="prompt-english">${q.questionEn}</p>
-        </div>
-
-        <div class="drill-options-grid" id="drill-options-grid">
-          ${q.options.map((opt, idx) => `
-            <button class="drill-option-btn" data-index="${idx}">
-              <span class="option-indicator">${String.fromCharCode(65 + idx)}</span>
-              <span class="option-label">${opt.label}</span>
-            </button>
-          `).join('')}
-        </div>
+        `).join('')}
       </div>
     `;
 
-    // Listen button
-    const audioBtn = container.querySelector('#drill-audio-btn');
-    if (audioBtn) {
-      audioBtn.addEventListener('click', () => {
-        window.soundEngine.speakArabic(q.sentence);
-      });
-    }
-
-    // Option clicks
     container.querySelectorAll('.drill-option-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         if (this.hasAnswered) return;
-        const idx = parseInt(e.currentTarget.dataset.index, 10);
-        this.checkAnswer(idx, q);
+        const selectedIdx = parseInt(e.currentTarget.dataset.index, 10);
+        this.handleAnswer(q, selectedIdx, container);
       });
     });
   }
 
-  checkAnswer(selectedIndex, question) {
+  handleAnswer(question, selectedIdx, container) {
     this.hasAnswered = true;
-    const selectedOption = question.options[selectedIndex];
-    const isCorrect = selectedOption.correct;
-    const optionButtons = document.querySelectorAll('.drill-option-btn');
+    const selectedOpt = question.options[selectedIdx];
+    const isCorrect = selectedOpt && selectedOpt.correct === true;
+    const optionBtns = container.querySelectorAll('.drill-option-btn');
+    const feedbackBox = document.getElementById('drill-feedback-box');
+    const nextBtn = document.getElementById('drill-next-btn');
 
-    optionButtons.forEach((btn, idx) => {
+    optionBtns.forEach((btn, idx) => {
       btn.disabled = true;
-      if (question.options[idx].correct) {
+      if (question.options[idx] && question.options[idx].correct) {
         btn.classList.add('correct');
-      } else if (idx === selectedIndex) {
+      } else if (idx === selectedIdx && !isCorrect) {
         btn.classList.add('incorrect');
       }
     });
@@ -182,33 +171,28 @@ class VowelGym {
     if (isCorrect) {
       this.score += 10;
       this.streak += 1;
-      window.soundEngine.playSuccess();
+      if (window.soundEngine) window.soundEngine.playSuccess();
     } else {
       this.streak = 0;
-      window.soundEngine.playError();
+      if (window.soundEngine) window.soundEngine.playError();
     }
 
-    this.updateStatsDisplay();
-    this.showFeedback(selectedOption, question, isCorrect);
-  }
+    this.updateStats();
 
-  showFeedback(selectedOption, question, isCorrect) {
-    const feedbackBox = document.getElementById('drill-feedback-box');
-    const nextBtn = document.getElementById('drill-next-btn');
-    if (!feedbackBox) return;
-
-    feedbackBox.className = `drill-feedback-box ${isCorrect ? 'feedback-success' : 'feedback-error'} animate-slide-up`;
-    feedbackBox.innerHTML = `
-      <div class="feedback-header">
-        <span class="feedback-badge">${isCorrect ? '✅ إجابة صحيحة ومتقنة!' : '❌ حاول مراجعة القاعدة أدناه'}</span>
-      </div>
-      <p class="feedback-explanation">${selectedOption.feedback}</p>
-      <div class="full-irab-summary">
-        <strong>📌 الإعراب الكامل والدقيق:</strong>
-        <p>${question.fullIrab}</p>
-      </div>
-    `;
-    feedbackBox.classList.remove('hidden');
+    if (feedbackBox) {
+      feedbackBox.className = `drill-feedback-box ${isCorrect ? 'feedback-success' : 'feedback-error'} animate-slide-up`;
+      feedbackBox.innerHTML = `
+        <div class="feedback-header">
+          <span class="feedback-badge">${isCorrect ? '🎉 Correct Answer!' : '❌ Incorrect!'}</span>
+        </div>
+        <p class="feedback-explanation">${selectedOpt ? selectedOpt.feedback : ''}</p>
+        <div class="full-irab-summary">
+          <strong>Full Syntactic I'rab Breakdown:</strong>
+          <p>${question.fullIrab}</p>
+        </div>
+      `;
+      feedbackBox.classList.remove('hidden');
+    }
 
     if (nextBtn) {
       nextBtn.classList.remove('hidden');
@@ -216,12 +200,12 @@ class VowelGym {
   }
 
   nextQuestion() {
-    window.soundEngine.playClick();
     this.currentQuestionIndex++;
+    if (window.soundEngine) window.soundEngine.playClick();
     this.renderCurrentQuestion();
   }
 
-  updateStatsDisplay() {
+  updateStats() {
     const scoreEl = document.getElementById('drill-score-count');
     const streakEl = document.getElementById('drill-streak-count');
     if (scoreEl) scoreEl.textContent = this.score;

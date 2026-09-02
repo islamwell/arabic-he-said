@@ -1,6 +1,6 @@
 /**
- * Harakah Blitz Game Engine (لعبة برق الحركات الإعرابية)
- * Fast-paced timed quiz to solidify the final vowel intuition
+ * Harakah Blitz Game Engine (Rapid Final Vowel Challenge)
+ * Fast-paced timed quiz to solidify ending vowel intuition (English Interface)
  */
 
 class HarakahBlitzGame {
@@ -19,73 +19,73 @@ class HarakahBlitzGame {
         prompt: "حَتَّىٰ يَقُول[_] الرَّسُولُ",
         word: "يَقُولَ",
         correctVowel: "fatha",
-        reason: "منصوب بالفتحة بعد «حتى» (Subjunctive with Fatḥah after 'ḥattā')"
+        reason: "Subjunctive with Fatḥah after 'ḥattā' (حَتَّىٰ)"
       },
       {
         prompt: "قُل[_] ادْعُوا اللَّهَ",
         word: "قُلِ",
         correctVowel: "kasrah",
-        reason: "كسرة عارضة لمنع التقاء الساكنين (Connecting Kasrah to prevent silent letter clash)"
+        reason: "Connecting Kasrah to prevent silent letter clash (التقاء الساكنين)"
       },
       {
         prompt: "مَا قُلْت[_] لَهُمْ إِلَّا مَا أَمَرْتَنِي",
         word: "قُلْتُ",
         correctVowel: "dammah",
-        reason: "ضمير المتكلم (أنا) مبني على الضم (1st-person subject pronoun 'I' built on Ḍammah)"
+        reason: "1st-person subject pronoun 'I' built on Ḍammah (تاء المتكلم)"
       },
       {
         prompt: "وَلَا تَقُل[_] لَّهُمَا أُفٍّ",
         word: "تَقُلْ",
         correctVowel: "sukun",
-        reason: "مضارع مجزوم بالسكون بلا الناهية (Jussive with Sukūn after prohibitive 'lā')"
+        reason: "Jussive with Sukūn after prohibitive 'lā' (لا الناهية)"
       },
       {
         prompt: "يَقُول[_] الْإِنسَانُ يَوْمَئِذٍ أَيْنَ الْمَفَرُّ",
         word: "يَقُولُ",
         correctVowel: "dammah",
-        reason: "مضارع مرفوع بالضمة لتجرده (Indicative present with Ḍammah)"
+        reason: "Default indicative present with Ḍammah (مرفوع بالضمة)"
       },
       {
         prompt: "قَالَ قَائِل[_] مِّنْهُمْ",
         word: "قَائِلٌ",
         correctVowel: "dammah",
-        reason: "فاعل مرفوع بالضمة (Subject / Doer with Ḍammah)"
+        reason: "Subject / Doer with Ḍammah tanwīn (فاعل مرفوع)"
       },
       {
         prompt: "قَال[_] اللَّهُ هَٰذَا يَوْمُ يَنفَعُ الصَّادِقِينَ",
         word: "قَالَ",
         correctVowel: "fatha",
-        reason: "ماضٍ مبني على الفتح (Past active verb built on Fatḥah [fixed 'a'])"
+        reason: "Past active verb built on fixed Fatḥah (مبني على الفتح)"
       },
       {
         prompt: "قُل[_] هُوَ اللَّهُ أَحَدٌ",
         word: "قُلْ",
         correctVowel: "sukun",
-        reason: "فعل أمر مبني على السكون (Command verb built on Sukūn - 'Say!')"
+        reason: "Command / Imperative verb built on Sukūn (أمر مبني على السكون)"
       },
       {
         prompt: "قُل[_] اللَّهُمَّ مَالِكَ الْمُلْكِ",
         word: "قُلِ",
         correctVowel: "kasrah",
-        reason: "كسرة عارضة لمنع التقاء الساكنين مع لفظ الجلالة (Connecting Kasrah before Name of Allah)"
+        reason: "Connecting Kasrah before the Name of Allah (كسرة عارضة)"
       },
       {
         prompt: "لَنْ نَّقُول[_] إِلَّا الْحَقَّ",
         word: "نَقُولَ",
         correctVowel: "fatha",
-        reason: "مضارع منصوب بالفتحة بعد «لن» (Subjunctive with Fatḥah after 'lan')"
+        reason: "Subjunctive with Fatḥah after 'lan' (منصوب بعد لن)"
       },
       {
         prompt: "قُلْن[_] يَا نَارُ كُونِي بَرْدًا",
         word: "قُلْنَا",
         correctVowel: "sukun",
-        reason: "الماضي مبني على السكون على اللام مع (نا) (Past verb built on Sukūn with 'nā' - 'we said')"
+        reason: "Past verb built on Sukūn on the Lam with 'nā' (مبني على السكون)"
       },
       {
         prompt: "وَقِيل[_] يَا أَرْضُ ابْلَعِي مَاءَكِ",
         word: "قِيلَ",
         correctVowel: "fatha",
-        reason: "ماضٍ مبني للمجهول مبني على الفتح (Past passive verb built on Fatḥah - 'It was said')"
+        reason: "Past passive verb built on Fatḥah (ماضٍ مبني للمجهول)"
       }
     ];
   }
@@ -145,7 +145,7 @@ class HarakahBlitzGame {
 
     const promptEl = document.getElementById('blitz-prompt-text');
     if (promptEl) {
-      promptEl.innerHTML = this.currentCard.prompt.replace('[_]', `<span class="blitz-blank-slot">؟</span>`);
+      promptEl.innerHTML = this.currentCard.prompt.replace('[_]', `<span class="blitz-blank-slot">?</span>`);
     }
   }
 
@@ -165,19 +165,19 @@ class HarakahBlitzGame {
       this.streak++;
       this.multiplier = Math.min(4, 1 + Math.floor(this.streak / 3));
       this.score += 10 * this.multiplier;
-      window.soundEngine.playSuccess();
+      if (window.soundEngine) window.soundEngine.playSuccess();
 
       if (flashFeedback) {
-        flashFeedback.textContent = `+${10 * this.multiplier} أحسنت!`;
+        flashFeedback.textContent = `+${10 * this.multiplier} Correct!`;
         flashFeedback.className = 'blitz-feedback-flash flash-correct animate-pop';
       }
     } else {
       this.streak = 0;
       this.multiplier = 1;
-      window.soundEngine.playError();
+      if (window.soundEngine) window.soundEngine.playError();
 
       if (flashFeedback) {
-        flashFeedback.textContent = `خطأ! ${this.currentCard.reason}`;
+        flashFeedback.textContent = `Incorrect! ${this.currentCard.reason}`;
         flashFeedback.className = 'blitz-feedback-flash flash-incorrect animate-pop';
       }
     }
@@ -212,7 +212,7 @@ class HarakahBlitzGame {
 
     if (gameArea) gameArea.classList.add('hidden');
     if (startBtn) {
-      startBtn.textContent = 'العب مرة أخرى (Play Again)';
+      startBtn.textContent = 'Play Again (45s)';
       startBtn.classList.remove('hidden');
     }
 
@@ -220,12 +220,12 @@ class HarakahBlitzGame {
       overlay.innerHTML = `
         <div class="blitz-gameover-box animate-pop">
           <div class="gameover-trophy">🏆</div>
-          <h3 class="gameover-title">انتهت الجولة!</h3>
-          <div class="gameover-score-pill">النقاط: ${this.score}</div>
-          <p class="gameover-sub">أعلى متتالية صحيحة: ${this.streak} إجابات متتالية</p>
+          <h3 class="gameover-title">Round Complete!</h3>
+          <div class="gameover-score-pill">Final Score: ${this.score} pts</div>
+          <p class="gameover-sub">Highest Streak: ${this.streak} consecutive answers</p>
           
           <div class="blitz-review-list">
-            <h4>مراجعة سريعة للإجابات:</h4>
+            <h4>Quick Answer Review:</h4>
             ${this.history.slice(-5).map(h => `
               <div class="review-item ${h.isCorrect ? 'rev-correct' : 'rev-wrong'}">
                 <span class="rev-word">${h.card.word}</span>
@@ -239,7 +239,7 @@ class HarakahBlitzGame {
       overlay.classList.remove('hidden');
     }
 
-    window.soundEngine.playSuccess();
+    if (window.soundEngine) window.soundEngine.playSuccess();
   }
 }
 

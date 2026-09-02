@@ -1,7 +1,7 @@
 /**
- * Qāla Tetris Game (لعبة تيتريس الكلمات وقواعد قال)
+ * Qāla Tetris Game (Falling Grammar Blocks)
  * HTML5 Canvas Tetris-style falling blocks matched with Arabic Grammar Conjugations!
- * Robust physics, large squares, touch swipe controls, and non-blocking in-game overlay.
+ * Robust physics, large squares, touch swipe controls, and non-blocking in-game overlay (English Interface).
  */
 
 class QalaTetrisGame {
@@ -59,7 +59,6 @@ class QalaTetrisGame {
 
   adjustCanvasSize() {
     if (!this.canvas) return;
-    // Calculate reliable parent width even when initialized in hidden tab
     let parentWidth = 340;
     if (this.canvas.parentElement && this.canvas.parentElement.clientWidth > 80) {
       parentWidth = this.canvas.parentElement.clientWidth;
@@ -198,16 +197,16 @@ class QalaTetrisGame {
       ctx.stroke();
     }
 
-    // Centered Welcome Prompt
+    // Centered Welcome Prompt in English
     ctx.fillStyle = '#f59e0b';
-    ctx.font = "bold 22px 'Amiri', 'Tajawal', sans-serif";
+    ctx.font = "bold 20px 'Inter', sans-serif";
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText("🎮 تيتريس الكلمات", this.canvas.width / 2, this.canvas.height / 2 - 20);
+    ctx.fillText("🎮 Qāla Tetris", this.canvas.width / 2, this.canvas.height / 2 - 20);
 
     ctx.fillStyle = '#94a3b8';
-    ctx.font = "14px 'Tajawal', sans-serif";
-    ctx.fillText("اضغط «ابدأ اللعبة» للبدء", this.canvas.width / 2, this.canvas.height / 2 + 15);
+    ctx.font = "14px 'Inter', sans-serif";
+    ctx.fillText("Click 'Start Game' to Play", this.canvas.width / 2, this.canvas.height / 2 + 15);
   }
 
   startGame() {
@@ -227,11 +226,9 @@ class QalaTetrisGame {
 
     const startBtn = document.getElementById('tetris-start-btn');
     const pauseBtn = document.getElementById('tetris-pause-btn');
-    const lang = window.app ? window.app.currentLang : 'ar';
-    const t = window.I18N ? window.I18N[lang] : { restartTetris: 'إعادة البدء', pauseTetris: 'إيقاف مؤقت' };
 
-    if (startBtn) startBtn.textContent = t.restartTetris || 'إعادة البدء (Restart)';
-    if (pauseBtn) pauseBtn.textContent = t.pauseTetris || 'إيقاف مؤقت (Pause)';
+    if (startBtn) startBtn.textContent = 'Restart';
+    if (pauseBtn) pauseBtn.textContent = 'Pause';
 
     this.spawnPiece();
     this.lastDropTime = performance.now();
@@ -246,11 +243,9 @@ class QalaTetrisGame {
     if (!this.isRunning) return;
     this.isPaused = !this.isPaused;
     const pauseBtn = document.getElementById('tetris-pause-btn');
-    const lang = window.app ? window.app.currentLang : 'ar';
-    const t = window.I18N ? window.I18N[lang] : { resumeTetris: 'استئناف', pauseTetris: 'إيقاف مؤقت' };
 
     if (pauseBtn) {
-      pauseBtn.textContent = this.isPaused ? (t.resumeTetris || 'استئناف') : (t.pauseTetris || 'إيقاف مؤقت');
+      pauseBtn.textContent = this.isPaused ? 'Resume' : 'Pause';
     }
 
     if (!this.isPaused) {
@@ -433,26 +428,19 @@ class QalaTetrisGame {
 
     const overlay = document.getElementById('tetris-overlay');
     const startBtn = document.getElementById('tetris-start-btn');
-    const lang = window.app ? window.app.currentLang : 'ar';
-    const t = window.I18N ? window.I18N[lang] : {};
 
     if (startBtn) {
-      startBtn.textContent = t.startTetris || 'ابدأ اللعبة (Start)';
+      startBtn.textContent = 'Start Game';
     }
 
     if (overlay) {
-      const title = lang === 'en' ? 'Game Over!' : 'انتهت اللعبة!';
-      const scoreText = lang === 'en' ? `Score: ${this.score}` : `مجموع النقاط: ${this.score}`;
-      const linesText = lang === 'en' ? `Lines Cleared: ${this.linesCleared}` : `الصفوف المكتملة: ${this.linesCleared}`;
-      const playAgain = lang === 'en' ? 'Play Again' : 'العب مرة أخرى';
-
       overlay.innerHTML = `
         <div class="blitz-gameover-box animate-pop">
           <div class="gameover-trophy">🎮</div>
-          <h3 class="gameover-title">${title}</h3>
-          <div class="gameover-score-pill">${scoreText}</div>
-          <p class="gameover-sub">${linesText}</p>
-          <button class="primary-btn" id="tetris-overlay-restart" style="margin-top: 14px;">${playAgain}</button>
+          <h3 class="gameover-title">Game Over!</h3>
+          <div class="gameover-score-pill">Total Score: ${this.score} pts</div>
+          <p class="gameover-sub">Lines Cleared: ${this.linesCleared}</p>
+          <button class="primary-btn" id="tetris-overlay-restart" style="margin-top: 14px;">Play Again</button>
         </div>
       `;
       overlay.classList.remove('hidden');

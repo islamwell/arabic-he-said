@@ -1,6 +1,6 @@
 /**
- * Sentence Builder Engine (بناء الجمل من البسيط إلى المركب)
- * Progressive drag/tap interactive sentence constructor with live grammatical validation
+ * Sentence Builder Engine (Interactive Arabic Sentence Construction Lab)
+ * Progressive drag/tap interactive sentence constructor with live grammatical validation (English Interface)
  */
 
 class SentenceBuilder {
@@ -41,8 +41,8 @@ class SentenceBuilder {
 
     container.innerHTML = window.SENTENCE_DATA.tiers.map(t => `
       <button class="sb-tier-tab ${t.id === this.currentTier ? 'active' : ''}" data-tier="${t.id}">
-        <span class="tier-num">م ${t.id}</span>
-        <span class="tier-label">${t.title.split(':')[0]}</span>
+        <span class="tier-num">Tier ${t.id}</span>
+        <span class="tier-label">${t.tierNameEn.split(':')[0]}</span>
       </button>
     `).join('');
 
@@ -51,7 +51,7 @@ class SentenceBuilder {
         const tier = parseInt(e.currentTarget.dataset.tier, 10);
         this.currentTier = tier;
         this.currentMissionIndex = 0;
-        window.soundEngine.playClick();
+        if (window.soundEngine) window.soundEngine.playClick();
         container.querySelectorAll('.sb-tier-tab').forEach(t => t.classList.remove('active'));
         e.currentTarget.classList.add('active');
         this.loadMission();
@@ -82,13 +82,13 @@ class SentenceBuilder {
     if (headerEl) {
       headerEl.innerHTML = `
         <div class="mission-tier-tag">${tierData.tierNameEn}</div>
-        <div class="mission-counter">التحدي ${this.currentMissionIndex + 1} من ${tierData.missions.length}</div>
+        <div class="mission-counter">Challenge ${this.currentMissionIndex + 1} of ${tierData.missions.length}</div>
       `;
     }
 
     if (targetPromptEl) {
       targetPromptEl.innerHTML = `
-        <div class="prompt-instruction">ركّب الجملة التالية بالترتيب الإعرابي الصحيح:</div>
+        <div class="prompt-instruction">Arrange the words in the correct Arabic grammatical order:</div>
         <div class="prompt-english-meaning">"${mission.english}"</div>
       `;
     }
@@ -106,7 +106,7 @@ class SentenceBuilder {
     if (!container) return;
 
     if (this.selectedTokens.length === 0) {
-      container.innerHTML = `<div class="empty-slot-placeholder">اضغط على الكلمات بالترتيب لتركيب الجملة هنا...</div>`;
+      container.innerHTML = `<div class="empty-slot-placeholder">Tap words below in order to build your sentence here...</div>`;
       return;
     }
 
@@ -150,7 +150,7 @@ class SentenceBuilder {
     this.selectedTokens.push(token);
     this.availableTokens.splice(bankIndex, 1);
 
-    window.soundEngine.playPop();
+    if (window.soundEngine) window.soundEngine.playPop();
     this.renderSlots();
     this.renderTokenBank();
   }
@@ -162,7 +162,7 @@ class SentenceBuilder {
     this.selectedTokens.splice(selectedIndex, 1);
     this.availableTokens.push(token);
 
-    window.soundEngine.playClick();
+    if (window.soundEngine) window.soundEngine.playClick();
     this.renderSlots();
     this.renderTokenBank();
   }
@@ -177,7 +177,7 @@ class SentenceBuilder {
     const feedbackBox = document.getElementById('sb-feedback-box');
     if (feedbackBox) feedbackBox.classList.add('hidden');
 
-    window.soundEngine.playClick();
+    if (window.soundEngine) window.soundEngine.playClick();
     this.renderSlots();
     this.renderTokenBank();
   }
@@ -189,7 +189,6 @@ class SentenceBuilder {
     const nextBtn = document.getElementById('sb-next-btn');
 
     if (this.selectedTokens.length === 0) {
-      alert("الرجاء اختيار بعض الكلمات أولاً!");
       return;
     }
 
@@ -201,14 +200,14 @@ class SentenceBuilder {
       feedbackBox.className = `drill-feedback-box ${isCorrect ? 'feedback-success' : 'feedback-error'} animate-slide-up`;
       feedbackBox.innerHTML = `
         <div class="feedback-header">
-          <span class="feedback-badge">${isCorrect ? '🎉 ممتاز! تركيب نحوي صحيح 100%' : '⚠️ التركيب يحتاج لتعديل'}</span>
+          <span class="feedback-badge">${isCorrect ? '🎉 Excellent! 100% Correct Arabic Syntax' : '⚠️ Word order needs adjustment'}</span>
         </div>
         <div class="constructed-phrase-row">
           <span class="phrase-text">${constructed}</span>
-          <button class="mini-speaker-btn" onclick="window.soundEngine.speakArabic('${constructed.replace(/'/g, "\\'")}')">🔊 استمع</button>
+          <button class="mini-speaker-btn" onclick="window.soundEngine.speakArabic('${constructed.replace(/'/g, "\\'")}')" title="Listen">🔊 Listen</button>
         </div>
         <div class="sentence-rule-explanation">
-          <strong>التحليل النحوي:</strong>
+          <strong>Grammatical Breakdown:</strong>
           <p>${mission.explanation}</p>
         </div>
       `;
@@ -216,15 +215,15 @@ class SentenceBuilder {
     }
 
     if (isCorrect) {
-      window.soundEngine.playSuccess();
+      if (window.soundEngine) window.soundEngine.playSuccess();
       if (nextBtn) nextBtn.classList.remove('hidden');
     } else {
-      window.soundEngine.playError();
+      if (window.soundEngine) window.soundEngine.playError();
     }
   }
 
   nextMission() {
-    window.soundEngine.playClick();
+    if (window.soundEngine) window.soundEngine.playClick();
     const tierData = window.SENTENCE_DATA.tiers.find(t => t.id === this.currentTier);
     this.currentMissionIndex++;
     if (this.currentMissionIndex >= tierData.missions.length) {

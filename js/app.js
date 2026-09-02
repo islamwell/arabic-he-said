@@ -1,16 +1,15 @@
 /**
  * Main Application Orchestrator
- * Handles navigation, state management, theming, font size scaling, language switching (i18n), and footer versioning
+ * Handles navigation, state management, theming, font size scaling, and footer versioning (English Interface)
  */
 
 const APP_VERSION = "v1.0.5";
-const LAST_UPDATED = "2026-09-02 00:48";
+const LAST_UPDATED = "2026-09-02 05:53";
 
 class App {
   constructor() {
     this.currentTab = 'sarf';
     this.theme = localStorage.getItem('qala_theme') || 'dark';
-    this.currentLang = localStorage.getItem('qala_lang') || 'ar';
     this.fontScale = localStorage.getItem('qala_font_scale') || 'normal'; // 'normal' | 'large' | 'xlarge'
   }
 
@@ -21,7 +20,6 @@ class App {
     this.setupThemeToggle();
     this.setupFontScaleToggle();
     this.setupSoundToggle();
-    this.setupLanguageToggle();
     this.setupFooterVersion();
 
     // Initialize all subsystems
@@ -34,9 +32,6 @@ class App {
 
     // Subtab switching in Games arena (Tetris vs Blitz)
     this.setupGamesSubtabs();
-
-    // Apply current language strings
-    this.applyLanguage(this.currentLang);
   }
 
   setupNavigation() {
@@ -149,10 +144,7 @@ class App {
         this.applyFontScale();
         if (window.soundEngine) window.soundEngine.playClick();
 
-        const lang = this.currentLang || 'ar';
-        const msg = lang === 'en'
-          ? `Font Size: ${this.fontScale.toUpperCase()}`
-          : `حجم الخط: ${this.fontScale === 'xlarge' ? 'كبير جداً' : (this.fontScale === 'large' ? 'كبير' : 'عادي')}`;
+        const msg = `Font Size: ${this.fontScale === 'xlarge' ? 'Extra Large (135%)' : (this.fontScale === 'large' ? 'Large (118%)' : 'Normal (100%)')}`;
         this.showCacheToast(msg);
       });
     }
@@ -166,176 +158,6 @@ class App {
         soundBtn.innerHTML = window.soundEngine.muted ? '🔇' : '🔊';
       });
     }
-  }
-
-  setupLanguageToggle() {
-    const langBtn = document.getElementById('lang-toggle-btn');
-    if (langBtn) {
-      langBtn.addEventListener('click', () => {
-        this.currentLang = this.currentLang === 'ar' ? 'en' : 'ar';
-        localStorage.setItem('qala_lang', this.currentLang);
-        this.applyLanguage(this.currentLang);
-        if (window.soundEngine) window.soundEngine.playClick();
-      });
-    }
-  }
-
-  applyLanguage(lang) {
-    if (!window.I18N || !window.I18N[lang]) return;
-    const t = window.I18N[lang];
-
-    document.documentElement.setAttribute('lang', lang);
-    document.documentElement.setAttribute('dir', lang === 'en' ? 'ltr' : 'rtl');
-
-    // Header & Toggle Buttons
-    const langBtn = document.getElementById('lang-toggle-btn');
-    if (langBtn) langBtn.textContent = t.langToggle;
-
-    const brandTitle = document.getElementById('brand-title');
-    if (brandTitle) brandTitle.textContent = t.appTitle;
-
-    const brandSubtitle = document.getElementById('brand-subtitle');
-    if (brandSubtitle) brandSubtitle.textContent = t.appSubtitle;
-
-    // Bottom Navigation Labels
-    const navSarf = document.querySelector('.bottom-nav-item[data-tab="sarf"] .nav-label');
-    const navVowels = document.querySelector('.bottom-nav-item[data-tab="vowel-gym"] .nav-label');
-    const navQuran = document.querySelector('.bottom-nav-item[data-tab="quran"] .nav-label');
-    const navBuilder = document.querySelector('.bottom-nav-item[data-tab="builder"] .nav-label');
-    const navGames = document.querySelector('.bottom-nav-item[data-tab="games"] .nav-label');
-
-    if (navSarf) navSarf.textContent = t.navSarf;
-    if (navVowels) navVowels.textContent = t.navVowels;
-    if (navQuran) navQuran.textContent = t.navQuran;
-    if (navBuilder) navBuilder.textContent = t.navBuilder;
-    if (navGames) navGames.textContent = t.navGames;
-
-    // Tab 1: Sarf Section
-    const sarfBadge = document.getElementById('sarf-hero-badge');
-    const sarfTitle = document.getElementById('sarf-hero-title');
-    const sarfSub = document.getElementById('sarf-hero-sub');
-    if (sarfBadge) sarfBadge.textContent = t.sarfBadge;
-    if (sarfTitle) sarfTitle.textContent = t.sarfTitle;
-    if (sarfSub) sarfSub.textContent = t.sarfSub;
-
-    const ajwafBadge = document.getElementById('ajwaf-title-text');
-    const ajwafSub = document.getElementById('ajwaf-sub-text');
-    const ajwafPrev = document.getElementById('ajwaf-prev-btn');
-    const ajwafNext = document.getElementById('ajwaf-next-btn');
-    if (ajwafBadge) ajwafBadge.textContent = t.ajwafBadge;
-    if (ajwafSub) ajwafSub.textContent = t.ajwafSub;
-    if (ajwafPrev) ajwafPrev.textContent = t.ajwafPrev;
-    if (ajwafNext) ajwafNext.textContent = t.ajwafNext;
-
-    const derivedBadge = document.getElementById('derived-hero-badge');
-    const derivedTitle = document.getElementById('derived-hero-title');
-    const derivedSub = document.getElementById('derived-hero-sub');
-    if (derivedBadge) derivedBadge.textContent = t.derivedBadge;
-    if (derivedTitle) derivedTitle.textContent = t.derivedTitle;
-    if (derivedSub) derivedSub.textContent = t.derivedSub;
-
-    const nominalsBadge = document.getElementById('nominals-hero-badge');
-    const nominalsTitle = document.getElementById('nominals-hero-title');
-    if (nominalsBadge) nominalsBadge.textContent = t.nominalsBadge;
-    if (nominalsTitle) nominalsTitle.textContent = t.nominalsTitle;
-
-    // Tab 2: Vowel Gym
-    const vowelsBadge = document.getElementById('vowels-hero-badge');
-    const vowelsTitle = document.getElementById('vowels-hero-title');
-    const vowelsSub = document.getElementById('vowels-hero-sub');
-    if (vowelsBadge) vowelsBadge.textContent = t.vowelsBadge;
-    if (vowelsTitle) vowelsTitle.textContent = t.vowelsTitle;
-    if (vowelsSub) vowelsSub.textContent = t.vowelsSub;
-
-    const drillTitle = document.getElementById('drill-hero-title');
-    if (drillTitle) drillTitle.textContent = t.drillTitle;
-
-    const scoreLabel = document.getElementById('drill-score-label');
-    const streakLabel = document.getElementById('drill-streak-label');
-    if (scoreLabel) scoreLabel.textContent = t.scoreLabel;
-    if (streakLabel) streakLabel.textContent = t.streakLabel;
-
-    // Tab 3: Quran
-    const quranBadge = document.getElementById('quran-hero-badge');
-    const quranTitle = document.getElementById('quran-hero-title');
-    const quranSub = document.getElementById('quran-hero-sub');
-    if (quranBadge) quranBadge.textContent = t.quranBadge;
-    if (quranTitle) quranTitle.textContent = t.quranTitle;
-    if (quranSub) quranSub.textContent = t.quranSub;
-
-    const quranSearchInput = document.getElementById('quran-search-input');
-    if (quranSearchInput) quranSearchInput.placeholder = t.quranSearchPlaceholder;
-
-    // Tab 4: Sentence Builder
-    const builderBadge = document.getElementById('builder-hero-badge');
-    const builderTitle = document.getElementById('builder-hero-title');
-    const builderSub = document.getElementById('builder-hero-sub');
-    if (builderBadge) builderBadge.textContent = t.builderBadge;
-    if (builderTitle) builderTitle.textContent = t.builderTitle;
-    if (builderSub) builderSub.textContent = t.builderSub;
-
-    const resetBtn = document.getElementById('sb-reset-btn');
-    const checkBtn = document.getElementById('sb-check-btn');
-    if (resetBtn) resetBtn.textContent = t.resetBtn;
-    if (checkBtn) checkBtn.textContent = t.checkBtn;
-
-    // Tab 5: Games
-    const gamesBadge = document.getElementById('games-hero-badge');
-    const gamesTitle = document.getElementById('games-hero-title');
-    const gamesSub = document.getElementById('games-hero-sub');
-    if (gamesBadge) gamesBadge.textContent = t.gamesBadge;
-    if (gamesTitle) gamesTitle.textContent = t.gamesTitle;
-    if (gamesSub) gamesSub.textContent = t.gamesSub;
-
-    const tabTetris = document.querySelector('.game-subtab-btn[data-game="tetris"]');
-    const tabBlitz = document.querySelector('.game-subtab-btn[data-game="blitz"]');
-    if (tabTetris) tabTetris.textContent = t.tabTetris;
-    if (tabBlitz) tabBlitz.textContent = t.tabBlitz;
-
-    // Tetris Score Labels
-    const tetrisScoreLbl = document.getElementById('tetris-score-lbl');
-    const tetrisLinesLbl = document.getElementById('tetris-lines-lbl');
-    const tetrisLevelLbl = document.getElementById('tetris-level-lbl');
-    const tetrisStartBtn = document.getElementById('tetris-start-btn');
-    const tetrisPauseBtn = document.getElementById('tetris-pause-btn');
-    const tetrisRulesTitle = document.getElementById('tetris-rules-title');
-    const tetrisRulesText = document.getElementById('tetris-rules-text');
-
-    if (tetrisScoreLbl) tetrisScoreLbl.textContent = t.score;
-    if (tetrisLinesLbl) tetrisLinesLbl.textContent = t.lines;
-    if (tetrisLevelLbl) tetrisLevelLbl.textContent = t.level;
-    if (tetrisStartBtn && !window.qalaTetrisGame.isRunning) tetrisStartBtn.textContent = t.startTetris;
-    if (tetrisPauseBtn) tetrisPauseBtn.textContent = t.pauseTetris;
-    if (tetrisRulesTitle) tetrisRulesTitle.textContent = t.tetrisRulesTitle;
-    if (tetrisRulesText) tetrisRulesText.textContent = t.tetrisRulesText;
-
-    // Blitz Labels
-    const blitzTimeLbl = document.getElementById('blitz-time-lbl');
-    const blitzScoreLbl = document.getElementById('blitz-score-lbl');
-    const blitzStreakLbl = document.getElementById('blitz-streak-lbl');
-    const blitzMultiLbl = document.getElementById('blitz-multi-lbl');
-    const blitzIntroTitle = document.getElementById('blitz-intro-title');
-    const blitzIntroDesc = document.getElementById('blitz-intro-desc');
-    const blitzStartBtn = document.getElementById('blitz-start-btn');
-
-    if (blitzTimeLbl) blitzTimeLbl.textContent = t.blitzTime;
-    if (blitzScoreLbl) blitzScoreLbl.textContent = t.blitzScore;
-    if (blitzStreakLbl) blitzStreakLbl.textContent = t.blitzStreak;
-    if (blitzMultiLbl) blitzMultiLbl.textContent = t.blitzMultiplier;
-    if (blitzIntroTitle) blitzIntroTitle.textContent = t.blitzIntroTitle;
-    if (blitzIntroDesc) blitzIntroDesc.textContent = t.blitzIntroDesc;
-    if (blitzStartBtn) blitzStartBtn.textContent = t.blitzStartBtn;
-
-    // Footer
-    const footerTitle = document.getElementById('footer-title');
-    const footerCredits = document.getElementById('footer-credits');
-    if (footerTitle) footerTitle.textContent = t.footerTitle;
-    if (footerCredits) footerCredits.textContent = t.footerCredits;
-
-    this.setupFooterVersion();
-
-    // Trigger updates in components if needed
-    if (window.conjugationEngine) window.conjugationEngine.renderActiveConjugation();
   }
 
   showCacheToast(message) {
@@ -356,10 +178,7 @@ class App {
     const versionEl = document.getElementById('footer-version-text');
     if (!versionEl) return;
 
-    const lang = this.currentLang || 'ar';
-    const t = window.I18N && window.I18N[lang] ? window.I18N[lang] : window.I18N['ar'];
-    const hint = t.footerReloadHint || (lang === 'en' ? 'Tap to clear cache & reload' : 'اضغط لمسح الكاش وتحديث التطبيق');
-    
+    const hint = 'Tap to clear cache & reload';
     versionEl.innerHTML = `<span class="reload-icon">🔄</span> <strong>${APP_VERSION}</strong> (updated ${LAST_UPDATED}) • <span class="version-hint">${hint}</span>`;
     versionEl.setAttribute('title', hint);
 
@@ -372,8 +191,7 @@ class App {
         window.soundEngine.vibrate([40, 60, 40]);
       }
       
-      const toastMsg = t.toastClearingCache || (lang === 'en' ? '🧹 Clearing Cache & Reloading...' : '🧹 جاري مسح الذاكرة المؤقتة وتحديث الصفحة...');
-      this.showCacheToast(toastMsg);
+      this.showCacheToast('🧹 Clearing Cache & Reloading...');
 
       // 1. Clear Cache Storage API
       if ('caches' in window) {
@@ -385,7 +203,7 @@ class App {
         }
       }
 
-      // 2. Unregister any active Service Workers
+      // 2. Unregister active Service Workers
       if ('serviceWorker' in navigator) {
         try {
           const registrations = await navigator.serviceWorker.getRegistrations();

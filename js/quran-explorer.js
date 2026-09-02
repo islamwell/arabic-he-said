@@ -1,5 +1,5 @@
 /**
- * Quranic Explorer & Nouman Ali Khan (Bayyinah) Balaghah Controller
+ * Quranic Explorer & Nouman Ali Khan (Bayyinah) Balaghah Controller (English Interface)
  */
 
 class QuranExplorer {
@@ -27,7 +27,7 @@ class QuranExplorer {
     container.querySelectorAll('.category-chip').forEach(chip => {
       chip.addEventListener('click', (e) => {
         this.currentCategory = e.currentTarget.dataset.cat;
-        window.soundEngine.playClick();
+        if (window.soundEngine) window.soundEngine.playClick();
         container.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
         e.currentTarget.classList.add('active');
         this.renderVerses();
@@ -56,7 +56,7 @@ class QuranExplorer {
       verses = verses.filter(v => v.category === this.currentCategory);
     }
 
-    // Filter by search
+    // Filter by search query
     if (this.searchQuery) {
       const q = this.searchQuery.toLowerCase();
       verses = verses.filter(v => 
@@ -70,8 +70,8 @@ class QuranExplorer {
 
     if (verses.length === 0) {
       container.innerHTML = `
-        <div class="empty-quran-state">
-          <p>لا توجد آيات مطابقة للبحث أو التصنيف المحدد.</p>
+        <div class="empty-quran-state" style="text-align: center; padding: 24px; color: var(--text-muted);">
+          <p>No matching verses found for this search or category filter.</p>
         </div>
       `;
       return;
@@ -80,8 +80,8 @@ class QuranExplorer {
     container.innerHTML = verses.map(v => `
       <div class="quran-verse-card animate-fade-in" id="verse-${v.id}">
         <div class="verse-card-header">
-          <div class="surah-ayah-badge">سورة ${v.surah} : ${v.ayah} (${v.surahEn})</div>
-          <div class="focus-word-pill">شاهد القول: <strong>${v.focusWord}</strong></div>
+          <div class="surah-ayah-badge">Surah ${v.surahEn} (${v.surah}) : Ayah ${v.ayah}</div>
+          <div class="focus-word-pill">Target Word: <strong>${v.focusWord}</strong></div>
         </div>
 
         <div class="verse-arabic-text">
@@ -93,17 +93,17 @@ class QuranExplorer {
         </div>
 
         <div class="verse-dialogue-context">
-          <span class="context-item">🗣️ <strong>القائل:</strong> ${v.speaker}</span>
-          <span class="context-item">👂 <strong>المخاطب:</strong> ${v.listener}</span>
+          <span class="context-item">🗣️ <strong>Speaker:</strong> ${v.speaker}</span>
+          <span class="context-item">👂 <strong>Addressee:</strong> ${v.listener}</span>
         </div>
 
         <div class="verse-vowel-highlight">
-          <span class="vowel-focus-tag">🎯 سر الحركة: ${v.vowelFocus}</span>
+          <span class="vowel-focus-tag">🎯 Final Vowel Insight: ${v.vowelFocus}</span>
         </div>
 
         <!-- Word Breakdown -->
         <div class="verse-breakdown-box">
-          <span class="breakdown-title">التحليل النحوي والصرفي للكلمات:</span>
+          <span class="breakdown-title">Grammatical & Morphological Breakdown:</span>
           <div class="breakdown-grid">
             ${v.breakdown.map(b => `
               <div class="breakdown-pill-row">
@@ -119,15 +119,15 @@ class QuranExplorer {
           <div class="nak-gem-box">
             <div class="gem-badge-header">
               <span class="gem-sparkle">✨</span>
-              <strong>لفتة بيانية (Nouman Ali Khan / Bayyinah Gem):</strong>
+              <strong>Rhetorical Gem (Nouman Ali Khan / Bayyinah Insight):</strong>
             </div>
             <p class="gem-text">${v.nakGem}</p>
           </div>
         ` : ''}
 
         <div class="verse-card-actions">
-          <button class="verse-action-btn play-audio" onclick="window.soundEngine.speakArabic('${v.text.replace(/'/g, "\\'")}')">
-            🔊 استمع للآية
+          <button class="verse-action-btn play-audio" onclick="window.soundEngine.speakArabic('${v.text.replace(/'/g, "\\'")}')" title="Listen">
+            🔊 Listen to Recitation
           </button>
         </div>
       </div>

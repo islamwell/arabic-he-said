@@ -1,5 +1,5 @@
 /**
- * Conjugation Engine & Morphology (Sarf) Interactive Controller
+ * Conjugation Engine & Morphology (Sarf) Interactive Controller (English Interface)
  */
 
 class ConjugationEngine {
@@ -29,7 +29,7 @@ class ConjugationEngine {
         if (this.currentAjwafStep > 0) {
           this.currentAjwafStep--;
           this.renderAjwafStepContent();
-          window.soundEngine.playClick();
+          if (window.soundEngine) window.soundEngine.playClick();
         }
       });
     }
@@ -40,7 +40,7 @@ class ConjugationEngine {
         if (this.currentAjwafStep < total - 1) {
           this.currentAjwafStep++;
           this.renderAjwafStepContent();
-          window.soundEngine.playClick();
+          if (window.soundEngine) window.soundEngine.playClick();
         }
       });
     }
@@ -53,16 +53,16 @@ class ConjugationEngine {
     const tenses = [
       { id: 'madi_active', label: 'الماضي المعلوم', en: 'Past Active' },
       { id: 'mudari_marfoo', label: 'المضارع المرفوع', en: 'Present Indicative' },
-      { id: 'mudari_mansoob', label: 'المضارع المنصوب (لَنْ)', en: 'Subjunctive' },
-      { id: 'mudari_majzoom', label: 'المضارع المجزوم (لَمْ)', en: 'Jussive' },
-      { id: 'amr', label: 'الأمر', en: 'Imperative' },
+      { id: 'mudari_mansoob', label: 'المضارع المنصوب', en: 'Subjunctive (Lan)' },
+      { id: 'mudari_majzoom', label: 'المضارع المجزوم', en: 'Jussive (Lam)' },
+      { id: 'amr', label: 'الأمر', en: 'Imperative (Say!)' },
       { id: 'passive', label: 'المبني للمجهول', en: 'Passive Voice' }
     ];
 
     container.innerHTML = tenses.map(t => `
       <button class="tense-tab-btn ${t.id === this.currentTense ? 'active' : ''}" data-tense="${t.id}">
-        <span class="ar-tab-label">${t.label}</span>
-        <span class="en-tab-sub">${t.en}</span>
+        <span class="ar-tab-label">${t.en}</span>
+        <span class="en-tab-sub">${t.label}</span>
       </button>
     `).join('');
 
@@ -70,9 +70,8 @@ class ConjugationEngine {
       btn.addEventListener('click', (e) => {
         const tense = e.currentTarget.dataset.tense;
         this.currentTense = tense;
-        window.soundEngine.playClick();
+        if (window.soundEngine) window.soundEngine.playClick();
         
-        // Update active class
         container.querySelectorAll('.tense-tab-btn').forEach(b => b.classList.remove('active'));
         e.currentTarget.classList.add('active');
 
@@ -108,7 +107,7 @@ class ConjugationEngine {
     container.querySelectorAll('.pronoun-chip').forEach(chip => {
       chip.addEventListener('click', (e) => {
         this.currentPronoun = e.currentTarget.dataset.pronoun;
-        window.soundEngine.playClick();
+        if (window.soundEngine) window.soundEngine.playClick();
         container.querySelectorAll('.pronoun-chip').forEach(c => c.classList.remove('active'));
         e.currentTarget.classList.add('active');
         this.renderActiveConjugation();
@@ -133,23 +132,22 @@ class ConjugationEngine {
     }
 
     if (!formData) {
-      // Fallback
       const firstKey = Object.keys(tenseData.forms)[0];
       formData = tenseData.forms[firstKey];
     }
 
-    const pronounObj = window.SARF_DATA.pronouns.find(p => p.id === this.currentPronoun) || { ar: 'الضمير', en: '' };
+    const pronounObj = window.SARF_DATA.pronouns.find(p => p.id === this.currentPronoun) || { ar: 'الضمير', en: 'Pronoun' };
 
     card.innerHTML = `
       <div class="conjugation-hero">
         <div class="conjugation-header">
           <div class="tense-badge">${tenseData.title}</div>
-          <div class="pronoun-badge">${pronounObj.ar} (${pronounObj.en})</div>
+          <div class="pronoun-badge"><strong>${pronounObj.en}</strong> (${pronounObj.ar})</div>
         </div>
 
         <div class="word-display-row">
           <h2 class="main-arabic-word" id="spoken-word-target">${formData.word}</h2>
-          <button class="audio-listen-btn" id="listen-word-btn" title="Listen / استمع">
+          <button class="audio-listen-btn" id="listen-word-btn" title="Listen to Pronunciation">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
               <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
@@ -160,14 +158,14 @@ class ConjugationEngine {
         <div class="phonetic-text">${formData.phonetic || ''}</div>
 
         <div class="irab-ending-tag">
-          <span class="ending-label">حركة البناء / الإعراب:</span>
+          <span class="ending-label">Ending / I'rab State:</span>
           <span class="ending-pill">${formData.endingType || formData.ending}</span>
         </div>
 
         <div class="morphology-note-box">
           <div class="note-icon">💡</div>
           <div class="note-content">
-            <strong>تحليل القاعدة الصرفية:</strong>
+            <strong>Morphological Analysis & Grammar Rule:</strong>
             <p>${formData.notes}</p>
           </div>
         </div>
@@ -177,8 +175,10 @@ class ConjugationEngine {
     const audioBtn = card.querySelector('#listen-word-btn');
     if (audioBtn) {
       audioBtn.addEventListener('click', () => {
-        window.soundEngine.playPop();
-        window.soundEngine.speakArabic(formData.word);
+        if (window.soundEngine) {
+          window.soundEngine.playPop();
+          window.soundEngine.speakArabic(formData.word);
+        }
       });
     }
   }
@@ -198,7 +198,7 @@ class ConjugationEngine {
     if (!container || !step) return;
 
     if (indicator) {
-      indicator.textContent = `خطوة ${step.step} من ${steps.length}`;
+      indicator.textContent = `Step ${this.currentAjwafStep + 1} of ${steps.length}`;
     }
 
     if (prevBtn) prevBtn.disabled = this.currentAjwafStep === 0;
@@ -206,7 +206,7 @@ class ConjugationEngine {
 
     container.innerHTML = `
       <div class="ajwaf-step-card animate-fade-in">
-        <div class="step-num-bubble">${step.step}</div>
+        <div class="step-num-bubble">${this.currentAjwafStep + 1}</div>
         <h4 class="step-title">${step.title}</h4>
         <div class="step-formula-box">${step.formula}</div>
         <p class="step-explanation">${step.explanation}</p>
@@ -218,15 +218,16 @@ class ConjugationEngine {
     const container = document.getElementById('derived-forms-table-body');
     if (!container) return;
 
-    container.innerHTML = window.SARF_DATA.derivedForms.map(f => `
+    const forms = window.SARF_DATA.derivedForms;
+    container.innerHTML = forms.map(f => `
       <div class="derived-form-card">
         <div class="form-header">
-          <span class="form-title-badge">${f.form}</span>
-          <span class="form-arabic-pattern">${f.arabicPattern}</span>
+          <span class="form-title-badge">${f.form}: ${f.name}</span>
+          <span class="form-arabic-pattern">${f.past} - ${f.present}</span>
         </div>
-        <div class="form-meaning"><strong>المعنى:</strong> ${f.meaning}</div>
+        <div class="form-meaning"><strong>Meaning:</strong> ${f.meaning}</div>
         <div class="form-quran-box">
-          <span class="quran-quote">📖 ${f.quranExample}</span>
+          <strong>Quranic Example:</strong> «${f.quranExample}»
         </div>
         <div class="form-notes-detail">${f.notes}</div>
       </div>
@@ -237,15 +238,16 @@ class ConjugationEngine {
     const container = document.getElementById('nominals-container');
     if (!container) return;
 
-    container.innerHTML = window.SARF_DATA.nominals.map(n => `
+    const nominals = window.SARF_DATA.nominals;
+    container.innerHTML = nominals.map(n => `
       <div class="nominal-card">
         <div class="nominal-header">
           <span class="nominal-type-badge">${n.type}</span>
           <span class="nominal-arabic-word">${n.word}</span>
         </div>
-        <div class="nominal-meaning"><strong>المعنى:</strong> ${n.meaning}</div>
-        ${n.plural !== '-' ? `<div class="nominal-plural"><strong>الجمع:</strong> ${n.plural}</div>` : ''}
-        <div class="nominal-quran"><strong>الشاهد القرآني:</strong> ${n.quran}</div>
+        <div class="nominal-meaning"><strong>Definition:</strong> ${n.meaning}</div>
+        <div class="nominal-plural"><strong>Plural / Pattern:</strong> ${n.plural || n.pattern || 'N/A'}</div>
+        <div class="nominal-quran"><strong>Quran Context:</strong> «${n.quranRef || ''}»</div>
       </div>
     `).join('');
   }
