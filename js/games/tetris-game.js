@@ -19,6 +19,8 @@ class QalaTetrisGame {
     this.score = 0;
     this.linesCleared = 0;
     this.level = 1;
+    this.bestScore = parseInt(localStorage.getItem('qala_tetris_best') || '0', 10);
+    this.nextPieceData = null;
     this.isRunning = false;
     this.isPaused = false;
     this.animationFrameId = null;
@@ -49,6 +51,7 @@ class QalaTetrisGame {
     this.resetGrid();
     this.setupControls();
     this.setupTouchSwipe();
+    this.updateStats();
     this.drawInitialScreen();
 
     window.addEventListener('resize', () => {
@@ -100,18 +103,32 @@ class QalaTetrisGame {
       }
     });
 
-    // Touch / Click Control Buttons
-    const btnLeft = document.getElementById('tetris-btn-left');
-    const btnRight = document.getElementById('tetris-btn-right');
-    const btnDown = document.getElementById('tetris-btn-down');
-    const btnRotate = document.getElementById('tetris-btn-rotate');
+    // Touch / Click Control Buttons with fast-touch shield
+    const dpadButtons = [
+      { id: 'tetris-btn-left', action: () => this.moveLeft() },
+      { id: 'tetris-btn-right', action: () => this.moveRight() },
+      { id: 'tetris-btn-down', action: () => this.dropPiece() },
+      { id: 'tetris-btn-rotate', action: () => this.cyclePieceWord() }
+    ];
+
+    dpadButtons.forEach(({ id, action }) => {
+      const btn = document.getElementById(id);
+      if (!btn) return;
+
+      const triggerAction = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!this.isRunning || this.isPaused) return;
+        action();
+        if (window.soundEngine) window.soundEngine.playClick();
+      };
+
+      btn.addEventListener('click', triggerAction);
+      btn.addEventListener('touchstart', triggerAction, { passive: false });
+    });
+
     const startBtn = document.getElementById('tetris-start-btn');
     const pauseBtn = document.getElementById('tetris-pause-btn');
-
-    if (btnLeft) btnLeft.onclick = () => { this.moveLeft(); if (window.soundEngine) window.soundEngine.playClick(); };
-    if (btnRight) btnRight.onclick = () => { this.moveRight(); if (window.soundEngine) window.soundEngine.playClick(); };
-    if (btnDown) btnDown.onclick = () => { this.dropPiece(); if (window.soundEngine) window.soundEngine.playClick(); };
-    if (btnRotate) btnRotate.onclick = () => { this.cyclePieceWord(); if (window.soundEngine) window.soundEngine.playClick(); };
 
     if (startBtn) {
       startBtn.onclick = () => {
@@ -230,6 +247,7 @@ class QalaTetrisGame {
     if (startBtn) startBtn.textContent = 'Restart';
     if (pauseBtn) pauseBtn.textContent = 'Pause';
 
+    this.nextPieceData = this.generatePieceData();
     this.spawnPiece();
     this.lastDropTime = performance.now();
 
@@ -254,17 +272,32 @@ class QalaTetrisGame {
     }
   }
 
-  spawnPiece() {
+  generatePieceData() {
     const pool = this.blockTypes;
-    const b0Type = pool[Math.floor(Math.random() * pool.length)];
-    const b1Type = pool[Math.floor(Math.random() * pool.length)];
+    const b0 = pool[Math.floor(Math.random() * pool.length)];
+    const b1 = pool[Math.floor(Math.random() * pool.length)];
+    return { b0, b1 };
+  }
+
+  spawnPiece() {
+    if (!this.nextPieceData) {
+      this.nextPieceData = this.generatePieceData();
+    }
+    const incoming = this.nextPieceData;
+    this.nextPieceData = this.generatePieceData();
+
+    // Update Next Piece preview pill
+    const previewEl = document.getElementById('tetris-next-preview');
+    if (previewEl && this.nextPieceData) {
+      previewEl.innerHTML = `<span style="color:${this.nextPieceData.b0.color}; margin-right:4px;">${this.nextPieceData.b0.text}</span> • <span style="color:${this.nextPieceData.b1.color}">${this.nextPieceData.b1.text}</span>`;
+    }
 
     this.currentPiece = {
       x: 2, // Centered in 6-column grid
       y: 0,
       blocks: [
-        { ...b0Type, relX: 0, relY: 0 },
-        { ...b1Type, relX: 1, relY: 0 }
+        { ...incoming.b0, relX: 0, relY: 0 },
+        { ...incoming.b1, relX: 1, relY: 0 }
       ]
     };
 
@@ -425,6 +458,7 @@ class QalaTetrisGame {
       cancelAnimationFrame(this.animationFrameId);
     }
     if (window.soundEngine) window.soundEngine.playError();
+    this.updateStats();
 
     const overlay = document.getElementById('tetris-overlay');
     const startBtn = document.getElementById('tetris-start-btn');
@@ -433,13 +467,15 @@ class QalaTetrisGame {
       startBtn.textContent = 'Start Game';
     }
 
+    const isNewBest = this.score >= this.bestScore && this.score > 0;
+
     if (overlay) {
       overlay.innerHTML = `
         <div class="blitz-gameover-box animate-pop">
-          <div class="gameover-trophy">🎮</div>
-          <h3 class="gameover-title">Game Over!</h3>
+          <div class="gameover-trophy">${isNewBest ? '🏆' : '🎮'}</div>
+          <h3 class="gameover-title">${isNewBest ? 'New High Score!' : 'Game Over!'}</h3>
           <div class="gameover-score-pill">Total Score: ${this.score} pts</div>
-          <p class="gameover-sub">Lines Cleared: ${this.linesCleared}</p>
+          <p class="gameover-sub">Lines Cleared: ${this.linesCleared} • Best: ${this.bestScore} pts</p>
           <button class="primary-btn" id="tetris-overlay-restart" style="margin-top: 14px;">Play Again</button>
         </div>
       `;
@@ -456,13 +492,22 @@ class QalaTetrisGame {
   }
 
   updateStats() {
+    if (this.score > this.bestScore) {
+      this.bestScore = this.score;
+      try {
+        localStorage.setItem('qala_tetris_best', this.bestScore.toString());
+      } catch (err) {}
+    }
+
     const scoreEl = document.getElementById('tetris-score-val');
     const linesEl = document.getElementById('tetris-lines-val');
     const levelEl = document.getElementById('tetris-level-val');
+    const bestEl = document.getElementById('tetris-best-val');
 
     if (scoreEl) scoreEl.textContent = this.score;
     if (linesEl) linesEl.textContent = this.linesCleared;
     if (levelEl) levelEl.textContent = this.level;
+    if (bestEl) bestEl.textContent = this.bestScore;
   }
 
   gameLoop(currentTime) {

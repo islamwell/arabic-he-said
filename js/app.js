@@ -3,8 +3,8 @@
  * Handles navigation, state management, theming, font size scaling, and footer versioning (English Interface)
  */
 
-const APP_VERSION = "v1.0.6";
-const LAST_UPDATED = "2026-09-02 18:15";
+const APP_VERSION = "v1.0.7";
+const LAST_UPDATED = "2026-09-10 17:23";
 
 class App {
   constructor() {
@@ -20,6 +20,8 @@ class App {
     this.setupThemeToggle();
     this.setupFontScaleToggle();
     this.setupSoundToggle();
+    this.setupBackToTop();
+    this.setupKeyboardShortcuts();
     this.setupFooterVersion();
 
     // Initialize all subsystems
@@ -185,6 +187,65 @@ class App {
     setTimeout(() => {
       toast.remove();
     }, 2800);
+  }
+
+  setupBackToTop() {
+    const bttBtn = document.getElementById('back-to-top-btn');
+    if (!bttBtn) return;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 320) {
+        bttBtn.classList.add('visible');
+      } else {
+        bttBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    bttBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.soundEngine) window.soundEngine.playClick();
+    });
+  }
+
+  setupKeyboardShortcuts() {
+    window.addEventListener('keydown', (e) => {
+      // Don't trigger when user is typing in form controls
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
+      if (e.altKey || e.ctrlKey || e.metaKey) return;
+
+      // Theme toggle: 'T'
+      if (e.key === 't' || e.key === 'T') {
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        if (themeBtn) themeBtn.click();
+        return;
+      }
+
+      // Font scale: 'F'
+      if (e.key === 'f' || e.key === 'F') {
+        const fontBtn = document.getElementById('font-size-toggle-btn');
+        if (fontBtn) fontBtn.click();
+        return;
+      }
+
+      // Quick tab jump keys 1-5 when not actively inside a game or drill
+      const tabMap = {
+        '1': 'sarf',
+        '2': 'vowel-gym',
+        '3': 'quran',
+        '4': 'builder',
+        '5': 'games'
+      };
+
+      if (tabMap[e.key]) {
+        if (this.currentTab === 'games' && window.harakahBlitzGame && window.harakahBlitzGame.isRunning) {
+          return; // Let Harakah Blitz use keys 1-4
+        }
+        if (this.currentTab === 'vowel-gym' && window.vowelGym && window.vowelGym.currentMode === 'drill') {
+          return; // Let Vowel Gym practice drills use keys 1-4
+        }
+        this.switchTab(tabMap[e.key]);
+      }
+    });
   }
 
   setupFooterVersion() {

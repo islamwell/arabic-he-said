@@ -2,55 +2,55 @@
 <html lang="en" dir="ltr" data-theme="dark" data-font-scale="normal">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Qāla (قال) Masterclass | Comprehensive Arabic Morphology, Syntax & Quranic Rhetoric</title>
-  <meta name="description" content="Interactive masterclass learning platform for all conjugations, grammatical rules, ending vowels (I'rab), and Quranic rhetoric of the verb Qāla (قال).">
-  <meta name="theme-color" content="#090d16">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <title>Qāla (قال) Masterclass — Arabic Morphology, Syntax & Balaghah</title>
+  <meta name="description" content="Master the Arabic verb Qāla (قال) in all its forms, conjugations, morphological changes (Ajwaf), and Quranic rhetorical gems. Interactive games, drills, and sentence builder.">
+  <meta name="theme-color" content="#070a12">
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Plus Jakarta Sans for Luxury Western Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Scheherazade+New:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- CSS Stylesheets -->
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/games.css">
 </head>
 <body>
 
-  <!-- Background Ambient Glow Mesh -->
+  <!-- Ambient Luxury Glow Mesh -->
   <div class="ambient-glow-mesh" aria-hidden="true">
-    <div class="ambient-orb orb-emerald"></div>
-    <div class="ambient-orb orb-amber"></div>
-    <div class="ambient-orb orb-sapphire"></div>
+    <div class="glow-orb orb-emerald"></div>
+    <div class="glow-orb orb-amber"></div>
+    <div class="glow-orb orb-sapphire"></div>
   </div>
 
-  <!-- Top App Header -->
+  <!-- Application Header -->
   <header class="app-header">
     <div class="header-container">
-      <div class="header-brand">
-        <div class="brand-icon-wrapper">
-          <div class="brand-icon">ق</div>
-          <div class="brand-halo"></div>
+      <div class="brand-block">
+        <div class="brand-badge-halo">
+          <div class="brand-badge">ق</div>
         </div>
-        <div class="brand-info">
-          <h1 id="brand-title">Qāla <span class="brand-arabic-title">(قال)</span> Masterclass</h1>
-          <span id="brand-subtitle">Arabic Morphology, Syntax & Balaghah</span>
+        <div class="brand-titles">
+          <h1 class="brand-title">Qāla <span class="brand-ar-accent">(قال)</span> Masterclass</h1>
+          <p class="brand-tagline">Arabic Morphology, Syntax & Balaghah</p>
         </div>
       </div>
+
       <div class="header-actions">
         <!-- Font Size Scale Button -->
-        <button class="icon-btn font-size-btn" id="font-size-toggle-btn" title="Adjust Typography Scale" aria-label="Adjust Typography Scale">
+        <button class="icon-btn font-size-btn" id="font-size-toggle-btn" title="Adjust Typography Scale (Shortcuts: F)" aria-label="Adjust Typography Scale">
           <span class="font-size-glyph">Aa</span>
           <span class="font-scale-tag">A</span>
         </button>
         <!-- Sound Toggle -->
-        <button class="icon-btn" id="sound-toggle-btn" title="Toggle Sound SFX" aria-label="Toggle Sound">
+        <button class="icon-btn" id="sound-toggle-btn" title="Toggle Sound Effects" aria-label="Toggle Sound">
           <svg class="sound-icon-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
         </button>
         <!-- Theme Toggle -->
-        <button class="icon-btn" id="theme-toggle-btn" title="Toggle Appearance Theme" aria-label="Toggle Theme">
+        <button class="icon-btn" id="theme-toggle-btn" title="Toggle Appearance Theme (Shortcuts: T)" aria-label="Toggle Theme">
           <svg class="theme-sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
         </button>
       </div>
@@ -70,8 +70,24 @@
         <p class="section-subtitle" id="sarf-hero-sub">Master all 14 pronoun conjugations of the root (Q-W-L) across Past, Present, Imperative, and Passive voices.</p>
       </div>
 
+      <!-- Quick In-Page Sub-Navigation -->
+      <div class="subnav-quick-bar" id="sarf-subnav">
+        <button class="subnav-pill active" data-target="active-conjugation-card">🌳 Conjugations</button>
+        <button class="subnav-pill" data-target="ajwaf-section">🔬 Hollow Verb (Ajwaf)</button>
+        <button class="subnav-pill" data-target="derived-forms-section">📐 Derived Forms (II–X)</button>
+        <button class="subnav-pill" data-target="nominals-section">🏷️ Nouns & Participles</button>
+      </div>
+
       <!-- Tense Selector Tabs -->
       <div class="tense-tabs-scroll" id="tense-tabs-container"></div>
+
+      <!-- Pronoun Person Category Filter Pills -->
+      <div class="pronoun-category-bar" id="pronoun-category-bar">
+        <button class="pronoun-cat-btn active" data-cat="all">All (14)</button>
+        <button class="pronoun-cat-btn" data-cat="3rd">3rd Person / الغائب (6)</button>
+        <button class="pronoun-cat-btn" data-cat="2nd">2nd Person / المخاطب (6)</button>
+        <button class="pronoun-cat-btn" data-cat="1st">1st Person / المتكلم (2)</button>
+      </div>
 
       <!-- Pronoun Selector Chips -->
       <div class="pronoun-chips-wrapper">
@@ -82,7 +98,7 @@
       <div id="active-conjugation-card"></div>
 
       <!-- Ajwaf Weak-Letter Visualizer -->
-      <div class="ajwaf-section-card">
+      <div class="ajwaf-section-card" id="ajwaf-section">
         <div class="ajwaf-header">
           <div class="ajwaf-title-group">
             <h3 id="ajwaf-title-text">🔬 The Hollow Verb Mystery & Dropping Weak Letters</h3>
@@ -94,11 +110,15 @@
             <button class="stepper-btn" id="ajwaf-next-btn">Next</button>
           </div>
         </div>
+
+        <!-- Direct Jump Stepper Dots -->
+        <div class="stepper-dots-row" id="ajwaf-step-dots"></div>
+
         <div id="ajwaf-step-container"></div>
       </div>
 
       <!-- Derived Forms (Form I to X) -->
-      <div class="section-hero" style="margin-top: 36px;">
+      <div class="section-hero" id="derived-forms-section" style="margin-top: 36px;">
         <span class="hero-badge" id="derived-hero-badge">Standard Derived Forms (Forms II - X)</span>
         <h3 class="section-title" id="derived-hero-title">Derived Verbs & Meaning Shifts from Root Q-W-L</h3>
         <p class="section-subtitle" id="derived-hero-sub">Explore how meanings transform when moving from base saying to forging, excusing, or resigning.</p>
@@ -106,7 +126,7 @@
       <div class="derived-forms-grid" id="derived-forms-table-body"></div>
 
       <!-- Nominals & Participles -->
-      <div class="section-hero" style="margin-top: 32px;">
+      <div class="section-hero" id="nominals-section" style="margin-top: 32px;">
         <span class="hero-badge" id="nominals-hero-badge">Verbal Nouns & Participles</span>
         <h3 class="section-title" id="nominals-hero-title">Nouns & Participles Derived from Root Q-W-L</h3>
       </div>
@@ -123,22 +143,37 @@
         <p class="section-subtitle" id="vowels-hero-sub">Why Fatḥah, Ḍammah, Kasrah, or Sukūn? Understand the exact grammatical rationale step-by-step.</p>
       </div>
 
-      <!-- 4 Vowel Selector Tabs -->
-      <div class="vowel-tabs-grid" id="vowel-rule-tabs"></div>
+      <!-- Mode Switcher: Study Rules vs Practice Drills -->
+      <div class="vowel-mode-switch" id="vowel-mode-switch">
+        <button class="vowel-mode-btn active" data-mode="study">📖 Study Rules (القواعد)</button>
+        <button class="vowel-mode-btn" data-mode="drill">⚡ Practice Drills (التدريبات)</button>
+      </div>
 
-      <!-- Vowel Rules Detailed Explanations -->
-      <div id="vowel-rule-details"></div>
+      <!-- Study Wrapper -->
+      <div id="vowel-study-wrapper">
+        <!-- 4 Vowel Selector Tabs -->
+        <div class="vowel-tabs-grid" id="vowel-rule-tabs"></div>
+
+        <!-- Vowel Rules Detailed Explanations -->
+        <div id="vowel-rule-details"></div>
+      </div>
 
       <!-- Interactive Drill Gym Arena -->
-      <div class="drill-arena-section">
+      <div class="drill-arena-section" id="vowel-drill-wrapper">
         <div class="drill-arena-header">
           <div class="drill-title-group">
             <h3 id="drill-hero-title">⚡ Final Vowel Grammar Drills (I'rab Mastery)</h3>
+            <!-- Progress Counter & Bar -->
+            <div class="drill-progress-text" id="drill-progress-text">Question 1 of 10</div>
           </div>
           <div class="drill-stats">
             <span id="drill-score-wrap"><span id="drill-score-label">Score:</span> <strong id="drill-score-count">0</strong></span>
             <span id="drill-streak-wrap"><span id="drill-streak-label">Streak:</span> <strong id="drill-streak-count">0 🔥</strong></span>
           </div>
+        </div>
+
+        <div class="drill-progress-bar-wrap">
+          <div class="drill-progress-bar-fill" id="drill-progress-fill" style="width: 10%;"></div>
         </div>
 
         <div id="drill-card-container"></div>
@@ -160,9 +195,13 @@
         <p class="section-subtitle" id="quran-hero-sub">Syntactic analysis & Balaghah gems inspired by Ustadh Nouman Ali Khan and classical Arabic rhetoric.</p>
       </div>
 
-      <!-- Search Input -->
+      <!-- Search Input with Instant Clear & Match Counter -->
       <div class="quran-search-bar">
-        <input type="text" class="search-input" id="quran-search-input" placeholder="🔍 Search by verse text, surah name, or target word...">
+        <div class="search-input-wrapper">
+          <input type="text" class="search-input" id="quran-search-input" placeholder="🔍 Search by verse text, surah name, or target word...">
+          <button class="search-clear-btn hidden" id="quran-search-clear-btn" title="Clear Search" aria-label="Clear Search">✕</button>
+        </div>
+        <div class="quran-match-counter" id="quran-match-counter">Showing 24 verses</div>
       </div>
 
       <!-- Category Filter Chips -->
@@ -187,7 +226,11 @@
 
       <!-- Active Mission Card -->
       <div class="sb-mission-card">
-        <div class="sb-mission-header" id="sb-mission-header"></div>
+        <div class="sb-mission-header">
+          <div id="sb-mission-header-info"></div>
+          <div class="challenge-dots-row" id="sb-challenge-dots"></div>
+        </div>
+
         <div class="sb-target-prompt" id="sb-target-prompt"></div>
 
         <!-- Sentence Slot Target Area -->
@@ -196,11 +239,16 @@
         <!-- Word Bank / Tokens -->
         <div class="sb-token-bank" id="sb-token-bank"></div>
 
+        <!-- Grammatical Hint Box -->
+        <div class="sb-hint-box hidden" id="sb-hint-box"></div>
+
         <!-- Feedback & Validation Box -->
         <div class="drill-feedback-box hidden" id="sb-feedback-box" style="margin-bottom: 16px;"></div>
 
         <!-- Actions -->
         <div class="sb-actions-row">
+          <button class="secondary-btn" id="sb-hint-btn">💡 Hint</button>
+          <button class="secondary-btn" id="sb-clear-btn">🧹 Clear Slot</button>
           <button class="secondary-btn" id="sb-reset-btn">🔄 Reset</button>
           <button class="primary-btn" id="sb-check-btn">✔️ Check Grammar</button>
           <button class="primary-btn hidden" id="sb-next-btn" style="background: var(--accent-gold-gradient); color: #0f172a;">Next Challenge ➔</button>
@@ -240,6 +288,18 @@
               <span class="score-lbl" id="tetris-level-lbl">Level</span>
               <span class="score-val" id="tetris-level-val">1</span>
             </div>
+            <div class="score-box">
+              <span class="score-lbl">Best</span>
+              <span class="score-val" id="tetris-best-val">0</span>
+            </div>
+          </div>
+
+          <!-- Upcoming Next Piece Preview Pill -->
+          <div class="tetris-next-row">
+            <span class="next-lbl">Upcoming Pair:</span>
+            <div class="next-piece-preview-pill" id="tetris-next-preview">
+              <span class="next-preview-word">...</span>
+            </div>
           </div>
 
           <!-- Large High-Contrast Canvas Wrapper with In-game Overlay Support -->
@@ -253,7 +313,7 @@
             <button class="secondary-btn" id="tetris-pause-btn">Pause</button>
           </div>
 
-          <!-- Touch D-Pad for Mobile -->
+          <!-- Touch D-Pad for Mobile (With Touch Shield) -->
           <div class="tetris-dpad">
             <button class="dpad-btn dpad-rotate" id="tetris-btn-rotate" title="Rotate / Cycle">🔄</button>
             <button class="dpad-btn dpad-left" id="tetris-btn-left" title="Move Left">◀</button>
@@ -262,8 +322,8 @@
           </div>
 
           <div class="tetris-rules-help">
-            <strong id="tetris-rules-title">How to Play:</strong>
-            <p id="tetris-rules-text">Match subject pronouns with their corresponding verbs (e.g. هُوَ with قَالَ, or هُمْ with قَالُوا) or complete full horizontal lines to clear blocks and score points!</p>
+            <strong id="tetris-rules-title">How to Play & Shortcuts:</strong>
+            <p id="tetris-rules-text">Match subject pronouns with their verbs (e.g. هُوَ with قَالَ) or complete full horizontal rows! Desktop: Arrow keys (←, →, ↓, ↑/Space to rotate).</p>
           </div>
         </div>
       </div>
@@ -271,6 +331,11 @@
       <!-- 2. Harakah Blitz Panel -->
       <div class="game-panel-section" id="game-blitz">
         <div class="blitz-arena-card">
+          <!-- Dynamic Countdown Progress Bar -->
+          <div class="blitz-timer-bar-wrap">
+            <div class="blitz-timer-bar-fill" id="blitz-timer-fill" style="width: 100%;"></div>
+          </div>
+
           <div class="blitz-stats-bar">
             <div class="blitz-stat-item">
               <span class="blitz-stat-lbl" id="blitz-time-lbl">Time</span>
@@ -288,13 +353,17 @@
               <span class="blitz-stat-lbl" id="blitz-multi-lbl">Multiplier</span>
               <span class="blitz-stat-val" id="blitz-multiplier-val">x1</span>
             </div>
+            <div class="blitz-stat-item">
+              <span class="blitz-stat-lbl">Best</span>
+              <span class="blitz-stat-val" id="blitz-best-val">0</span>
+            </div>
           </div>
 
           <div class="blitz-card-arena">
             <div class="blitz-overlay-card" id="blitz-overlay">
               <div class="blitz-intro-icon">⚡</div>
               <h3 class="blitz-intro-title" id="blitz-intro-title">Rapid Final Vowel Challenge</h3>
-              <p class="blitz-intro-desc" id="blitz-intro-desc">Choose the correct final vowel (Fatḥah, Ḍammah, Kasrah, Sukūn) before the countdown expires to build combo multipliers!</p>
+              <p class="blitz-intro-desc" id="blitz-intro-desc">Choose the correct final vowel (Fatḥah, Ḍammah, Kasrah, Sukūn) before the countdown expires to build combo multipliers! Shortcuts: Press [1], [2], [3], [4].</p>
               <button class="primary-btn" id="blitz-start-btn">Start Challenge (45s)</button>
             </div>
 
@@ -305,21 +374,25 @@
                 </div>
               </div>
 
-              <!-- 4 Big Tactile Vowel Buttons -->
+              <!-- 4 Big Tactile Vowel Buttons with Desktop Shortcut Badges -->
               <div class="blitz-vowel-buttons-grid">
                 <button class="blitz-vowel-btn" data-vowel="fatha">
+                  <span class="key-badge">1</span>
                   <span class="v-symbol">ـَ</span>
                   <span class="v-name">Fatḥah</span>
                 </button>
                 <button class="blitz-vowel-btn" data-vowel="dammah">
+                  <span class="key-badge">2</span>
                   <span class="v-symbol">ـُ</span>
                   <span class="v-name">Ḍammah</span>
                 </button>
                 <button class="blitz-vowel-btn" data-vowel="kasrah">
+                  <span class="key-badge">3</span>
                   <span class="v-symbol">ـِ</span>
                   <span class="v-name">Kasrah</span>
                 </button>
                 <button class="blitz-vowel-btn" data-vowel="sukun">
+                  <span class="key-badge">4</span>
                   <span class="v-symbol">ـْ</span>
                   <span class="v-name">Sukūn</span>
                 </button>
@@ -335,34 +408,41 @@
   </main>
 
   <!-- ==========================================
+       FLOATING BACK TO TOP BUTTON
+       ========================================== -->
+  <button class="back-to-top-btn hidden" id="back-to-top-btn" title="Back to Top" aria-label="Back to Top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg>
+  </button>
+
+  <!-- ==========================================
        MODERN FLOATING BOTTOM NAVIGATION DOCK
        ========================================== -->
   <nav class="bottom-nav-bar" aria-label="Navigation Dock">
-    <button class="bottom-nav-item active" data-tab="sarf" title="Morphology & Verb Forms">
+    <button class="bottom-nav-item active" data-tab="sarf" title="Morphology & Verb Forms (Shortcut: 1)">
       <span class="nav-icon-wrapper">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
       </span>
       <span class="nav-label">Morphology</span>
     </button>
-    <button class="bottom-nav-item" data-tab="vowel-gym" title="Syntax & Final Vowels">
+    <button class="bottom-nav-item" data-tab="vowel-gym" title="Syntax & Final Vowels (Shortcut: 2)">
       <span class="nav-icon-wrapper">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
       </span>
       <span class="nav-label">Vowels (I'rab)</span>
     </button>
-    <button class="bottom-nav-item" data-tab="quran" title="Quranic Corpus & Balaghah">
+    <button class="bottom-nav-item" data-tab="quran" title="Quranic Corpus & Balaghah (Shortcut: 3)">
       <span class="nav-icon-wrapper">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
       </span>
       <span class="nav-label">Quran</span>
     </button>
-    <button class="bottom-nav-item" data-tab="builder" title="Sentence Builder Lab">
+    <button class="bottom-nav-item" data-tab="builder" title="Sentence Builder Lab (Shortcut: 4)">
       <span class="nav-icon-wrapper">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
       </span>
       <span class="nav-label">Sentences</span>
     </button>
-    <button class="bottom-nav-item" data-tab="games" title="Interactive Games Arena">
+    <button class="bottom-nav-item" data-tab="games" title="Interactive Games Arena (Shortcut: 5)">
       <span class="nav-icon-wrapper">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="15" y1="13" x2="15.01" y2="13"></line><line x1="18" y1="11" x2="18.01" y2="11"></line><rect x="2" y="6" width="20" height="12" rx="6"></rect></svg>
       </span>
@@ -377,7 +457,7 @@
     <div class="footer-content">
       <div class="footer-title" id="footer-title">Encyclopedia of the Word «Qāla» in Quran & Arabic</div>
       <div class="footer-credits" id="footer-credits">Engineered on classical Nahw, Sarf, and Quranic Balaghah insights</div>
-      <div class="footer-version" id="footer-version-text">v1.0.6 (updated 2026-09-02 18:15)</div>
+      <div class="footer-version" id="footer-version-text">v1.0.7 (updated 2026-09-10 17:23)</div>
     </div>
   </footer>
 

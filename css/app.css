@@ -154,12 +154,9 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-bottom: calc(var(--bottom-bar-height) + 20px);
-  overflow-x: hidden;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   position: relative;
+  overflow-x: hidden;
+  padding-bottom: calc(var(--bottom-bar-height) + 36px + env(safe-area-inset-bottom, 0px));
 }
 
 /* Atmospheric Ambient Background Mesh Orbs */
@@ -425,7 +422,7 @@ button, input, select, textarea {
    ========================================================================== */
 .bottom-nav-bar {
   position: fixed;
-  bottom: 10px;
+  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 24px);
@@ -511,6 +508,77 @@ button, input, select, textarea {
 .bottom-nav-item.active .nav-label {
   color: var(--text-emerald);
   font-weight: 700;
+}
+
+/* ==========================================================================
+   Floating Back To Top Button
+   ========================================================================== */
+.back-to-top-btn {
+  position: fixed;
+  bottom: calc(var(--bottom-bar-height) + 24px + env(safe-area-inset-bottom, 0px));
+  right: 20px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-medium);
+  color: var(--text-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  z-index: 950;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px) scale(0.9);
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, border-color 0.2s;
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top-btn.visible:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-gold);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 12px 32px rgba(245, 158, 11, 0.35);
+}
+
+.back-to-top-btn:active {
+  transform: scale(0.92);
+}
+
+[data-theme="light"] .back-to-top-btn {
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+}
+
+/* Playing Audio Wave Animation */
+.audio-listen-btn.playing {
+  animation: audioWavePulse 1.2s infinite ease-in-out !important;
+  background: var(--accent-gold-gradient) !important;
+  box-shadow: 0 0 28px rgba(245, 158, 11, 0.65) !important;
+}
+
+@keyframes audioWavePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.14) rotate(-4deg); }
+}
+
+.main-arabic-word.speaking {
+  text-shadow: 0 0 50px rgba(245, 158, 11, 0.8), 0 0 20px rgba(245, 158, 11, 0.6) !important;
+  animation: wordGlow 1.2s infinite ease-in-out;
+}
+
+@keyframes wordGlow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
 }
 
 /* ==========================================================================

@@ -5,6 +5,7 @@
 
 class VowelGym {
   constructor() {
+    this.currentMode = 'study'; // 'study' | 'drill'
     this.currentRuleTab = 'fatha';
     this.currentQuestionIndex = 0;
     this.score = 0;
@@ -13,10 +14,39 @@ class VowelGym {
   }
 
   init() {
+    this.setupModeSwitcher();
     this.renderRuleTabs();
     this.renderActiveRuleContent();
     this.initDrill();
     this.setupEventListeners();
+  }
+
+  setupModeSwitcher() {
+    const switchContainer = document.getElementById('vowel-mode-switch');
+    if (!switchContainer) return;
+    const studyWrapper = document.getElementById('vowel-study-wrapper');
+    const drillWrapper = document.getElementById('vowel-drill-wrapper');
+
+    switchContainer.querySelectorAll('.vowel-mode-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const mode = e.currentTarget.dataset.mode;
+        this.currentMode = mode;
+        if (window.soundEngine) window.soundEngine.playClick();
+        switchContainer.querySelectorAll('.vowel-mode-btn').forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+
+        if (mode === 'study') {
+          if (studyWrapper) studyWrapper.style.display = 'block';
+          if (drillWrapper) drillWrapper.style.display = 'block';
+        } else {
+          if (studyWrapper) studyWrapper.style.display = 'none';
+          if (drillWrapper) {
+            drillWrapper.style.display = 'block';
+            drillWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
   }
 
   setupEventListeners() {
@@ -26,6 +56,32 @@ class VowelGym {
         this.nextQuestion();
       });
     }
+
+    // Keyboard shortcuts for drills
+    window.addEventListener('keydown', (e) => {
+      if (window.app && window.app.currentTab !== 'vowel-gym') return;
+      if (this.hasAnswered) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          const nBtn = document.getElementById('drill-next-btn');
+          if (nBtn && !nBtn.classList.contains('hidden')) {
+            this.nextQuestion();
+            e.preventDefault();
+          }
+        }
+        return;
+      }
+      const keyMap = { '1': 0, '2': 1, '3': 2, '4': 3, 'a': 0, 'b': 1, 'c': 2, 'd': 3 };
+      const keyLower = e.key.toLowerCase();
+      if (keyMap[keyLower] !== undefined) {
+        const questions = window.NAHW_DATA && window.NAHW_DATA.drillQuestions ? window.NAHW_DATA.drillQuestions : [];
+        const q = questions[this.currentQuestionIndex % questions.length];
+        const container = document.getElementById('drill-card-container');
+        if (q && container) {
+          this.handleAnswer(q, keyMap[keyLower], container);
+          e.preventDefault();
+        }
+      }
+    });
   }
 
   renderRuleTabs() {
@@ -125,10 +181,20 @@ class VowelGym {
     const container = document.getElementById('drill-card-container');
     const feedbackBox = document.getElementById('drill-feedback-box');
     const nextBtn = document.getElementById('drill-next-btn');
+    const progressText = document.getElementById('drill-progress-text');
+    const progressFill = document.getElementById('drill-progress-fill');
 
     this.hasAnswered = false;
     if (feedbackBox) feedbackBox.classList.add('hidden');
     if (nextBtn) nextBtn.classList.add('hidden');
+
+    if (progressText) {
+      progressText.textContent = `Question ${(this.currentQuestionIndex % questions.length) + 1} of ${questions.length}`;
+    }
+    if (progressFill) {
+      const pct = (((this.currentQuestionIndex % questions.length) + 1) / questions.length) * 100;
+      progressFill.style.width = `${pct}%`;
+    }
 
     if (!container || !q) return;
 
@@ -209,6 +275,7 @@ class VowelGym {
         </div>
       `;
       feedbackBox.classList.remove('hidden');
+      feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     if (nextBtn) {

@@ -7,6 +7,93 @@
    1. SARF & MORPHOLOGY MASTERCLASS
    ========================================================================== */
 
+/* In-Page Subnav Quick Jump */
+.subnav-quick-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 14px;
+  scrollbar-width: none;
+  margin-bottom: 8px;
+}
+
+.subnav-quick-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.subnav-pill {
+  flex: 0 0 auto;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background-color: var(--bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.subnav-pill:hover {
+  color: var(--text-primary);
+  border-color: var(--border-highlight);
+  background-color: var(--bg-card-hover);
+  transform: translateY(-1px);
+}
+
+.subnav-pill.active {
+  background: var(--accent-gold-gradient);
+  color: #0f172a;
+  border-color: transparent;
+  font-weight: 800;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+}
+
+/* Pronoun Person Category Filter Bar */
+.pronoun-category-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 10px;
+  scrollbar-width: none;
+  margin-top: 10px;
+}
+
+.pronoun-category-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.pronoun-cat-btn {
+  flex: 0 0 auto;
+  padding: 6px 14px;
+  border-radius: 12px;
+  background-color: rgba(7, 10, 18, 0.6);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: var(--font-ui);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.pronoun-cat-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-highlight);
+}
+
+.pronoun-cat-btn.active {
+  background-color: rgba(16, 185, 129, 0.18);
+  border-color: var(--border-emerald);
+  color: var(--text-emerald);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+}
+
 /* Tense Selector Segmented Bar */
 .tense-tabs-scroll {
   display: flex;
@@ -360,6 +447,43 @@
   font-weight: 700;
 }
 
+.stepper-dots-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 14px 0 16px;
+}
+
+.step-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(7, 10, 18, 0.7);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.step-dot:hover {
+  border-color: var(--border-gold);
+  color: var(--text-gold);
+  transform: scale(1.1);
+}
+
+.step-dot.active {
+  background: var(--accent-gold-gradient);
+  color: #0f172a;
+  border-color: transparent;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.5);
+  transform: scale(1.12);
+}
+
 .ajwaf-step-card {
   background-color: rgba(7, 10, 18, 0.65);
   border-radius: 18px;
@@ -497,9 +621,47 @@
   line-height: 1.5;
 }
 
-/* ==========================================================================
-   2. VOWEL GYM (SYNTAX & I'RAB)
-   ========================================================================== */
+/* Vowel Mode Switcher */
+.vowel-mode-switch {
+  display: flex;
+  gap: 8px;
+  background-color: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 6px;
+  margin-bottom: 22px;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.vowel-mode-btn {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vowel-mode-btn:hover {
+  color: var(--text-primary);
+}
+
+.vowel-mode-btn.active {
+  background: var(--accent-emerald-gradient);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+
 .vowel-tabs-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -750,6 +912,31 @@
   color: var(--text-gold);
 }
 
+.drill-progress-text {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-gold);
+  margin-top: 4px;
+}
+
+.drill-progress-bar-wrap {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(7, 10, 18, 0.6);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-subtle);
+}
+
+.drill-progress-bar-fill {
+  height: 100%;
+  background: var(--accent-emerald-gradient);
+  border-radius: 999px;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
 .drill-sentence-display {
   background-color: rgba(7, 10, 18, 0.7);
   border: 1px solid var(--border-subtle);
@@ -953,9 +1140,15 @@
   margin-bottom: 18px;
 }
 
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .search-input {
   width: 100%;
-  padding: 14px 20px;
+  padding: 14px 44px 14px 20px;
   border-radius: 16px;
   background-color: var(--bg-card);
   backdrop-filter: blur(16px);
@@ -972,6 +1165,37 @@
   outline: none;
   border-color: var(--border-gold);
   box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-clear-btn:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.quran-match-counter {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-top: 8px;
+  padding-left: 4px;
 }
 
 .category-chips-scroll {
@@ -1194,9 +1418,10 @@
 .verse-card-actions {
   display: flex;
   justify-content: flex-end;
+  gap: 10px;
 }
 
-.verse-action-btn {
+.verse-action-btn, .verse-copy-btn {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
@@ -1207,12 +1432,57 @@
   cursor: pointer;
   font-family: var(--font-ui);
   transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.verse-action-btn:hover {
+.verse-action-btn:hover, .verse-copy-btn:hover {
   background-color: var(--bg-card-hover);
   border-color: var(--border-gold);
   color: var(--text-gold);
+  transform: translateY(-1px);
+}
+
+.challenge-dots-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.challenge-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.25s ease;
+}
+
+.challenge-dot.completed {
+  background-color: #10b981;
+  border-color: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+.challenge-dot.active {
+  background-color: #f59e0b;
+  border-color: #f59e0b;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.7);
+  transform: scale(1.2);
+}
+
+.sb-hint-box {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.05) 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-size: 0.88rem;
+  color: var(--text-gold);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  text-align: left;
+  animation: fadeInPanel 0.25s ease;
 }
 
 /* ==========================================================================

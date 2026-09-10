@@ -148,7 +148,7 @@ class SoundEngine {
     } catch (e) {}
   }
 
-  speakArabic(text) {
+  speakArabic(text, onStart, onEnd) {
     if (!('speechSynthesis' in window)) {
       console.warn("Speech synthesis not supported in this browser.");
       return;
@@ -165,6 +165,21 @@ class SoundEngine {
     if (this.voice) {
       utterance.voice = this.voice;
     }
+
+    utterance.onstart = () => {
+      window.dispatchEvent(new CustomEvent('speech:start', { detail: { text } }));
+      if (typeof onStart === 'function') onStart();
+    };
+
+    utterance.onend = () => {
+      window.dispatchEvent(new CustomEvent('speech:end', { detail: { text } }));
+      if (typeof onEnd === 'function') onEnd();
+    };
+
+    utterance.onerror = () => {
+      window.dispatchEvent(new CustomEvent('speech:end', { detail: { text } }));
+      if (typeof onEnd === 'function') onEnd();
+    };
 
     window.speechSynthesis.speak(utterance);
   }

@@ -6,10 +6,13 @@ class ConjugationEngine {
   constructor() {
     this.currentTense = 'madi_active';
     this.currentPronoun = 'huwa';
+    this.currentPronounCategory = 'all'; // 'all' | '3rd' | '2nd' | '1st'
     this.currentAjwafStep = 0;
   }
 
   init() {
+    this.setupSubnavQuickBar();
+    this.setupPronounCategoryBar();
     this.renderTenseTabs();
     this.renderPronounChips();
     this.renderActiveConjugation();
@@ -17,6 +20,36 @@ class ConjugationEngine {
     this.renderDerivedForms();
     this.renderNominals();
     this.setupEventListeners();
+  }
+
+  setupSubnavQuickBar() {
+    const bar = document.getElementById('sarf-subnav');
+    if (!bar) return;
+    bar.querySelectorAll('.subnav-pill').forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        const targetId = e.currentTarget.dataset.target;
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          bar.querySelectorAll('.subnav-pill').forEach(p => p.classList.remove('active'));
+          e.currentTarget.classList.add('active');
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  }
+
+  setupPronounCategoryBar() {
+    const bar = document.getElementById('pronoun-category-bar');
+    if (!bar) return;
+    bar.querySelectorAll('.pronoun-cat-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        this.currentPronounCategory = e.currentTarget.dataset.cat;
+        if (window.soundEngine) window.soundEngine.playClick();
+        bar.querySelectorAll('.pronoun-cat-btn').forEach(b => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+        this.renderPronounChips();
+      });
+    });
   }
 
   setupEventListeners() {
@@ -44,6 +77,21 @@ class ConjugationEngine {
         }
       });
     }
+
+    // Speech synthesis feedback animation
+    window.addEventListener('speech:start', () => {
+      const audioBtn = document.getElementById('listen-word-btn');
+      const wordEl = document.getElementById('spoken-word-target');
+      if (audioBtn) audioBtn.classList.add('playing');
+      if (wordEl) wordEl.classList.add('speaking');
+    });
+
+    window.addEventListener('speech:end', () => {
+      const audioBtn = document.getElementById('listen-word-btn');
+      const wordEl = document.getElementById('spoken-word-target');
+      if (audioBtn) audioBtn.classList.remove('playing');
+      if (wordEl) wordEl.classList.remove('speaking');
+    });
   }
 
   renderTenseTabs() {
@@ -95,6 +143,17 @@ class ConjugationEngine {
     // Filter for Amr (only 2nd person)
     if (this.currentTense === 'amr') {
       pronouns = pronouns.filter(p => p.id.startsWith('ant'));
+    } else if (this.currentPronounCategory !== 'all') {
+      // Filter by category: 3rd, 2nd, 1st
+      pronouns = pronouns.filter(p => p.category.startsWith(this.currentPronounCategory));
+    }
+
+    // Ensure current pronoun is valid in this view
+    if (!pronouns.some(p => p.id === this.currentPronoun)) {
+      if (pronouns.length > 0) {
+        this.currentPronoun = pronouns[0].id;
+        this.renderActiveConjugation();
+      }
     }
 
     container.innerHTML = pronouns.map(p => `
@@ -201,6 +260,7 @@ class ConjugationEngine {
     const step = steps[this.currentAjwafStep];
     const container = document.getElementById('ajwaf-step-container');
     const indicator = document.getElementById('ajwaf-step-indicator');
+    const dotsContainer = document.getElementById('ajwaf-step-dots');
     const prevBtn = document.getElementById('ajwaf-prev-btn');
     const nextBtn = document.getElementById('ajwaf-next-btn');
 
@@ -208,6 +268,21 @@ class ConjugationEngine {
 
     if (indicator) {
       indicator.textContent = `Step ${this.currentAjwafStep + 1} of ${steps.length}`;
+    }
+
+    // Render clickable step dots
+    if (dotsContainer) {
+      dotsContainer.innerHTML = steps.map((s, idx) => `
+        <button class="step-dot ${idx === this.currentAjwafStep ? 'active' : ''}" data-step="${idx}" title="Step ${idx + 1}">${idx + 1}</button>
+      `).join('');
+
+      dotsContainer.querySelectorAll('.step-dot').forEach(dot => {
+        dot.addEventListener('click', (e) => {
+          this.currentAjwafStep = parseInt(e.currentTarget.dataset.step, 10);
+          if (window.soundEngine) window.soundEngine.playClick();
+          this.renderAjwafStepContent();
+        });
+      });
     }
 
     if (prevBtn) prevBtn.disabled = this.currentAjwafStep === 0;

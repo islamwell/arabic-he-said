@@ -10,6 +10,7 @@ class HarakahBlitzGame {
     this.score = 0;
     this.streak = 0;
     this.multiplier = 1;
+    this.bestScore = parseInt(localStorage.getItem('qala_blitz_best') || '0', 10);
     this.currentCard = null;
     this.isRunning = false;
     this.history = [];
@@ -92,6 +93,7 @@ class HarakahBlitzGame {
 
   init() {
     this.setupEventListeners();
+    this.updateStatsDisplay();
   }
 
   setupEventListeners() {
@@ -107,6 +109,23 @@ class HarakahBlitzGame {
         const selected = e.currentTarget.dataset.vowel;
         this.handleVowelChoice(selected);
       });
+    });
+
+    // Keyboard Shortcuts: 1 (fatha), 2 (dammah), 3 (kasrah), 4 (sukun)
+    window.addEventListener('keydown', (e) => {
+      if (!this.isRunning) return;
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
+
+      let chosenVowel = null;
+      if (e.key === '1') chosenVowel = 'fatha';
+      else if (e.key === '2') chosenVowel = 'dammah';
+      else if (e.key === '3') chosenVowel = 'kasrah';
+      else if (e.key === '4') chosenVowel = 'sukun';
+
+      if (chosenVowel) {
+        e.preventDefault();
+        this.handleVowelChoice(chosenVowel);
+      }
     });
   }
 
@@ -191,20 +210,41 @@ class HarakahBlitzGame {
   }
 
   updateStatsDisplay() {
+    if (this.score > this.bestScore) {
+      this.bestScore = this.score;
+      try {
+        localStorage.setItem('qala_blitz_best', this.bestScore.toString());
+      } catch (err) {}
+    }
+
     const timerEl = document.getElementById('blitz-timer-val');
     const scoreEl = document.getElementById('blitz-score-val');
     const streakEl = document.getElementById('blitz-streak-val');
     const multiEl = document.getElementById('blitz-multiplier-val');
+    const bestEl = document.getElementById('blitz-best-val');
+    const timerFill = document.getElementById('blitz-timer-fill');
 
     if (timerEl) timerEl.textContent = `${this.timeLeft}s`;
     if (scoreEl) scoreEl.textContent = this.score;
     if (streakEl) streakEl.textContent = `${this.streak} 🔥`;
     if (multiEl) multiEl.textContent = `x${this.multiplier}`;
+    if (bestEl) bestEl.textContent = this.bestScore;
+
+    if (timerFill) {
+      const pct = Math.max(0, Math.min(100, (this.timeLeft / 45) * 100));
+      timerFill.style.width = `${pct}%`;
+      if (this.timeLeft <= 10) {
+        timerFill.style.background = 'linear-gradient(90deg, #ef4444, #f87171)';
+      } else {
+        timerFill.style.background = 'linear-gradient(90deg, var(--gold-primary), #3b82f6)';
+      }
+    }
   }
 
   endGame() {
     this.isRunning = false;
     clearInterval(this.timerInterval);
+    this.updateStatsDisplay();
 
     const overlay = document.getElementById('blitz-overlay');
     const startBtn = document.getElementById('blitz-start-btn');
@@ -216,13 +256,15 @@ class HarakahBlitzGame {
       startBtn.classList.remove('hidden');
     }
 
+    const isNewBest = this.score >= this.bestScore && this.score > 0;
+
     if (overlay) {
       overlay.innerHTML = `
         <div class="blitz-gameover-box animate-pop">
-          <div class="gameover-trophy">🏆</div>
-          <h3 class="gameover-title">Round Complete!</h3>
+          <div class="gameover-trophy">${isNewBest ? '🏆' : '⚡'}</div>
+          <h3 class="gameover-title">${isNewBest ? 'New High Score Record!' : 'Round Complete!'}</h3>
           <div class="gameover-score-pill">Final Score: ${this.score} pts</div>
-          <p class="gameover-sub">Highest Streak: ${this.streak} consecutive answers</p>
+          <p class="gameover-sub">Highest Streak: ${this.streak} • Best: ${this.bestScore} pts</p>
           
           <div class="blitz-review-list">
             <h4>Quick Answer Review:</h4>

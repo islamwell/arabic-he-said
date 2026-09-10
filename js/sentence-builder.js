@@ -21,6 +21,8 @@ class SentenceBuilder {
     const checkBtn = document.getElementById('sb-check-btn');
     const resetBtn = document.getElementById('sb-reset-btn');
     const nextBtn = document.getElementById('sb-next-btn');
+    const hintBtn = document.getElementById('sb-hint-btn');
+    const clearBtn = document.getElementById('sb-clear-btn');
 
     if (checkBtn) {
       checkBtn.addEventListener('click', () => this.validateSentence());
@@ -33,6 +35,54 @@ class SentenceBuilder {
     if (nextBtn) {
       nextBtn.addEventListener('click', () => this.nextMission());
     }
+
+    if (hintBtn) {
+      hintBtn.addEventListener('click', () => this.toggleHint());
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => this.clearSlot());
+    }
+  }
+
+  toggleHint() {
+    const hintBox = document.getElementById('sb-hint-box');
+    if (!hintBox) return;
+
+    if (!hintBox.classList.contains('hidden')) {
+      hintBox.classList.add('hidden');
+      return;
+    }
+
+    const tierData = window.SENTENCE_DATA.tiers.find(t => t.id === this.currentTier);
+    const mission = tierData ? tierData.missions[this.currentMissionIndex % tierData.missions.length] : null;
+    if (!mission) return;
+
+    let hintText = mission.hint;
+    if (!hintText) {
+      if (this.currentTier === 1) {
+        hintText = "💡 Grammar Hint: In an Arabic verbal sentence (الجملة الفعلية), begin with the verb (e.g. قَالَ), followed by the Marfoo' subject (الفاعل) carrying a Ḍammah.";
+      } else if (this.currentTier === 2) {
+        hintText = "💡 Grammar Hint: Direct speech (مقول القول) begins after the verb + subject. Start with the verb 'said', then the speaker, then the quotation.";
+      } else if (this.currentTier === 3) {
+        hintText = "💡 Grammar Hint: Look for prepositions like لِـ (to/for) which introduce the listener, followed by the Genitive Majroor noun.";
+      } else {
+        hintText = "💡 Grammar Hint: Identify the main clause first, then attach subordinate particles (إِنَّ, لَمَّا, أَنْ) with their appropriate noun cases.";
+      }
+    }
+
+    hintBox.innerHTML = `<strong>💡 Grammatical Hint:</strong> <p>${hintText}</p>`;
+    hintBox.classList.remove('hidden');
+    if (window.soundEngine) window.soundEngine.playPop();
+  }
+
+  clearSlot() {
+    if (this.selectedTokens.length === 0) return;
+    this.availableTokens.push(...this.selectedTokens);
+    this.selectedTokens = [];
+    if (window.soundEngine) window.soundEngine.playClick();
+    this.renderSlots();
+    this.renderTokenBank();
   }
 
   renderTierButtons() {
@@ -73,17 +123,28 @@ class SentenceBuilder {
   }
 
   renderMissionUI(tierData, mission) {
-    const headerEl = document.getElementById('sb-mission-header');
+    const headerInfoEl = document.getElementById('sb-mission-header-info');
+    const dotsEl = document.getElementById('sb-challenge-dots');
     const targetPromptEl = document.getElementById('sb-target-prompt');
     const feedbackBox = document.getElementById('sb-feedback-box');
+    const hintBox = document.getElementById('sb-hint-box');
     const nextBtn = document.getElementById('sb-next-btn');
     const checkBtn = document.getElementById('sb-check-btn');
 
-    if (headerEl) {
-      headerEl.innerHTML = `
+    if (headerInfoEl) {
+      headerInfoEl.innerHTML = `
         <div class="mission-tier-tag">${tierData.tierNameEn}</div>
         <div class="mission-counter">Challenge ${this.currentMissionIndex + 1} of ${tierData.missions.length}</div>
       `;
+    }
+
+    if (dotsEl) {
+      dotsEl.innerHTML = tierData.missions.map((m, idx) => {
+        let cls = 'challenge-dot';
+        if (idx < this.currentMissionIndex) cls += ' completed';
+        else if (idx === this.currentMissionIndex) cls += ' active';
+        return `<span class="${cls}" title="Challenge ${idx + 1}"></span>`;
+      }).join('');
     }
 
     if (targetPromptEl) {
@@ -94,6 +155,7 @@ class SentenceBuilder {
     }
 
     if (feedbackBox) feedbackBox.classList.add('hidden');
+    if (hintBox) hintBox.classList.add('hidden');
     if (nextBtn) nextBtn.classList.add('hidden');
     if (checkBtn) checkBtn.disabled = false;
 
@@ -212,6 +274,7 @@ class SentenceBuilder {
         </div>
       `;
       feedbackBox.classList.remove('hidden');
+      feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     if (isCorrect) {
