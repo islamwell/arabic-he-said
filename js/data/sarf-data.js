@@ -8,44 +8,142 @@ window.SARF_DATA = {
   rootMeaning: "to say, speak, utter, state, articulate",
   verbClass: "الأجوف الواوي (Hollow Wawi Verb) - Form I (فَعَلَ - يَفْعُلُ)",
   baseTransformed: "قَالَ - يَقُولُ",
+
+  beginnerFourWords: [
+    {
+      id: "qala",
+      word: "قَالَ",
+      phonetic: "qāla",
+      role: "Past (he)",
+      meaning: "He said",
+      notice: "The ل has a fatḥah: لَ.",
+      why: "This is the usual ending of this past-tense form.",
+      grammarDetails: "فعل ماضٍ مبني على الفتح الظاهر (Past active verb built on Fatḥah). Root: ق-و-ل. The middle weak letter و turned into an ا because it had a vowel preceded by a fatḥah (قَوَلَ ➔ قَالَ)."
+    },
+    {
+      id: "qalat",
+      word: "قَالَتْ",
+      phonetic: "qālat",
+      role: "Past (she)",
+      meaning: "She said",
+      notice: "The added تْ shows that the speaker is female.",
+      why: "The letter تْ with sukūn is the female past-tense marker.",
+      grammarDetails: "فعل ماضٍ مبني على الفتح، والتاء للتأنيث الساكنة. Notice the ل retains its fatḥah."
+    },
+    {
+      id: "qultu",
+      word: "قُلْتُ",
+      phonetic: "qultu",
+      role: "Past (I)",
+      meaning: "I said",
+      notice: "The ending تُ tells us “I.” Notice that the ا from قَالَ has disappeared.",
+      why: "The ل takes sukūn before تُ, so the middle letter drops.",
+      grammarDetails: "فعل ماضٍ مبني على السكون لاتصاله بضمير الرفع (التاء). The base becomes قَالْـتُ. When the ل takes sukūn, the weak ا is dropped, and the ق takes a ḍammah (قُ) to reflect the root letter و."
+    },
+    {
+      id: "qul",
+      word: "قُلْ",
+      phonetic: "qul",
+      role: "Command (you m.)",
+      meaning: "Say! — speaking to one male",
+      notice: "It ends with sukūn: قُلْ. The middle letter is also gone.",
+      why: "This is a command to one male.",
+      grammarDetails: "فعل أمر مبني على السكون (Command built on Sukūn). Origin: تَقُولُ ➔ (jussive) تَقُلْ ➔ (command) قُلْ."
+    }
+  ],
+
+  sideBySideComparison: {
+    title: "Notice how one vowel changes who is speaking",
+    subtitle: "Compare قُلْتُ / قُلْتَ / قُلْتِ. Only the vowel on the last letter changes!",
+    items: [
+      {
+        word: "قُلْتُ",
+        pronounKey: "ana",
+        vowel: "-tu (ḍammah)",
+        meaning: "I said",
+        person: "1st Person (I)",
+        explanation: "The ending تُ with ḍammah tells us: “I” spoke."
+      },
+      {
+        word: "قُلْتَ",
+        pronounKey: "anta",
+        vowel: "-ta (fatḥah)",
+        meaning: "You said",
+        person: "2nd Person (You male)",
+        explanation: "The ending تَ with fatḥah tells us: “you” (one male) spoke."
+      },
+      {
+        word: "قُلْتِ",
+        pronounKey: "anti",
+        vowel: "-ti (kasrah)",
+        meaning: "You said",
+        person: "2nd Person (You female)",
+        explanation: "The ending تِ with kasrah tells us: “you” (one female) spoke."
+      }
+    ],
+    words: [
+      {
+        word: "قُلْتُ",
+        basePart: "قُلْـ",
+        highlightPart: "تُ",
+        meaning: "I said",
+        explanation: "The ending تُ with ḍammah tells us: “I” spoke."
+      },
+      {
+        word: "قُلْتَ",
+        basePart: "قُلْـ",
+        highlightPart: "تَ",
+        meaning: "You said — to one male",
+        explanation: "The ending تَ with fatḥah tells us: “you” (one male) spoke."
+      },
+      {
+        word: "قُلْتِ",
+        basePart: "قُلْـ",
+        highlightPart: "تِ",
+        meaning: "You said — to one female",
+        explanation: "The ending تِ with kasrah tells us: “you” (one female) spoke."
+      }
+    ],
+    takeaway: "The verb stem (قُلْـ) is identical. Just look or listen for the final vowel: -tu = I, -ta = you (m.), -ti = you (f.)."
+  },
   
   pronouns: [
-    { id: "huwa", ar: "هُوَ", en: "He (3MS)", category: "3rd-masc-sg" },
-    { id: "huma_m", ar: "هُمَا", en: "They two (3MD)", category: "3rd-masc-dl" },
-    { id: "hum", ar: "هُمْ", en: "They (3MP)", category: "3rd-masc-pl" },
-    { id: "hiya", ar: "هِيَ", en: "She (3FS)", category: "3rd-fem-sg" },
-    { id: "huma_f", ar: "هُمَا", en: "They two (3FD)", category: "3rd-fem-dl" },
-    { id: "hunna", ar: "هُنَّ", en: "They (3FP)", category: "3rd-fem-pl" },
-    { id: "anta", ar: "أَنْتَ", en: "You (2MS)", category: "2nd-masc-sg" },
-    { id: "antuma_m", ar: "أَنْتُمَا", en: "You two (2MD)", category: "2nd-masc-dl" },
-    { id: "antum", ar: "أَنْتُمْ", en: "You all (2MP)", category: "2nd-masc-pl" },
-    { id: "anti", ar: "أَنْتِ", en: "You (2FS)", category: "2nd-fem-sg" },
-    { id: "antuma_f", ar: "أَنْتُمَا", en: "You two (2FD)", category: "2nd-fem-dl" },
-    { id: "antunna", ar: "أَنْتُنَّ", en: "You all (2FP)", category: "2nd-fem-pl" },
-    { id: "ana", ar: "أَنَا", en: "I (1S)", category: "1st-sg" },
-    { id: "nahnu", ar: "نَحْنُ", en: "We (1P)", category: "1st-pl" }
+    { id: "huwa", ar: "هُوَ", en: "He", category: "3rd-masc-sg" },
+    { id: "huma_m", ar: "هُمَا", en: "Both of them (male)", category: "3rd-masc-dl" },
+    { id: "hum", ar: "هُمْ", en: "They (male group)", category: "3rd-masc-pl" },
+    { id: "hiya", ar: "هِيَ", en: "She", category: "3rd-fem-sg" },
+    { id: "huma_f", ar: "هُمَا", en: "Both of them (female)", category: "3rd-fem-dl" },
+    { id: "hunna", ar: "هُنَّ", en: "They (female group)", category: "3rd-fem-pl" },
+    { id: "anta", ar: "أَنْتَ", en: "You (one male)", category: "2nd-masc-sg" },
+    { id: "antuma_m", ar: "أَنْتُمَا", en: "You two (male)", category: "2nd-masc-dl" },
+    { id: "antum", ar: "أَنْتُمْ", en: "You all (male group)", category: "2nd-masc-pl" },
+    { id: "anti", ar: "أَنْتِ", en: "You (one female)", category: "2nd-fem-sg" },
+    { id: "antuma_f", ar: "أَنْتُمَا", en: "You two (female)", category: "2nd-fem-dl" },
+    { id: "antunna", ar: "أَنْتُنَّ", en: "You all (female group)", category: "2nd-fem-pl" },
+    { id: "ana", ar: "أَنَا", en: "I", category: "1st-sg" },
+    { id: "nahnu", ar: "نَحْنُ", en: "We", category: "1st-pl" }
   ],
 
   conjugations: {
     // 1. PAST TENSE ACTIVE (الماضي المعلوم)
     madi_active: {
       title: "الماضي المعلوم (Past Active)",
-      description: "Expresses completed actions. Notice how the middle Alif is kept when the ending has a vowel (متحرك), but dropped to a Dammah on the Qaf (قُـ) when the ending has a Sukun to avoid meeting two sukoons!",
+      description: "Expresses completed actions. Notice how the middle Alif is kept when the ending has a vowel, but disappears when the ل takes sukūn (such as in قُلْتُ).",
       forms: {
-        huwa: { word: "قَالَ", phonetic: "Qāla", ending: "ـَ (فتحة)", endingType: "مبني على الفتح (Past active built on Fatḥah - fixed 'a')", notes: "Origin: قَوَلَ -> The Waw had a Fatha and preceded by Fatha, turning into Alif." },
-        huma_m: { word: "قَالَا", phonetic: "Qālā", ending: "ـَا (ألف الاثنين)", endingType: "مبني على الفتح (Built on Fatḥah - dual 'ā')", notes: "Alif of duality attached; built on Fatha." },
-        hum: { word: "قَالُوا", phonetic: "Qālū", ending: "ـُوا (واو الجماعة)", endingType: "مبني على الضم (Built on Ḍammah - fixed 'u' before plural Waw)", notes: "Built on Dammah due to connection with Waw of plural." },
-        hiya: { word: "قَالَتْ", phonetic: "Qālat", ending: "ـَتْ (تاء التأنيث الساكنة)", endingType: "مبني على الفتح (Built on Fatḥah - feminine 'at')", notes: "Feminine marker 'تْ' is a non-agent particle, so it stays on Fatha." },
-        huma_f: { word: "قَالَتَا", phonetic: "Qālatā", ending: "ـَتَا", endingType: "مبني على الفتح (Built on Fatḥah - feminine dual 'atā')", notes: "Feminine dual marker; built on Fatha." },
-        hunna: { word: "قُلْنَ", phonetic: "Qulna", ending: "ـْنَ (نون النسوة)", endingType: "مبني على السكون (Built on Sukūn - no vowel before feminine 'na')", notes: "🚨 The Alif drops! قَالْ + نَ -> Two sukoons met -> Alif dropped -> Qaf takes Dammah (قُلْنَ)." },
-        anta: { word: "قُلْتَ", phonetic: "Qulta", ending: "ـْتَ (تاء المخاطب)", endingType: "مبني على السكون (Built on Sukūn - with masculine 'you')", notes: "🚨 Lam is Sukun, weak Alif dropped, Qaf takes Dammah." },
-        antuma_m: { word: "قُلْتُمَا", phonetic: "Qultumā", ending: "ـْتُمَا", endingType: "مبني على السكون (Built on Sukūn - dual 'you two')", notes: "Dual masculine pronoun with Sukun base." },
-        antum: { word: "قُلْتُمْ", phonetic: "Qultum", ending: "ـْتُمْ", endingType: "مبني على السكون (Built on Sukūn - plural 'you all')", notes: "Plural masculine pronoun with Sukun base." },
-        anti: { word: "قُلْتِ", phonetic: "Qulti", ending: "ـْتِ (تاء المخاطبة)", endingType: "مبني على السكون (Built on Sukūn - feminine 'you')", notes: "🚨 Notice the ending Kasrah on the Ta is for the feminine 'you', but the verb base is built on Sukun on the Lam." },
-        antuma_f: { word: "قُلْتُمَا", phonetic: "Qultumā", ending: "ـْتُمَا", endingType: "مبني على السكون (Built on Sukūn - feminine dual)", notes: "Dual feminine pronoun with Sukun base." },
-        antunna: { word: "قُلْتُنَّ", phonetic: "Qultunna", ending: "ـْتُنَّ", endingType: "مبني على السكون (Built on Sukūn - feminine plural)", notes: "Plural feminine pronoun with Sukun base." },
-        ana: { word: "قُلْتُ", phonetic: "Qultu", ending: "ـْتُ (تاء المتكلم)", endingType: "مبني على السكون (Built on Sukūn - with 'I' pronoun)", notes: "🚨 The speaker 'I': The Lam has Sukun, the Ta has Dammah (فَاعِل)." },
-        nahnu: { word: "قُلْنَا", phonetic: "Qulnā", ending: "ـْنَا (نا الفاعلين)", endingType: "مبني على السكون (Built on Sukūn - with 'We' pronoun)", notes: "The 'We' pronoun: Built on Sukun on the Lam." }
+        huwa: { word: "قَالَ", phonetic: "Qāla", ending: "ـَ (fatḥah)", meaning: "He said", notice: "The ل has a fatḥah: لَ.", why: "This is the usual ending of this past-tense form.", grammarDetails: "مبني على الفتح (Past active built on Fatḥah - fixed 'a'). Origin: قَوَلَ -> Waw turned into Alif." },
+        huma_m: { word: "قَالَا", phonetic: "Qālā", ending: "ـَا", meaning: "Both of them said (males)", notice: "The added ا indicates two people.", why: "Dual marker attached to the past verb.", grammarDetails: "مبني على الفتح (Built on Fatḥah - dual 'ā')." },
+        hum: { word: "قَالُوا", phonetic: "Qālū", ending: "ـُوا", meaning: "They said (male group)", notice: "The ل takes a ḍammah: لُوا.", why: "The plural و requires a ḍammah before it.", grammarDetails: "مبني على الضم (Built on Ḍammah before plural Waw)." },
+        hiya: { word: "قَالَتْ", phonetic: "Qālat", ending: "ـَتْ", meaning: "She said", notice: "The added تْ shows that the speaker is female.", why: "Female marker added to the past verb.", grammarDetails: "مبني على الفتح (Built on Fatḥah - feminine 'at')." },
+        huma_f: { word: "قَالَتَا", phonetic: "Qālatā", ending: "ـَتَا", meaning: "Both of them said (females)", notice: "Has both female ت and dual ا.", why: "Dual feminine past form.", grammarDetails: "مبني على الفتح (Built on Fatḥah - feminine dual 'atā')." },
+        hunna: { word: "قُلْنَ", phonetic: "Qulna", ending: "ـْنَ", meaning: "They said (female group)", notice: "The middle letter drops, and it ends in نَ.", why: "The ل takes sukūn before the ending نَ used for a group of females.", grammarDetails: "مبني على السكون (Built on Sukūn before feminine 'na')." },
+        anta: { word: "قُلْتَ", phonetic: "Qulta", ending: "ـْتَ", meaning: "You said — to one male", notice: "Ends with تَ with fatḥah.", why: "The ending تَ tells us who spoke.", grammarDetails: "مبني على السكون (Built on Sukūn - with masculine 'you')." },
+        antuma_m: { word: "قُلْتُمَا", phonetic: "Qultumā", ending: "ـْتُمَا", meaning: "You two said (males)", notice: "Ends with تُمَا.", why: "Dual 'you' pronoun suffix.", grammarDetails: "مبني على السكون (Built on Sukūn - dual 'you two')." },
+        antum: { word: "قُلْتُمْ", phonetic: "Qultum", ending: "ـْتُمْ", meaning: "You all said (male group)", notice: "Ends with تُمْ.", why: "Plural masculine 'you' pronoun suffix.", grammarDetails: "مبني على السكون (Built on Sukūn - plural 'you all')." },
+        anti: { word: "قُلْتِ", phonetic: "Qulti", ending: "ـْتِ", meaning: "You said — to one female", notice: "Compare تِ with تَ. One vowel changes who we are speaking to.", why: "The ending تِ with kasrah is for one female.", grammarDetails: "مبني على السكون (Built on Sukūn - feminine 'you')." },
+        antuma_f: { word: "قُلْتُمَا", phonetic: "Qultumā", ending: "ـْتُمَا", meaning: "You two said (females)", notice: "Ends with تُمَا.", why: "Dual feminine 'you' pronoun suffix.", grammarDetails: "مبني على السكون (Built on Sukūn - feminine dual)." },
+        antunna: { word: "قُلْتُنَّ", phonetic: "Qultunna", ending: "ـْتُنَّ", meaning: "You all said (female group)", notice: "Ends with تُنَّ.", why: "Plural feminine 'you' pronoun suffix.", grammarDetails: "مبني على السكون (Built on Sukūn - feminine plural)." },
+        ana: { word: "قُلْتُ", phonetic: "Qultu", ending: "ـْتُ", meaning: "I said", notice: "The ending تُ tells us “I.” Notice that the ا from قَالَ has disappeared.", why: "The ل takes sukūn before تُ, so the middle letter drops.", grammarDetails: "مبني على السكون (Built on Sukūn - with 'I' pronoun)." },
+        nahnu: { word: "قُلْنَا", phonetic: "Qulnā", ending: "ـْنَا", meaning: "We said", notice: "Ends with نَا.", why: "The ending نَا tells us “we.” The ل takes sukūn.", grammarDetails: "مبني على السكون (Built on Sukūn - with 'We' pronoun)." }
       }
     },
 
@@ -117,30 +215,30 @@ window.SARF_DATA = {
 
     // 5. IMPERATIVE (فعل الأمر)
     amr: {
-      title: "فعل الأمر (Imperative / Command)",
-      description: "Commands (2nd person). Derived from the jussive by stripping the prefix (تَقُلْ -> قُلْ). Built on Sukun or deletion of Noon.",
+      title: "Command forms (فعل الأمر)",
+      description: "Commands you give directly to someone. Notice how the prefix drops and the word ends with a sukūn or drops the letter noon.",
       forms: {
-        anta: { word: "قُلْ", phonetic: "Qul", ending: "ـْ (سكون)", endingType: "مبني على السكون (Command built on Sukūn - 'Say!')", notes: "🚨 The world-famous command: QUL! Built on Sukun, Waw dropped." },
-        antuma_m: { word: "قُولَا", phonetic: "Qūlā", ending: "حذف النون", endingType: "مبني على حذف النون (Command built on dropped Nūn - 'Say, you two')", notes: "Dual command: 'Say, you two' (e.g., {فَقُولَا لَهُ قَوْلًا لَّيِّنًا})." },
-        antum: { word: "قُولُوا", phonetic: "Qūlū", ending: "حذف النون", endingType: "مبني على حذف النون (Command built on dropped Nūn - 'Say, you all')", notes: "Plural masculine: 'Say, you all' (e.g., {وَقُولُوا لِلنَّاسِ حُسْنًا})." },
-        anti: { word: "قُولِي", phonetic: "Qūlī", ending: "حذف النون", endingType: "مبني على حذف النون (Command built on dropped Nūn - 'Say, O woman')", notes: "Feminine singular: 'Say (O woman)' (e.g., {فَكُلِي وَاشْرَبِي وَقَرِّي عَيْنًا... فَقُولِي})." },
-        antuma_f: { word: "قُولَا", phonetic: "Qūlā", ending: "حذف النون", endingType: "مبني على حذف النون (Command built on dropped Nūn - 'Say, you two women')", notes: "Dual feminine command." },
-        antunna: { word: "قُلْنَ", phonetic: "Qulna", ending: "ـْنَ (نون النسوة)", endingType: "مبني على السكون (Command built on Sukūn - 'Say, O women')", notes: "Plural feminine command: 'Say (O women)' (e.g., {وَقُلْنَ قَوْلًا مَّعْرُوفًا})." }
+        anta: { word: "قُلْ", phonetic: "Qul", meaning: "Say! (to one male)", ending: "ـْ (سكون)", endingType: "Command with Sukūn", notes: "The classic command: Qul! The middle vowel drops because the Lam has a sukūn." },
+        antuma_m: { word: "قُولَا", phonetic: "Qūlā", meaning: "Say! (to two people)", ending: "حذف النون", endingType: "Command with dropped Nūn", notes: "Dual command (e.g. {فَقُولَا لَهُ قَوْلًا لَّيِّنًا} 'Speak to him gently')." },
+        antum: { word: "قُولُوا", phonetic: "Qūlū", meaning: "Say! (to a group)", ending: "حذف النون", endingType: "Command with dropped Nūn", notes: "Plural command (e.g. {وَقُولُوا لِلنَّاسِ حُسْنًا} 'Speak good words to people')." },
+        anti: { word: "قُولِي", phonetic: "Qūlī", meaning: "Say! (to one female)", ending: "حذف النون", endingType: "Command with dropped Nūn", notes: "Feminine singular (e.g. {فَقُولِي إِنِّي نَذَرْتُ} 'Say: Indeed, I have vowed')." },
+        antuma_f: { word: "قُولَا", phonetic: "Qūlā", meaning: "Say! (to two women)", ending: "حذف النون", endingType: "Command with dropped Nūn", notes: "Dual feminine command." },
+        antunna: { word: "قُلْنَ", phonetic: "Qulna", meaning: "Say! (to women)", ending: "ـْنَ (نون النسوة)", endingType: "Command with Sukūn", notes: "Plural feminine command (e.g. {وَقُلْنَ قَوْلًا مَّعْرُوفًا} 'Speak honorable words')." }
       }
     },
 
     // 6. PASSIVE (المبني للمجهول)
     passive: {
-      title: "المبني للمجهول (Passive Voice)",
-      description: "Used when the speaker is omitted to direct attention entirely to the statement itself or the majesty of the speaker.",
+      title: "Passive voice (المبني للمجهول)",
+      description: "قَالَ means 'he said.' قِيلَ means 'it was said.' In the second form, the sentence does not name the speaker.",
       forms: {
-        huwa_past: { pronoun: "هُوَ (ماضٍ)", word: "قِيلَ", phonetic: "Qīla", ending: "ـَ (فتحة)", endingType: "مبني على الفتح (Past passive built on Fatḥah - 'It was said')", notes: "Origin: قُوِلَ -> Kasrah on Waw shifted, causing Waw to become Ya: قِيلَ." },
-        hum_past: { pronoun: "هُمْ (ماضٍ)", word: "قِيلُوا", phonetic: "Qīlū", ending: "ـُوا (ضم)", endingType: "مبني على الضم (Past passive built on Ḍammah - 'They were spoken to')", notes: "Passive plural." },
-        hiya_past: { pronoun: "هِيَ (ماضٍ)", word: "قِيلَتْ", phonetic: "Qīlat", ending: "ـَتْ (فتح)", endingType: "مبني على الفتح (Past passive feminine built on Fatḥah)", notes: "Passive feminine singular." },
-        hunna_past: { pronoun: "هُنَّ (ماضٍ)", word: "قِلْنَ", phonetic: "Qilna", ending: "ـْنَ (سكون)", endingType: "مبني على السكون (Past passive feminine plural built on Sukūn)", notes: "Ya dropped due to Sukun on Lam: Qilna." },
-        huwa_pres: { pronoun: "هُوَ (مضارع)", word: "يُقَالُ", phonetic: "Yuqālu", ending: "ـُ (ضمة)", endingType: "مرفوع بالضمة (Present passive in indicative state - 'It is said')", notes: "Origin: يُقْوَلُ -> Waw with Fatha becomes Alif: يُقَالُ ('It is said')." },
-        hum_pres: { pronoun: "هُمْ (مضارع)", word: "يُقَالُونَ", phonetic: "Yuqālūna", ending: "ـُونَ (ثبوت النون)", endingType: "مرفوع بثبوت النون (Present passive - with retained Nūn)", notes: "Passive present plural." },
-        hiya_pres: { pronoun: "هِيَ (مضارع)", word: "تُقَالُ", phonetic: "Tuqālu", ending: "ـُ (ضمة)", endingType: "مرفوع بالضمة (Present passive feminine - 'It is said')", notes: "Passive present feminine singular." }
+        huwa_past: { pronoun: "هُوَ (Past)", word: "قِيلَ", phonetic: "Qīla", meaning: "It was said", ending: "ـَ (Fatḥah)", endingType: "Past passive", notes: "Original root form was قُوِلَ. The kasrah shifted back, softening the weak letter to Ya: قِيلَ." },
+        hum_past: { pronoun: "هُمْ (Past)", word: "قِيلَ لَهُمْ", phonetic: "Qīla lahum", meaning: "It was said to them", ending: "ـَ (Fatḥah)", endingType: "Past passive phrase", notes: "Quranic idiom: 'And when it was said to them' (وَإِذَا قِيلَ لَهُمْ)." },
+        hiya_past: { pronoun: "هِيَ (Past)", word: "قِيلَتْ", phonetic: "Qīlat", meaning: "It was said (f.)", ending: "ـَتْ (Fatḥah + Ta)", endingType: "Past passive feminine", notes: "Used when referring to a feminine word or statement." },
+        hunna_past: { pronoun: "هُنَّ (Past)", word: "قِلْنَ", phonetic: "Qilna", meaning: "They were told (f. pl.)", ending: "ـْنَ (Sukūn)", endingType: "Past passive feminine plural", notes: "Ya is dropped before the silent Lam: Qilna." },
+        huwa_pres: { pronoun: "هُوَ (Present)", word: "يُقَالُ", phonetic: "Yuqālu", meaning: "It is said", ending: "ـُ (Ḍammah)", endingType: "Present passive", notes: "Original form was يُقْوَلُ. The vowel shifts to an Alif: يُقَالُ ('It is said')." },
+        hum_pres: { pronoun: "هُمْ (Present)", word: "يُقَالُونَ", phonetic: "Yuqālūna", meaning: "They are told", ending: "ـُونَ (Retained Nūn)", endingType: "Present passive plural", notes: "Present passive plural." },
+        hiya_pres: { pronoun: "هِيَ (Present)", word: "تُقَالُ", phonetic: "Tuqālu", meaning: "It is said (f.)", ending: "ـُ (Ḍammah)", endingType: "Present passive feminine", notes: "Present passive feminine singular." }
       }
     }
   },
@@ -172,7 +270,7 @@ window.SARF_DATA = {
       form: "Form V (تَفَعَّلَ)",
       arabicPattern: "تَقَوَّلَ - يَتَقَوَّلُ - تَقَوُّلًا",
       meaning: "To fabricate lies, forge speech, invent statements against someone",
-      quranExample: "وَلَوْ تَقَوَّلَ عَلَيْنَا بَعْضَ الْأَقَاوِيلِ (Al-Haqqah: 44)",
+      quranExample: "وَلَوْ تَقَوَّلَ عَلَيْنَا بَعْضَ الْأَقَاوِيلِ (Al-Haqqah: 44–45)",
       notes: "Reflexive of Form II. Conveys strenuous effort to forge words that were never spoken."
     },
     {
@@ -215,7 +313,7 @@ window.SARF_DATA = {
       quran: "مقول القول في الإعراب"
     },
     {
-      type: "Noun of Instrument / Extent",
+      type: "Noun of Place / Discourse",
       word: "مَقَال / مَقَالَة",
       plural: "مَقَالَات",
       meaning: "Article, essay, discourse, speech",
@@ -225,38 +323,38 @@ window.SARF_DATA = {
 
   // 9. AJWAF WEAK-LETTER MECHANICS
   ajwafMechanics: {
-    title: "سر الفعل الأجوف: لماذا تختفي الواو؟",
-    subtitle: "The Science of Hollow Verbs & The Meeting of Two Sukoons",
+    title: "Why does the middle vowel disappear? (The Hollow Verb Rule)",
+    subtitle: "How قَالَ becomes قُلْتُ and قُلْ",
     steps: [
       {
         step: 1,
-        title: "الأصل قبل الإعلال (The Original Root)",
-        formula: "قَ + وَ + لَ = قَوَلَ",
-        explanation: "Every Arabic trilateral root starts with 3 consonants. Here the root is (ق-و-ل). The past tense was originally 'QAWALA'."
+        title: "The 3 root letters",
+        formula: "ق + و + ل",
+        explanation: "The base root has three letters: Q-W-L. Originally in ancient root structure, it was Qawala."
       },
       {
         step: 2,
-        title: "قلب الواو ألفاً (Waw Becomes Alif)",
+        title: "Smoothing to an Alif",
         formula: "قَوَلَ  ⟶  قَالَ",
-        explanation: "Arabic phonetic law: When a weak letter (Waw or Ya) has a vowel (متحرك) and is preceded by a Fatha, the mouth naturally smooths it into a long vowel Alif: QAWALA -> QĀLA."
+        explanation: "Because pronouncing 'qawala' is heavy, the vowel smooths naturally into a long 'aa' sound: قَالَ (Qāla)."
       },
       {
         step: 3,
-        title: "اتصال ضمائر الرفع المتحركة وسكون اللام",
-        formula: "قَالَ + تُ (أنا)  ⟶  قَالْـتُ",
-        explanation: "When you attach pronouns like (تُ، تَ، تِ، نا، نَ), the last root letter (اللام) MUST take a Sukun (مبني على السكون). So we get: Q-Ā-L-T-U."
+        title: "Adding a pronoun ending adds a sukūn",
+        formula: "قَالَ + تُ (I)  ⟶  قَالْـتُ",
+        explanation: "When attaching endings like تُ (I), تَ (you), or نَا (we), the last letter (ل) must take a sukūn (no vowel): Q-Ā-L-T-U."
       },
       {
         step: 4,
-        title: "كارثة التقاء الساكنين! (Meeting of Two Sukoons)",
+        title: "Two unvowelled letters meet in connected speech",
         formula: "قَ [اْ] + [لْ] + تُ",
-        explanation: "Notice: The Alif is silent (سكون ميت), and the Lam is now silent (سكون حي). Arabic pronunciation strictly forbids two consecutive silent letters in one syllable!"
+        explanation: "The long Alif carries an unwritten sukūn, and the Lam now also has a sukūn. In connected Arabic speech, two consecutive unvowelled letters are avoided in the middle of a word."
       },
       {
         step: 5,
-        title: "التضحية بالضعيف والضمة الدالة (Resolution)",
+        title: "The long vowel drops, leaving a clue",
         formula: "قَالْتُ  ⟶  قُلْتُ",
-        explanation: "The weak Alif is deleted. To remind us that the deleted root letter was a Waw (و), the Qaf receives a Dammah! Result: قُلْتُ (Qultu) - perfect, smooth harmony!"
+        explanation: "The long Alif drops to keep speech flowing easily. To show that the original root had a Waw (و), the first letter gets a ḍammah (u): قُلْتُ (Qultu)."
       }
     ]
   }

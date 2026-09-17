@@ -1,6 +1,6 @@
 {
   "name": "arabic-qala-learn",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Interactive mobile web app for learning all forms and rules of the word Qāla in Quranic Arabic",
   "scripts": {
     "deploy": "wrangler pages deploy . --project-name arabic-qala-learn --branch main"

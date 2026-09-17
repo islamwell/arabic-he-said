@@ -15,78 +15,81 @@ class HarakahBlitzGame {
     this.isRunning = false;
     this.history = [];
 
+    this.mode = 'timed'; // 'timed' or 'untimed'
+    this.mistakes = JSON.parse(localStorage.getItem('qala_blitz_mistakes') || '[]');
+
     this.cards = [
       {
         prompt: "حَتَّىٰ يَقُول[_] الرَّسُولُ",
         word: "يَقُولَ",
         correctVowel: "fatha",
-        reason: "Subjunctive with Fatḥah after 'ḥattā' (حَتَّىٰ)"
+        reason: "Subjunctive with Fatḥah after 'ḥattā' (حَتَّىٰ يَقُولَ)"
       },
       {
         prompt: "قُل[_] ادْعُوا اللَّهَ",
         word: "قُلِ",
         correctVowel: "kasrah",
-        reason: "Connecting Kasrah to prevent silent letter clash (التقاء الساكنين)"
+        reason: "Connecting Kasrah to prevent silent letter clash (قُلِ ادْعُوا)"
       },
       {
         prompt: "مَا قُلْت[_] لَهُمْ إِلَّا مَا أَمَرْتَنِي",
         word: "قُلْتُ",
         correctVowel: "dammah",
-        reason: "1st-person subject pronoun 'I' built on Ḍammah (تاء المتكلم)"
+        reason: "1st-person subject pronoun 'I' built on Ḍammah (قُلْتُ)"
       },
       {
         prompt: "وَلَا تَقُل[_] لَّهُمَا أُفٍّ",
         word: "تَقُلْ",
         correctVowel: "sukun",
-        reason: "Jussive with Sukūn after prohibitive 'lā' (لا الناهية)"
+        reason: "Jussive with Sukūn after prohibitive 'lā' (وَلَا تَقُلْ)"
       },
       {
         prompt: "يَقُول[_] الْإِنسَانُ يَوْمَئِذٍ أَيْنَ الْمَفَرُّ",
         word: "يَقُولُ",
         correctVowel: "dammah",
-        reason: "Default indicative present with Ḍammah (مرفوع بالضمة)"
+        reason: "Default indicative present with Ḍammah (يَقُولُ)"
       },
       {
         prompt: "قَالَ قَائِل[_] مِّنْهُمْ",
         word: "قَائِلٌ",
         correctVowel: "dammah",
-        reason: "Subject / Doer with Ḍammah tanwīn (فاعل مرفوع)"
+        reason: "Subject / Doer marked with Ḍammah tanwīn (قَائِلٌ)"
       },
       {
         prompt: "قَال[_] اللَّهُ هَٰذَا يَوْمُ يَنفَعُ الصَّادِقِينَ",
         word: "قَالَ",
         correctVowel: "fatha",
-        reason: "Past active verb built on fixed Fatḥah (مبني على الفتح)"
+        reason: "Past active verb built on fixed Fatḥah (قَالَ)"
       },
       {
         prompt: "قُل[_] هُوَ اللَّهُ أَحَدٌ",
         word: "قُلْ",
         correctVowel: "sukun",
-        reason: "Command / Imperative verb built on Sukūn (أمر مبني على السكون)"
+        reason: "Command / Imperative verb built on Sukūn (قُلْ)"
       },
       {
         prompt: "قُل[_] اللَّهُمَّ مَالِكَ الْمُلْكِ",
         word: "قُلِ",
         correctVowel: "kasrah",
-        reason: "Connecting Kasrah before the Name of Allah (كسرة عارضة)"
+        reason: "Connecting Kasrah before the Name of Allah (قُلِ اللَّهُمَّ)"
       },
       {
         prompt: "لَنْ نَّقُول[_] إِلَّا الْحَقَّ",
         word: "نَقُولَ",
         correctVowel: "fatha",
-        reason: "Subjunctive with Fatḥah after 'lan' (منصوب بعد لن)"
+        reason: "Subjunctive with Fatḥah after 'lan' (لَنْ نَقُولَ)"
       },
       {
-        prompt: "قُلْن[_] يَا نَارُ كُونِي بَرْدًا",
+        prompt: "قُ[_]نَا يَا نَارُ كُونِي بَرْدًا",
         word: "قُلْنَا",
         correctVowel: "sukun",
-        reason: "Past verb built on Sukūn on the Lam with 'nā' (مبني على السكون)"
+        reason: "The letter Lam has a sukūn (قُلْنَا) before the pronoun 'nā' (we)"
       },
       {
         prompt: "وَقِيل[_] يَا أَرْضُ ابْلَعِي مَاءَكِ",
         word: "قِيلَ",
         correctVowel: "fatha",
-        reason: "Past passive verb built on Fatḥah (ماضٍ مبني للمجهول)"
+        reason: "Past passive verb built on Fatḥah (وَقِيلَ)"
       }
     ];
   }
@@ -100,6 +103,29 @@ class HarakahBlitzGame {
     const startBtn = document.getElementById('blitz-start-btn');
     if (startBtn) {
       startBtn.addEventListener('click', () => this.startGame());
+    }
+
+    const timedModeBtn = document.getElementById('blitz-mode-timed');
+    const untimedModeBtn = document.getElementById('blitz-mode-untimed');
+
+    if (timedModeBtn && untimedModeBtn) {
+      timedModeBtn.addEventListener('click', () => {
+        this.mode = 'timed';
+        timedModeBtn.classList.add('active');
+        untimedModeBtn.classList.remove('active');
+        const startB = document.getElementById('blitz-start-btn');
+        if (startB) startB.textContent = 'Start Challenge (45s)';
+        this.updateStatsDisplay();
+      });
+
+      untimedModeBtn.addEventListener('click', () => {
+        this.mode = 'untimed';
+        untimedModeBtn.classList.add('active');
+        timedModeBtn.classList.remove('active');
+        const startB = document.getElementById('blitz-start-btn');
+        if (startB) startB.textContent = 'Start Untimed Practice';
+        this.updateStatsDisplay();
+      });
     }
 
     const vowelBtns = document.querySelectorAll('.blitz-vowel-btn');
@@ -130,7 +156,7 @@ class HarakahBlitzGame {
   }
 
   startGame() {
-    this.timeLeft = 45;
+    this.timeLeft = this.mode === 'untimed' ? 999 : 45;
     this.score = 0;
     this.streak = 0;
     this.multiplier = 1;
@@ -149,13 +175,15 @@ class HarakahBlitzGame {
     this.nextCard();
 
     clearInterval(this.timerInterval);
-    this.timerInterval = setInterval(() => {
-      this.timeLeft--;
-      this.updateStatsDisplay();
-      if (this.timeLeft <= 0) {
-        this.endGame();
-      }
-    }, 1000);
+    if (this.mode === 'timed') {
+      this.timerInterval = setInterval(() => {
+        this.timeLeft--;
+        this.updateStatsDisplay();
+        if (this.timeLeft <= 0) {
+          this.endGame();
+        }
+      }, 1000);
+    }
   }
 
   nextCard() {
@@ -177,6 +205,22 @@ class HarakahBlitzGame {
       userChoice: vowelKey,
       isCorrect
     });
+
+    if (!isCorrect) {
+      // Save mistake to review list
+      this.mistakes.unshift({
+        prompt: this.currentCard.prompt,
+        word: this.currentCard.word,
+        reason: this.currentCard.reason,
+        correctVowel: this.currentCard.correctVowel,
+        date: new Date().toISOString()
+      });
+      // Cap at 20 mistakes
+      if (this.mistakes.length > 20) this.mistakes.pop();
+      try {
+        localStorage.setItem('qala_blitz_mistakes', JSON.stringify(this.mistakes));
+      } catch (err) {}
+    }
 
     const flashFeedback = document.getElementById('blitz-feedback-flash');
 
@@ -201,16 +245,17 @@ class HarakahBlitzGame {
       }
     }
 
+    const delay = this.mode === 'untimed' ? 1200 : 800;
     setTimeout(() => {
       if (flashFeedback) flashFeedback.className = 'blitz-feedback-flash hidden';
-    }, 900);
+      this.nextCard();
+    }, delay);
 
     this.updateStatsDisplay();
-    this.nextCard();
   }
 
   updateStatsDisplay() {
-    if (this.score > this.bestScore) {
+    if (this.mode === 'timed' && this.score > this.bestScore) {
       this.bestScore = this.score;
       try {
         localStorage.setItem('qala_blitz_best', this.bestScore.toString());
@@ -224,19 +269,26 @@ class HarakahBlitzGame {
     const bestEl = document.getElementById('blitz-best-val');
     const timerFill = document.getElementById('blitz-timer-fill');
 
-    if (timerEl) timerEl.textContent = `${this.timeLeft}s`;
+    if (timerEl) {
+      timerEl.textContent = this.mode === 'untimed' ? 'Untimed' : `${this.timeLeft}s`;
+    }
     if (scoreEl) scoreEl.textContent = this.score;
     if (streakEl) streakEl.textContent = `${this.streak} 🔥`;
     if (multiEl) multiEl.textContent = `x${this.multiplier}`;
     if (bestEl) bestEl.textContent = this.bestScore;
 
     if (timerFill) {
-      const pct = Math.max(0, Math.min(100, (this.timeLeft / 45) * 100));
-      timerFill.style.width = `${pct}%`;
-      if (this.timeLeft <= 10) {
-        timerFill.style.background = 'linear-gradient(90deg, #ef4444, #f87171)';
+      if (this.mode === 'untimed') {
+        timerFill.style.width = '100%';
+        timerFill.style.background = 'linear-gradient(90deg, var(--gold-primary), #10b981)';
       } else {
-        timerFill.style.background = 'linear-gradient(90deg, var(--gold-primary), #3b82f6)';
+        const pct = Math.max(0, Math.min(100, (this.timeLeft / 45) * 100));
+        timerFill.style.width = `${pct}%`;
+        if (this.timeLeft <= 10) {
+          timerFill.style.background = 'linear-gradient(90deg, #ef4444, #f87171)';
+        } else {
+          timerFill.style.background = 'linear-gradient(90deg, var(--gold-primary), #3b82f6)';
+        }
       }
     }
   }
@@ -252,11 +304,11 @@ class HarakahBlitzGame {
 
     if (gameArea) gameArea.classList.add('hidden');
     if (startBtn) {
-      startBtn.textContent = 'Play Again (45s)';
+      startBtn.textContent = this.mode === 'untimed' ? 'Practice Again' : 'Play Again (45s)';
       startBtn.classList.remove('hidden');
     }
 
-    const isNewBest = this.score >= this.bestScore && this.score > 0;
+    const isNewBest = this.mode === 'timed' && this.score >= this.bestScore && this.score > 0;
 
     if (overlay) {
       overlay.innerHTML = `

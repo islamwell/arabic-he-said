@@ -83,8 +83,11 @@ class QuranExplorer {
         v.translation.toLowerCase().includes(q) ||
         stripTashkeel(v.surah).includes(cleanQ) ||
         v.surahEn.toLowerCase().includes(q) ||
-        stripTashkeel(v.focusWord).includes(cleanQ) ||
-        (v.speaker && stripTashkeel(v.speaker).includes(cleanQ))
+        stripTashkeel(v.focusWord).includes(cleanQ) || 
+        (v.speaker && stripTashkeel(v.speaker).includes(cleanQ)) ||
+        (v.speakerEn && v.speakerEn.toLowerCase().includes(q)) ||
+        (v.listener && stripTashkeel(v.listener).includes(cleanQ)) ||
+        (v.listenerEn && v.listenerEn.toLowerCase().includes(q))
       );
     }
 
@@ -133,8 +136,8 @@ class QuranExplorer {
         </div>
 
         <div class="verse-dialogue-context">
-          <span class="context-item">🗣️ <strong>Speaker:</strong> ${v.speaker}</span>
-          <span class="context-item">👂 <strong>Addressee:</strong> ${v.listener}</span>
+          <span class="context-item">🗣️ <strong>Speaker:</strong> ${v.speaker}${v.speakerEn ? ` <span class="en-sub" style="font-weight: 400; opacity: 0.85;">(${v.speakerEn})</span>` : ''}</span>
+          <span class="context-item">👂 <strong>Addressee:</strong> ${v.listener}${v.listenerEn ? ` <span class="en-sub" style="font-weight: 400; opacity: 0.85;">(${v.listenerEn})</span>` : ''}</span>
         </div>
 
         <div class="verse-vowel-highlight">

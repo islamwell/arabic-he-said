@@ -11,6 +11,8 @@ class ConjugationEngine {
   }
 
   init() {
+    this.renderBeginnerPath();
+    this.renderSideBySideComparison();
     this.setupSubnavQuickBar();
     this.setupPronounCategoryBar();
     this.renderTenseTabs();
@@ -20,6 +22,116 @@ class ConjugationEngine {
     this.renderDerivedForms();
     this.renderNominals();
     this.setupEventListeners();
+  }
+
+  renderBeginnerPath() {
+    const container = document.getElementById('beginner-path-container');
+    if (!container || !window.SARF_DATA.beginnerFourWords) return;
+
+    const words = window.SARF_DATA.beginnerFourWords;
+    let selectedIdx = 0;
+
+    const renderCard = () => {
+      const activeWord = words[selectedIdx];
+      container.innerHTML = `
+        <div class="guided-beginner-panel">
+          <div class="beginner-panel-header">
+            <h3 class="beginner-panel-title">🌟 Start with these four words</h3>
+            <p class="beginner-panel-instruction">Tap a word to see its meaning and what changes.</p>
+          </div>
+
+          <div class="beginner-four-grid">
+            ${words.map((w, idx) => `
+              <div class="beginner-word-card ${idx === selectedIdx ? 'active' : ''}" data-idx="${idx}">
+                <div class="b-word-arabic">${w.word}</div>
+                <div class="b-word-meaning">${w.meaning}</div>
+                ${w.role ? `<div class="b-word-role">${w.role}</div>` : ''}
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="beginner-insight-box">
+            <div class="insight-meaning-row">
+              <span>«${activeWord.word}»${activeWord.phonetic ? ` — <em>${activeWord.phonetic}</em>` : ''} (${activeWord.meaning})</span>
+              <button class="b-word-speaker-btn" title="Listen" onclick="if(window.soundEngine){window.soundEngine.playPop();window.soundEngine.speakArabic('${activeWord.word}');}">🔊 Listen</button>
+            </div>
+            <div class="insight-point"><strong>What to notice:</strong> ${activeWord.notice}</div>
+            <div class="insight-point"><strong>Why:</strong> ${activeWord.why}</div>
+          </div>
+
+          <div class="beginner-actions-row">
+            <button class="btn-start-learning" id="beginner-start-btn">Start learning ➔</button>
+            <button class="btn-show-all-forms" id="beginner-show-all-btn">Show all verb forms ▾</button>
+          </div>
+        </div>
+      `;
+
+      container.querySelectorAll('.beginner-word-card').forEach(c => {
+        c.addEventListener('click', (e) => {
+          selectedIdx = parseInt(e.currentTarget.dataset.idx, 10);
+          if (window.soundEngine) window.soundEngine.playClick();
+          renderCard();
+        });
+      });
+
+      const startBtn = container.querySelector('#beginner-start-btn');
+      if (startBtn) {
+        startBtn.addEventListener('click', () => {
+          const compSection = document.getElementById('side-by-side-section');
+          if (compSection) {
+            compSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (window.soundEngine) window.soundEngine.playClick();
+          }
+        });
+      }
+
+      const showAllBtn = container.querySelector('#beginner-show-all-btn');
+      if (showAllBtn) {
+        showAllBtn.addEventListener('click', () => {
+          const allSection = document.getElementById('full-conjugation-section');
+          if (allSection) {
+            allSection.classList.remove('hidden');
+            allSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (window.soundEngine) window.soundEngine.playClick();
+          }
+        });
+      }
+    };
+
+    renderCard();
+  }
+
+  renderSideBySideComparison() {
+    const container = document.getElementById('side-by-side-section');
+    if (!container || !window.SARF_DATA.sideBySideComparison) return;
+
+    const data = window.SARF_DATA.sideBySideComparison;
+    const items = data.items || data.words || [];
+    const takeaway = data.takeaway || "The verb stem (قُلْـ) is identical. Just look or listen for the final vowel: -tu = I, -ta = you (m.), -ti = you (f.).";
+
+    container.innerHTML = `
+      <div class="side-by-side-panel">
+        <div class="side-by-side-header">
+          <h3 class="side-by-side-title">${data.title}</h3>
+          <p class="side-by-side-sub">${data.subtitle}</p>
+        </div>
+
+        <div class="side-by-side-grid">
+          ${items.map(item => `
+            <div class="comparison-card card-${item.pronounKey || 'ana'}">
+              <div class="comp-vowel-pill">${item.vowel || (item.highlightPart || '')}</div>
+              <div class="comp-word">${item.word}</div>
+              <div class="comp-meaning">“${item.meaning}”</div>
+              <div class="comp-person">${item.person || item.explanation || ''}</div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="comparison-takeaway">
+          💡 <strong>Takeaway:</strong> ${takeaway}
+        </div>
+      </div>
+    `;
   }
 
   setupSubnavQuickBar() {
@@ -223,18 +335,26 @@ class ConjugationEngine {
           </button>
         </div>
         
-        <div class="phonetic-text">${formData.phonetic || ''}</div>
+        <div class="phonetic-text">${formData.phonetic || ''} • <strong>${formData.meaning || pronounObj.en}</strong></div>
 
-        <div class="irab-ending-tag">
-          <span class="ending-label">Ending / I'rab State:</span>
-          <span class="ending-pill">${endingHtml}</span>
-        </div>
-
+        <!-- Explanation: Meaning → What to notice → Why -->
         <div class="morphology-note-box">
-          <div class="note-icon">💡</div>
-          <div class="note-content">
-            <strong>Morphological Analysis & Grammar Rule:</strong>
-            <p>${formData.notes}</p>
+          <div class="note-content" style="width: 100%;">
+            ${formData.meaning ? `<p style="margin-bottom: 6px;"><strong>Meaning:</strong> “${formData.meaning}”</p>` : ''}
+            ${formData.notice ? `<p style="margin-bottom: 6px;"><strong>What to notice:</strong> ${formData.notice}</p>` : ''}
+            ${formData.why ? `<p style="margin-bottom: 6px;"><strong>Why:</strong> ${formData.why}</p>` : ''}
+            ${!formData.notice && formData.notes ? `<p>${formData.notes}</p>` : ''}
+
+            <!-- Grammar Details Drawer Toggle -->
+            <div class="grammar-toggle-wrap">
+              <button class="grammar-toggle-btn" id="grammar-toggle-btn" type="button">
+                <span id="grammar-toggle-text">Show grammar details</span> <span id="grammar-toggle-arrow">▾</span>
+              </button>
+              <div class="grammar-details-drawer hidden" id="grammar-details-drawer">
+                <p style="margin-bottom: 6px;"><strong>Ending:</strong> ${formData.ending || endingHtml}</p>
+                <p><strong>Grammar note:</strong> ${formData.grammarDetails || formData.endingType || formData.notes || 'Built on fixed vowel'}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -247,6 +367,21 @@ class ConjugationEngine {
           window.soundEngine.playPop();
           window.soundEngine.speakArabic(formData.word);
         }
+      });
+    }
+
+    const toggleBtn = card.querySelector('#grammar-toggle-btn');
+    const drawer = card.querySelector('#grammar-details-drawer');
+    const toggleText = card.querySelector('#grammar-toggle-text');
+    const toggleArrow = card.querySelector('#grammar-toggle-arrow');
+
+    if (toggleBtn && drawer) {
+      toggleBtn.addEventListener('click', () => {
+        const isHidden = drawer.classList.contains('hidden');
+        drawer.classList.toggle('hidden');
+        if (toggleText) toggleText.textContent = isHidden ? 'Hide grammar details' : 'Show grammar details';
+        if (toggleArrow) toggleArrow.textContent = isHidden ? '▴' : '▾';
+        if (window.soundEngine) window.soundEngine.playClick();
       });
     }
   }

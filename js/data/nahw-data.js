@@ -103,7 +103,8 @@ window.NAHW_DATA = {
           title: "3. الجر بالكسرة في المشتقات والأسماء (Genitive Nouns with Kasrah)",
           detail: "الاسم المجرور بحرف جر أو بالإضافة.\n(Easy English: Nouns and derived verbal nouns preceded by prepositions take a Kasrah ['i'] ending in the genitive state.)",
           examples: [
-            { text: "وَمَنْ أَحْسَنُ قَوْلًا مِّمَّن دَعَا إِلَى اللَّهِ", target: "مِثْل: بِقَوْلِهِ", reason: "اسم مجرور بالباء بالكسرة (Genitive noun with Kasrah after preposition 'bi')" }
+            { text: "آمَنَّا بِقَوْلِهِ وَصَدَّقْنَاهُ", target: "بِقَوْلِهِ", reason: "اسم مجرور بالباء بالكسرة (Genitive noun taking Kasrah after the preposition 'bi')" },
+            { text: "مِنْ قَوْلِ رَسُولٍ كَرِيمٍ", target: "قَوْلِ", reason: "اسم مجرور بمن بالكسرة (Genitive noun taking Kasrah after the preposition 'min')" }
           ]
         }
       ]
@@ -127,8 +128,8 @@ window.NAHW_DATA = {
           title: "2. الجزم بالسكون في المضارع (Jussive Present with Sukūn)",
           detail: "يجزم الفعل المضارع بالسكون إذا سبقه جازم (لَمْ، لَا الناهية، لام الأمر). ويسقط حرف العلة الواو من جوف الكلمة منعاً لالتقاء الساكنين: يَقُولْ -> يَقُلْ.\n(Easy English: Jussive particles like 'lam' [did not] make the present verb end with Sukūn, causing the middle long Waw to drop: Yaqūl -> Yaqul.)",
           examples: [
-            { text: "قُل لَّمْ تُؤْمِنُوا وَلَٰكِن قُولُوا أَسْلَمْنَا", target: "لَمْ يَقُلْ", reason: "مضارع مجزوم بالسكون وحذفت الواو (Present jussive verb with Sukūn and dropped Waw)" },
-            { text: "وَلَا تَقُل لَّهُمَا أُفٍّ وَلَا تَنْهَرْهُمَا", target: "لَا تَقُلْ", reason: "مضارع مجزوم بلا الناهية بالسكون (Present jussive verb with Sukūn after prohibitive 'lā')" }
+            { text: "وَلَمْ يَقُلْ إِلَّا الْحَقَّ", target: "يَقُلْ", reason: "مضارع مجزوم بالسكون بعد «لَمْ» وحذفت الواو (Present jussive with Sukūn after 'lam'; middle Waw dropped)" },
+            { text: "وَلَا تَقُل لَّهُمَا أُفٍّ وَلَا تَنْهَرْهُمَا", target: "تَقُلْ", reason: "مضارع مجزوم بلا الناهية بالسكون (Present jussive with Sukūn after prohibitive 'lā')" }
           ]
         },
         {
@@ -152,10 +153,10 @@ window.NAHW_DATA = {
       question: "لماذا ينتهي الفعل «قَالَ» بالفتحة (ـَ) على اللام؟",
       questionEn: "Why does the verb «قَالَ» end with a Fatḥah on the Lam?",
       options: [
-        { label: "لأنه فعل ماضٍ مبني على الفتح الظاهر (Past active verb built on Fatḥah)", correct: true, feedback: "أحسنت! الفعل الماضي الأصل فيه البناء على الفتح إذا لم يتصل به واو جماعة أو ضمير رفع متحرك. (Past active verbs are permanently built on Fatḥah by default.)" },
-        { label: "لأنه مفعول به منصوب بالفتحة (Direct object in accusative)", correct: false, feedback: "خطأ! «قال» فعل ماضٍ وليس اسماً مفعولاً به. ('Qāla' is a verb, not an object noun.)" },
-        { label: "لأنه فعل مضارع منصوب (Subjunctive present verb)", correct: false, feedback: "خطأ! «قال» في الزمن الماضي وليس مضارعاً. ('Qāla' is past tense, not present.)" },
-        { label: "لتفادي التقاء الساكنين (To prevent silent letter clash)", correct: false, feedback: "غير صحيح! الفتحة هنا علامة بناء أصلية. (The Fatḥah here is the inherent verb ending.)" }
+        { label: "لأنه فعل ماضٍ مبني على الفتح الظاهر (Past active verb built on Fatḥah)", correct: true, feedback: "Well done! Past active verbs in the basic form permanently carry a fixed Fatḥah ('a') ending." },
+        { label: "لأنه مفعول به منصوب بالفتحة (Direct object in accusative)", correct: false, feedback: "Remember: «قَالَ» is an action verb ('he said'), not an object receiving an action." },
+        { label: "لأنه فعل مضارع منصوب (Subjunctive present verb)", correct: false, feedback: "Notice the tense: «قَالَ» happened in the past, not present tense." },
+        { label: "لتفادي التقاء الساكنين (To prevent silent letter clash)", correct: false, feedback: "The Fatḥah here is the standard, original past tense ending." }
       ],
       grammarRuleId: "fatha",
       fullIrab: "قَالَ: فعل ماضٍ مبني على الفتح الظاهر على آخره لا محل له من الإعراب.\n(Easy English: 'Qāla' is a past active verb built on clear Fatḥah ['a'], with no independent grammatical position.)"
@@ -167,10 +168,10 @@ window.NAHW_DATA = {
       question: "لماذا جاءت اللام في «يَقُولَ» مفتوحة (ـَ) بدلاً من الضمة؟",
       questionEn: "Why is the Lam in «يَقُولَ» marked with a Fatḥah instead of a Ḍammah?",
       options: [
-        { label: "لأنه مضارع منصوب بأن المضمرة بعد «حَتَّىٰ» (Subjunctive present with Fatḥah after 'ḥattā')", correct: true, feedback: "ممتاز! أدوات النصب (حتى، لن، أن...) تجعل المضارع منصوباً بالفتحة الظاهرة. (Subjunctive particles cause the present verb to end with Fatḥah.)" },
-        { label: "لأنه فعل ماضٍ مبني على الفتح (Past verb built on Fatḥah)", correct: false, feedback: "خطأ! «يقول» فعل مضارع وليس ماضياً. ('Yaqūla' is present tense, not past.)" },
-        { label: "لأنه فاعل مرفوع بالضمة المقدرة (Subject in nominative)", correct: false, feedback: "خطأ! «يقول» فعل، والفاعل بعده هو «الرسولُ». ('Yaqūla' is the verb; 'ar-Rasūlu' is the subject.)" },
-        { label: "لأنه جواب الشرط (Conditional response)", correct: false, feedback: "خطأ! لا يوجد أسلوب شرط هنا، بل حرف الغاية 'حتى'. (There is no conditional here, only 'ḥattā'.)" }
+        { label: "لأنه مضارع منصوب بأن المضمرة بعد «حَتَّىٰ» (Subjunctive present with Fatḥah after 'ḥattā')", correct: true, feedback: "Great eye! Particles like 'ḥattā' (until) and 'lan' change the present ending from -u to -a." },
+        { label: "لأنه فعل ماضٍ مبني على الفتح (Past verb built on Fatḥah)", correct: false, feedback: "«يَقُولَ» begins with the present prefix يـ, so it is present tense." },
+        { label: "لأنه فاعل مرفوع بالضمة المقدرة (Subject in nominative)", correct: false, feedback: "«يَقُولَ» is the verb itself; the subject who speaks is «الرَّسُولُ»." },
+        { label: "لأنه جواب الشرط (Conditional response)", correct: false, feedback: "There is no conditional ('if... then') here, only the time particle «حَتَّىٰ»." }
       ],
       grammarRuleId: "fatha",
       fullIrab: "يَقُولَ: فعل مضارع منصوب بأن المضمرة بعد حتى وعلامة نصبه الفتحة الظاهرة على آخره.\n(Easy English: 'Yaqūla' is a present subjunctive verb marked with Fatḥah ['a'] after 'ḥattā'.)"
@@ -182,10 +183,10 @@ window.NAHW_DATA = {
       question: "لماذا كُسِرَت اللام في «قُلِ» بالكسرة (ـِ) بدلاً من السكون الأصلي؟",
       questionEn: "Why is the Lam in «قُلِ» marked with a Kasrah instead of its original Sukūn?",
       options: [
-        { label: "كسرة عارضة لمنع التقاء الساكنين (Connecting Kasrah to avoid silent consonant clash)", correct: true, feedback: "إجابة عبقرية! الأصل «قُلْ» بالسكون، ولكن التقى ساكنان مع بداية الكلمة التالية، فكُسرت اللام وصلاً. (The original Sukūn shifts to temporary Kasrah to connect smoothly.)" },
-        { label: "لأنه فعل أمر مبني على الكسر (Command built on Kasrah)", correct: false, feedback: "خطأ! فعل الأمر لا يبنى على الكسر أبداً. (Command verbs are never inherently built on Kasrah.)" },
-        { label: "لأنه موجه للمؤنث المخاطب (Feminine 'you' command)", correct: false, feedback: "خطأ! أمر المؤنث يكون بياء المخاطبة «قُولِي». (Feminine command requires Ya suffix 'Qūlī'.)" },
-        { label: "لأنه اسم مجرور بحرف جر مقدر (Genitive noun)", correct: false, feedback: "خطأ! «قل» فعل أمر وليس اسماً. ('Qul' is a command verb, not a noun.)" }
+        { label: "كسرة عارضة لمنع التقاء الساكنين (Connecting Kasrah to avoid silent consonant clash)", correct: true, feedback: "Exactly! The base word is «قُلْ» with sukūn, but when connecting to the next word starting with a silent consonant, Arabic uses a light kasrah to bridge them." },
+        { label: "لأنه فعل أمر مبني على الكسر (Command built on Kasrah)", correct: false, feedback: "Arabic command verbs are never naturally built on kasrah." },
+        { label: "لأنه موجه للمؤنث المخاطب (Feminine 'you' command)", correct: false, feedback: "The command to one woman has a ya: «قُولِي» (Qūlī)." },
+        { label: "لأنه اسم مجرور بحرف جر مقدر (Genitive noun)", correct: false, feedback: "«قُلْ» is an action command ('Say!'), not a noun." }
       ],
       grammarRuleId: "kasrah",
       fullIrab: "قُلِ: فعل أمر مبني على السكون، وحُرك بالكسر منعاً لالتقاء الساكنين، والفاعل ضمير مستتر تقديره أنت.\n(Easy English: 'Quli' is an imperative command verb built on Sukūn, shifted to temporary Kasrah ['i'] to avoid silent letter clash; the subject pronoun 'You' is implied.)"
@@ -197,10 +198,10 @@ window.NAHW_DATA = {
       question: "ما إعراب التاء المضمومة (ـتُ) وحركة اللام الساكنة في «قُلْتُ»؟",
       questionEn: "What is the function of the Ḍammah on the Ta (ـتُ) and the Sukūn on the Lam in «قُلْتُ»?",
       options: [
-        { label: "الفعل مبني على السكون لاتصاله بالتاء، والتاء ضمير فاعل مبني على الضم (Past built on Sukūn with 'I' pronoun)", correct: true, feedback: "صحيح 100%! تاء المتكلم تضم، وتبني الماضي قبلها على السكون، فتحذف الواو. (The 'I' pronoun takes Ḍammah while freezing the verb base on Sukūn.)" },
-        { label: "التاء علامة تأنيث ساكنة (Feminine marker)", correct: false, feedback: "خطأ! تاء التأنيث تكون ساكنة (قَالَتْ) وليست مضمومة. (Feminine marker is silent 'Qālat', not Ḍammah.)" },
-        { label: "الفعل مرفوع بالضمة الظاهرة على التاء (Verb in nominative)", correct: false, feedback: "خطأ! الأفعال الماضية مبنية دائماً ولا تُرفع. (Past verbs are permanently built and never take Raf'.)" },
-        { label: "التاء للمخاطب المذكر (Masculine 'you' pronoun)", correct: false, feedback: "خطأ! تاء المخاطب تكون مفتوحة (قُلْتَ). (Masculine 'you' pronoun takes Fatḥah 'Qulta'.)" }
+        { label: "الفعل مبني على السكون لاتصاله بالتاء، والتاء ضمير فاعل مبني على الضم (Past built on Sukūn with 'I' pronoun)", correct: true, feedback: "Spot on! The ending ـتُ represents 'I'. Attaching it gives the Lam a sukūn, which in turn causes the middle Alif to drop." },
+        { label: "التاء علامة تأنيث ساكنة (Feminine marker)", correct: false, feedback: "The feminine marker is silent with a sukūn: «قَالَتْ» (she said)." },
+        { label: "الفعل مرفوع بالضمة الظاهرة على التاء (Verb in nominative)", correct: false, feedback: "Past verbs are fixed (mabnī), not nominative (marfoo')." },
+        { label: "التاء للمخاطب المذكر (Masculine 'you' pronoun)", correct: false, feedback: "The masculine 'you' ending has a fatḥah: «قُلْتَ» (you said)." }
       ],
       grammarRuleId: "dammah",
       fullIrab: "قُلْتُ: فعل ماضٍ مبني على السكون لاتصاله بتاء الفاعل، وحذفت الألف لالتقاء الساكنين، والتاء ضمير متصل مبني على الضم في محل رفع فاعل.\n(Easy English: 'Qultu' is a past verb built on Sukūn with 'tu', where 'tu' is the 1st person subject pronoun 'I' built on Ḍammah ['u'].)"
@@ -212,10 +213,10 @@ window.NAHW_DATA = {
       question: "لماذا سكنت اللام وسقطت الواو من «تَقُلْ»؟",
       questionEn: "Why is the Lam marked with a Sukūn and the Waw omitted in «تَقُلْ»?",
       options: [
-        { label: "مضارع مجزوم بـ «لا الناهية» بالسكون، وسقطت الواو لالتقاء الساكنين (Jussive with Sukūn and dropped Waw)", correct: true, feedback: "رائع! لا الناهية تجزم المضارع بالسكون، ولأن الواو ساكنة واللام سكنت، حذفت الواو: تَقُولْ ⟶ تَقُلْ. (Prohibitive 'lā' puts verb in jussive with Sukūn, dropping middle Waw.)" },
-        { label: "لأنه فعل أمر مبني على حذف حرف العلة (Command verb)", correct: false, feedback: "خطأ! هو فعل مضارع مجزوم وليس أمر، وحرف العلة حذف لالتقاء الساكنين لا للجزم. (It is a jussive present verb, not a command.)" },
-        { label: "لأنه معطوف على اسم مجرور (Conjoined genitive)", correct: false, feedback: "خطأ! الفعل لا يجر أبداً. (Verbs can never be in the genitive state.)" },
-        { label: "لأنه مبني على السكون لاتصاله بنون النسوة (Attached to feminine Nūn)", correct: false, feedback: "خطأ! لا توجد نون نسوة هنا. (There is no feminine Nūn in this word.)" }
+        { label: "مضارع مجزوم بـ «لا الناهية» بالسكون، وسقطت الواو لالتقاء الساكنين (Jussive with Sukūn and dropped Waw)", correct: true, feedback: "Brilliant! Prohibitive «لَا» ('do not') makes the present tense take a sukūn on the Lam. Because two unvowelled letters meet, the middle long Waw is dropped." },
+        { label: "لأنه فعل أمر مبني على حذف حرف العلة (Command verb)", correct: false, feedback: "This is a negative command using the present tense: «لَا تَقُلْ» (do not say)." },
+        { label: "لأنه معطوف على اسم مجرور (Conjoined genitive)", correct: false, feedback: "Verbs never take genitive case (jarr)." },
+        { label: "لأنه مبني على السكون لاتصاله بنون النسوة (Attached to feminine Nūn)", correct: false, feedback: "There is no feminine noon (ـْنَ) on this verb." }
       ],
       grammarRuleId: "sukun",
       fullIrab: "تَقُلْ: فعل مضارع مجزوم بلا الناهية وعلامة جزمه السكون الظاهر على آخره، وحذفت الواو لالتقاء الساكنين.\n(Easy English: 'Taqul' is a present jussive verb marked with Sukūn after prohibitive 'lā', with the middle Waw dropped to avoid two silent letters.)"
@@ -224,13 +225,13 @@ window.NAHW_DATA = {
       id: "q6",
       sentence: "يَقُولُونَ بِأَفْوَاهِهِم مَّا لَيْسَ فِي قُلُوبِهِمْ",
       wordFocus: "يَقُولُونَ",
-      question: "ما هي علامة رفع الفعل «يَقُولُونَ»؟",
-      questionEn: "What is the sign of Raf' for the verb «يَقُولُونَ»?",
+      question: "في «يَقُولُونَ» (هم يقولون)، ما الذي يدل على أن الفعل في حالة الرفع الأصلية؟",
+      questionEn: "In «يَقُولُونَ» (they say), what tells you this verb is in its default present state (Marfoo')?",
       options: [
-        { label: "ثبوت النون لأنه من الأفعال الخمسة (Retained Nūn for Five Verbs)", correct: true, feedback: "إجابة صحيحة! الأفعال الخمسة ترفع بثبوت النون وتنصب وتجزم بحذفها. (Five Verbs show nominative state by retaining the final Nūn.)" },
-        { label: "الضمة الظاهرة على الواو (Ḍammah on Waw)", correct: false, feedback: "خطأ! الواو هنا ضمير فاعل وليس حرف حركة. (Waw is the subject pronoun 'they', not a vowel mark.)" },
-        { label: "الفتحة المقدرة على النون (Estimated Fatḥah)", correct: false, feedback: "خطأ! النون هنا علامة إعراب. (The presence of Nūn itself is the inflectional marker.)" },
-        { label: "مبني على الضم (Built on Ḍammah)", correct: false, feedback: "خطأ! المضارع مع واو الجماعة معرب بثبوت النون. (Present tense with plural Waw is inflected by retaining Nūn.)" }
+        { label: "ثبوت النون في آخره لأنه من الأفعال الخمسة (The final Nūn is kept)", correct: true, feedback: "Perfect! In forms like 'they say' (يَقُولُونَ) and 'you all say' (تَقُولُونَ), keeping the final Noon (ـُونَ) shows the normal present state. When preceded by particles like 'lan' or 'lam', this Noon disappears." },
+        { label: "الضمة المقدرة على الواو (Hidden ḍammah on the Waw)", correct: false, feedback: "The Waw here is the pronoun representing 'they', not the ending marker." },
+        { label: "الفتحة التي على النون (Fatḥah on the Nūn)", correct: false, feedback: "The fatḥah on the letter Noon is just phonetic; what matters is the presence of the letter Noon itself." },
+        { label: "لأنه مبني على الضم (Built on ḍammah)", correct: false, feedback: "Present tense with plural Waw is inflected (mu'rab), not built on ḍammah." }
       ],
       grammarRuleId: "dammah",
       fullIrab: "يَقُولُونَ: فعل مضارع مرفوع وعلامة رفعه ثبوت النون لأنه من الأفعال الخمسة، والواو ضمير متصل مبني على السكون في محل رفع فاعل.\n(Easy English: 'Yaqūlūna' is a present indicative verb marked by retained Nūn [Five Verbs], and the Waw is the subject pronoun 'they'.)"
@@ -240,12 +241,12 @@ window.NAHW_DATA = {
       sentence: "وَقِيلَ يَا أَرْضُ ابْلَعِي مَاءَكِ",
       wordFocus: "قِيلَ",
       question: "لماذا بُني الفعل «قِيلَ» للمجهول بالياء والكسرة؟",
-      questionEn: "Why is the passive verb «قِيلَ» formed with a Ya and Kasrah?",
+      questionEn: "Why is the passive form «قِيلَ» formed with a Ya and Kasrah?",
       options: [
-        { label: "لأنه ماضٍ مبني للمجهول؛ أصله «قُوِلَ» ونُقلت كسرة الواو للقاف (Past passive verb 'It was said')", correct: true, feedback: "إجابة دقيقة في الصرف! أصل قِيلَ هو قُوِلَ، فنُقلت كسرة الواو إلى القاف فانقلبت الواو ياءً لمناسبة الكسرة. (In passive formation, the Kasrah on Waw shifts to Qaf, converting Waw into Ya: Qīla.)" },
-        { label: "لأنه فعل أمر للمؤنث (Feminine command)", correct: false, feedback: "خطأ! فعل أمر المؤنث هو «قُولِي». (Feminine command is 'Qūlī'.)" },
-        { label: "لأنه مضارع مجزوم (Jussive present)", correct: false, feedback: "خطأ! «قيل» فعل ماضٍ مبني للمجهول. ('Qīla' is a past passive verb.)" },
-        { label: "لأنه جمع تكسير (Broken plural)", correct: false, feedback: "خطأ! «قيل» فعل وليس اسماً. ('Qīla' is a verb, not a plural noun.)" }
+        { label: "لأنه ماضٍ مبني للمجهول؛ أصله «قُوِلَ» ونُقلت كسرة الواو للقاف (Past passive verb 'It was said')", correct: true, feedback: "Exact! In passive past, the middle vowel becomes 'ee' (Qīla = 'it was said'), leaving the speaker unnamed." },
+        { label: "لأنه فعل أمر للمؤنث (Feminine command)", correct: false, feedback: "The command to one female is «قُولِي» (Say!). «قِيلَ» means 'it was said'." },
+        { label: "لأنه مضارع مجزوم (Jussive present)", correct: false, feedback: "«قِيلَ» is past passive, not present tense." },
+        { label: "لأنه جمع تكسير (Broken plural)", correct: false, feedback: "«قِيلَ» is a verb ('it was said'), not a plural noun." }
       ],
       grammarRuleId: "fatha",
       fullIrab: "قِيلَ: فعل ماضٍ مبني للمجهول (لما لم يسمَّ فاعله) مبني على الفتح الظاهر.\n(Easy English: 'Qīla' is a past passive verb ['it was said'] built on a clear, fixed Fatḥah ['a'].)"
