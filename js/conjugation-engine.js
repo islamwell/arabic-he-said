@@ -435,38 +435,45 @@ class ConjugationEngine {
 
   renderDerivedForms() {
     const container = document.getElementById('derived-forms-table-body');
-    if (!container) return;
+    if (!container || !window.SARF_DATA.derivedForms) return;
 
     const forms = window.SARF_DATA.derivedForms;
-    container.innerHTML = forms.map(f => `
-      <div class="derived-form-card">
-        <div class="form-header">
-          <span class="form-title-badge">${f.form}: ${f.name}</span>
-          <span class="form-arabic-pattern">${f.past} - ${f.present}</span>
+    container.innerHTML = forms.map(f => {
+      const title = f.name ? `${f.form}: ${f.name}` : (f.form || '');
+      const pattern = f.arabicPattern || (f.past && f.present ? `${f.past} - ${f.present}${f.masdar ? ` - ${f.masdar}` : ''}` : '');
+
+      return `
+        <div class="derived-form-card">
+          <div class="form-header">
+            <span class="form-title-badge">${title}</span>
+            <span class="form-arabic-pattern" dir="rtl">${pattern}</span>
+          </div>
+          <div class="form-meaning"><strong>Meaning:</strong> ${f.meaning || ''}</div>
+          ${f.quranExample ? `
+            <div class="form-quran-box">
+              <strong>Example:</strong> «${f.quranExample}»
+            </div>
+          ` : ''}
+          ${f.notes ? `<div class="form-notes-detail">${f.notes}</div>` : ''}
         </div>
-        <div class="form-meaning"><strong>Meaning:</strong> ${f.meaning}</div>
-        <div class="form-quran-box">
-          <strong>Quranic Example:</strong> «${f.quranExample}»
-        </div>
-        <div class="form-notes-detail">${f.notes}</div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 
   renderNominals() {
     const container = document.getElementById('nominals-container');
-    if (!container) return;
+    if (!container || !window.SARF_DATA.nominals) return;
 
     const nominals = window.SARF_DATA.nominals;
     container.innerHTML = nominals.map(n => `
       <div class="nominal-card">
         <div class="nominal-header">
-          <span class="nominal-type-badge">${n.type}</span>
-          <span class="nominal-arabic-word">${n.word}</span>
+          <span class="nominal-type-badge">${n.type || ''}</span>
+          <span class="nominal-arabic-word">${n.word || ''}</span>
         </div>
-        <div class="nominal-meaning"><strong>Definition:</strong> ${n.meaning}</div>
-        <div class="nominal-plural"><strong>Plural / Pattern:</strong> ${n.plural || n.pattern || 'N/A'}</div>
-        <div class="nominal-quran"><strong>Quran Context:</strong> «${n.quranRef || ''}»</div>
+        <div class="nominal-meaning"><strong>Definition:</strong> ${n.meaning || ''}</div>
+        <div class="nominal-plural"><strong>Plural / Pattern:</strong> ${n.plural || n.pattern || '—'}</div>
+        ${(n.quran || n.quranRef) ? `<div class="nominal-quran"><strong>Quran Context:</strong> «${n.quran || n.quranRef}»</div>` : ''}
       </div>
     `).join('');
   }

@@ -247,6 +247,10 @@ window.SARF_DATA = {
   derivedForms: [
     {
       form: "Form I (فَعَلَ)",
+      name: "Base Form",
+      past: "قَالَ",
+      present: "يَقُولُ",
+      masdar: "قَوْلًا",
       arabicPattern: "قَالَ - يَقُولُ - قَوْلًا",
       meaning: "To say, to utter, to speak",
       quranExample: "قَالَ إِنِّي عَبْدُ اللَّهِ (Maryam: 30)",
@@ -254,6 +258,10 @@ window.SARF_DATA = {
     },
     {
       form: "Form II (فَعَّلَ)",
+      name: "Causative / Intensive",
+      past: "قَوَّلَ",
+      present: "يُقَوِّلُ",
+      masdar: "تَقْوِيلًا",
       arabicPattern: "قَوَّلَ - يُقَوِّلُ - تَقْوِيلًا",
       meaning: "To put words in someone's mouth; falsely attribute speech",
       quranExample: "مُشْتَقّ مِنْهَا: تَقَوُّل",
@@ -261,6 +269,10 @@ window.SARF_DATA = {
     },
     {
       form: "Form IV (أَفْعَلَ)",
+      name: "Causative / Relieving",
+      past: "أَقَالَ",
+      present: "يُقِيلُ",
+      masdar: "إِقَالَةً",
       arabicPattern: "أَقَالَ - يُقِيلُ - إِقَالَةً",
       meaning: "To annul, relieve, excuse a transaction/fault; to dismiss",
       quranExample: "الحديث: مَنْ أَقَالَ مُسْلِمًا أَقَالَهُ اللَّهُ عَثْرَتَهُ",
@@ -268,6 +280,10 @@ window.SARF_DATA = {
     },
     {
       form: "Form V (تَفَعَّلَ)",
+      name: "Reflexive / Fabricating",
+      past: "تَقَوَّلَ",
+      present: "يَتَقَوَّلُ",
+      masdar: "تَقَوُّلًا",
       arabicPattern: "تَقَوَّلَ - يَتَقَوَّلُ - تَقَوُّلًا",
       meaning: "To fabricate lies, forge speech, invent statements against someone",
       quranExample: "وَلَوْ تَقَوَّلَ عَلَيْنَا بَعْضَ الْأَقَاوِيلِ (Al-Haqqah: 44–45)",
@@ -275,6 +291,10 @@ window.SARF_DATA = {
     },
     {
       form: "Form X (اسْتَفْعَلَ)",
+      name: "Seeking / Requesting",
+      past: "اسْتَقَالَ",
+      present: "يَسْتَقِيلُ",
+      masdar: "اسْتِقَالَةً",
       arabicPattern: "اسْتَقَالَ - يَسْتَقِيلُ - اسْتِقَالَةً",
       meaning: "To ask to be relieved, to resign from a position",
       quranExample: "الاستعمال الفقهي والمعاصر",
